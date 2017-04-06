@@ -28,6 +28,7 @@
           </ul>
         </div>
         <ul class="category">
+          <router-link to="/detail" tag="li" active-class="current-page" ><a href>상세페이지</a></router-link>
           <li><a href="#">category</a></li>
           <li><a href="#">category</a></li>
           <li><a href="#">category</a></li>

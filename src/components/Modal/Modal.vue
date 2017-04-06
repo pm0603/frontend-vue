@@ -2,7 +2,8 @@
 <template>
     <div class="modal" >
             <div class="modal-content-md">
-                <a class="modal-prev-btn" @click.stop="closeModal" > prev </a>
+                <a class="modal-prev-btn" @click.stop="closeModal" >
+<i class="fa fa-times" aria-hidden="true"></i></a>
                 <div class="modal-header">
                     <h2>로그인</h2>
                     <p>Good to have you back!</p>

@@ -1,0 +1,54 @@
+=card-basic
+    // max-width:100%를 하는 이유를 사실 잘 모른다 ㅠ
+        max-width: 100%
+        background-color: $white
+        box-shadow: 0 1px 2px rgba(0,0, 0,.1), 0 0 2px rgba(0,0,0,.1)
+        border-radius: 3px
+        border: 1px solid $border-color
+        position: relative
+        cursor: pointer
+
+
+=fit-image
+    & .card-image-small  img,
+    & .card-image-medium img,
+    & .card-image-large  img
+        bottom: 0
+        left: 0
+        right: 0
+        top: 0
+        height: 100%
+        position: absolute
+    & .card-image-medium img,
+    & .card-image-large  img
+        width: 100%
+    & .card-image-small  img
+        width: 50%
+        height: 50%
+
+=set-image-size
+    & .card-image-small
+        padding-top: 30%
+    & .card-image-medium
+        padding-top: 45%
+    & .card-image-large
+        padding-top: 55%
+
+
+// [[ modal mixin ]]
+// define modal-content
+// 높이에 대한 고민이 있습니다.
+=set-modal-content($width, $height)
+    position: fixed
+    transform: translate(-50%, -50%)
+    width: 30rem
+    height: 30rem
+    top: 50%
+    left: 50%
+    z-index: 100
+    background-color: #fff
+    background-position: center
+    border: 1px solid #463a3a
+    border-radius: 4px
+    transition: all 3s ease
+        

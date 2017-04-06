@@ -1,0 +1,126 @@
+@import './_mixin.sass'
+@import './_normalize.sass'
+
+
+.result-fail
+    color: #ef0c67
+
+label
+    position: absolute
+    left: -999em
+
+.modal
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 10
+    background: rgba(20, 19, 19, 0.7)
+    transition: opacity .3s ease
+
+.modal-content
+    // +set-modal-content
+    +set-modal-content(40%, 70%)
+    
+.modal-content-md
+    +set-modal-content(40%, 60%)
+    
+// 이전 버튼
+.modal-prev-btn
+    position: absolute
+    margin: 1.5rem
+    width:  40px
+    height: 40px
+    border: 1px solid #797476
+    border-radius: 50%
+    text-align: center
+    padding: 0.4rem
+    cursor: pointer
+    z-index: 10
+
+    &, &:link
+        text-decoration: none
+
+.modal-header
+    position: relative
+    padding-bottom: 1rem
+    border-bottom: 1px solid #ff6347
+
+    & h2
+        font-size: 1.5rem
+        padding-top: 2rem
+        position: relative
+        text-align: center
+    
+    & p
+        line-height: 2
+        text-align: center 
+
+
+.modal-body
+    height: auto
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+
+    & form
+        margin-bottom: 1.2rem
+
+    & input
+        margin-top: 1.2rem
+        width: 70%
+        height: 2rem
+        padding-left: 10px
+
+    & p
+        text-align: center
+        
+        & a,a:link
+            text-decoration: none
+            color: #2f2a2c
+
+        & a:hover
+            color: #ed2b79
+
+.modal-footer
+    position: fixed
+    bottom: 0
+    width: 100%
+    height: 15%
+    background: #dcdfe1
+    // display contents in the middle
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    & p
+        text-align: center
+        
+        & a,a:link
+            text-decoration: none
+            color: #2f2a2c
+
+        & a:hover
+            color: #ed2b79
+
+   
+
+// button for closing modal window 
+.modal-close
+    position: absolute
+    top: 1rem
+    right: 1rem
+    // remove button style
+    background: none
+    border: 0
+    color: #463a3a
+    // !!접근성을 위해 커서를 포인터로 하고 늘렸는데 안된다;;
+    cursor: pointer
+    padding: 5px 8px
+
+    
+
+    
+            

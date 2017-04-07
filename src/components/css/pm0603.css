@@ -774,7 +774,8 @@ header {
 
 .signin {
   border: 0;
-  background: #e8432e;
+  background: #2580EA;
+  /*background: #e8432e;*/
   color: #fff;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
@@ -1312,148 +1313,7 @@ label {
   left: -999em;
 }
 
-.modal {
-  display: relative;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10;
-  background: rgba(20, 19, 19, 0.7);
-  transition: opacity .3s ease;
-}
 
-.modal-content {
-  position: fixed;
-  transform: translate(-50%, -50%);
-  width: 30rem;
-  height: 30rem;
-  top: 50%;
-  left: 50%;
-  z-index: 100;
-  background-color: #fff;
-  background-position: center;
-  border: 1px solid #463a3a;
-  border-radius: 4px;
-  transition: all 3s ease;
-}
-
-.modal-content-md {
-  position: fixed;
-  transform: translate(-50%, -50%);
-  width: 30rem;
-  height: 30rem;
-  top: 50%;
-  left: 50%;
-  z-index: 100;
-  background-color: #fff;
-  background-position: center;
-  border: 1px solid #463a3a;
-  border-radius: 4px;
-  transition: all 3s ease;
-}
-
-.modal-prev-btn {
-  position: absolute;
-  margin: 1.5rem;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #797476;
-  border-radius: 50%;
-  text-align: center;
-  padding: 0.4rem;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.modal-prev-btn, .modal-prev-btn:link {
-  text-decoration: none;
-}
-
-.modal-header {
-  position: relative;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #ff6347;
-}
-
-.modal-header h2 {
-  font-size: 1.5rem;
-  padding-top: 2rem;
-  position: relative;
-  text-align: center;
-}
-
-.modal-header p {
-  line-height: 2;
-  text-align: center;
-}
-
-.modal-body {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.modal-body form {
-  margin-bottom: 1.2rem;
-}
-
-.modal-body input {
-  margin-top: 1.2rem;
-  width: 70%;
-  height: 2rem;
-  padding-left: 10px;
-}
-
-.modal-body p {
-  text-align: center;
-}
-
-.modal-body p a, .modal-body p a:link {
-  text-decoration: none;
-  color: #2f2a2c;
-}
-
-.modal-body p a:hover {
-  color: #ed2b79;
-}
-
-.modal-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 15%;
-  background: #dcdfe1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.modal-footer p {
-  text-align: center;
-}
-
-.modal-footer p a, .modal-footer p a:link {
-  text-decoration: none;
-  color: #2f2a2c;
-}
-
-.modal-footer p a:hover {
-  color: #ed2b79;
-}
-
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: 0;
-  color: #463a3a;
-  cursor: pointer;
-  padding: 5px 8px;
-}
 
 .dropbtn {
   background-color: #f2ca68;

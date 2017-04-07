@@ -1,0 +1,94 @@
+@import "mango-trick"
+
+*,
+*::after,
+*::before
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+html
+  font-size: 10px
+
+body
+  font-size: 1.4rem
+a
+  text-decoration: none
+  color: #000
+img
+  width: 100%
+
+// Button 수정 예정
+$btn-bg-none: none !default
+button
+  border: none
+  padding: 1rem 1.5rem
+  background: $btn-bg-none
+.main
+  background: #eee url('https://images3.alphacoders.com/151/151409.jpg') center center no-repeat
+  background-size: cover
+  height: 80vh
+  display: flex
+  align-items: center
+.main-search
+  width: 100%
+  padding: 0 2rem 5rem 2rem
+  & h2,
+  & p
+    color: $white
+    text-align: center
+    margin-bottom: 1.5rem
+  & h2
+    font-size: $size-1
+  & p
+    font-size: $size-4
+.performance-list
+  border-bottom: 1px solid #ddd
+  padding: 1rem
+  // Button 수정 예정
+  & button
+    border: 1px solid #ddd
+    background: none
+    padding: 1.8rem 5rem
+    margin: 2rem auto 4rem auto
+    font-size: $size-6
+    cursor: pointer
+  & button:hover
+    color: $red
+.performance-list h2,
+.genre-list h2
+    font-size: $size-3
+    text-align: center
+    margin: 4rem auto
+    color: $text
+.card,
+.card-side
+  text-align: left
+  margin-bottom: 2rem
+
+// Mobile, Tablet
++breakpoint(tablet)
+  .genre-list-padding
+    padding: 0
+
+// Desktop +
++breakpoint(desktop)
+  .genre-list
+    padding: 1rem
+
+.search-main
+  padding: 2rem
+  width: 100%
+  & .searchbar
+    width: 100%
+    max-width: 100%
+
+.search
+  display: flex
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1)
+  margin-top: 2rem
+  &-category
+    width: 100%
+    text-align: center
+  & a
+    display: block

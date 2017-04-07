@@ -1,0 +1,158 @@
+// nav
+$nav-height: 5rem
+
+ul
+  list-style: none
+header
+  width: 100%
+  display: flex
+  text-align: center
+  background: #fff
+  box-shadow: 0 1px 2px rgba(0,0,0,.1), 0 0 2px rgba(0,0,0,.1)
+  color: #404d57
+  position: relative
+.nav-heading
+  font-size: 3rem
+  padding: 0.7rem 2rem
+  height: $nav-height
+
+.none
+  display: none
+.signin
+  border: 0
+  background: #e8432e
+  color: #fff
+  letter-spacing: 0.1rem
+  text-transform: uppercase
+  padding: 1rem 2rem
+
+.nav-menu
+  display: none
+
+@media screen and (max-width: 900px)
+  .nav-left
+    display: none
+  .nav-heading
+    position: absolute
+  .nav-menu
+    display: block
+    font-size: 3rem
+    cursor: pointer
+    padding: 1rem 2rem
+  .nav
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+    &-right
+      width: 100%
+      display: flex
+      justify-content: flex-end
+      height: $nav-height
+  .mobile-menu
+    width: 100%
+    display: flex
+    justify-content: flex-start
+    border-top: 1px solid #ddd
+    order: 1
+    white-space: nowrap
+    align-items: center
+    position: relative
+    & li
+      display: inline-block
+      font-size: 1.4rem
+      height: $nav-height
+      text-transform: uppercase
+    & .category
+      width: 50%
+      display: flex
+      flex-flow: column
+      position: absolute
+      background: #fff
+      right: 0
+      top: 0
+    & > ul > li > a
+      display: inline-block
+      padding: 1.8rem
+      height: $nav-height
+    & ul a:hover
+      color: #ec5454
+    & .dropdown
+      background: #fff
+      position: absolute
+      width: 100%
+      top: 5rem
+      display: flex
+      flex-direction: column
+      & a
+        padding: 1.8rem
+        display: block
+  .nav-location,
+  .search-category
+    height: $nav-height
+    position: relative
+    width: 50%
+  .nav-location-all,
+  .category-all
+    display: block
+    padding: 1.8rem 8rem
+  .nav-location-all::after,
+  .category-all::after
+    content: '▾'
+    padding-left: 1rem
+    position: absolute
+
+@media screen and (min-width: 901px)
+  .nav
+    width: 100%
+    display: flex
+    justify-content: space-between
+    &-left
+      display: flex
+      justify-content: flex-start
+      white-space: nowrap
+      align-items: center
+    &-img
+      width: 120px
+      height: $nav-height
+
+    &-right
+      display: flex
+      justify-content: flex-end
+    &-left > ul
+      display: inline-flex
+    &-left li
+      display: inline-block
+      font-size: 1.4rem
+      height: $nav-height
+      text-transform: uppercase
+    &-left > ul > li > a
+      display: inline-block
+      padding: 1.8rem
+      height: $nav-height
+    &-left ul a:hover
+      color: #ec5454
+    &-left .dropdown
+      background: #fff
+      position: absolute
+      width: 100%
+      top: 5rem
+      display: flex
+      flex-direction: column
+      & a
+        padding: 1.8rem
+        display: block
+  .nav-location,
+  .search-category
+    height: $nav-height
+    position: relative
+    border-right: 1px solid #ccc
+    border-left: 1px solid #ccc
+  .nav-location-all,
+  .category-all
+    display: block
+    padding: 1.8rem 8rem
+  .nav-location-all::after,
+  .category-all::after
+    content: '▾'
+    padding-left: 1rem
+    position: absolute

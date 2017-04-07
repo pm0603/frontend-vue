@@ -2,7 +2,7 @@
     <section class="genre-list">
     <h2>Our Collections</h2>
     <div class="row" >
-      <div class="col-xl-6 col-l-6 col-m-12 col-s-12" v-for="index in items" >
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12" v-for="index in items" >
         <div class="card-side">
             <div class="card-image-wide">
                 <figure class="card-image-medium">
@@ -42,7 +42,7 @@ var dbMoodel = [
             return{
                 items : dbMoodel
                 // items : MainTestDB.card 이런식으로 접근이 가능한지?
-                
+
             }
         }
     }

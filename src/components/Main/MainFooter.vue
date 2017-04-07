@@ -2,7 +2,7 @@
     <footer class="footer-center">
         <div class="footer-content">
             <div class="footer-header">
-               
+
                     <section class="footer-item">
                         <h4>Useful Stuff</h4>
                         <ul>
@@ -27,7 +27,7 @@
                             <li><a>The Small Print</a></li>
                         </ul>
                     </section>
-                   
+
             </div>
             <div class="footer-footer">
                 <div class="footer-logo">
@@ -55,7 +55,3 @@
         }
     }
 </script>
-
-<style lang="sass">
-    @import '../css/footer.sass'
-</style>

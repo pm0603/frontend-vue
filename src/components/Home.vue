@@ -29,3 +29,6 @@
 
     }
 </script>
+<style lang="sass">
+  @import './sass/pm0603.sass'
+</style>

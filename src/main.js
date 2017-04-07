@@ -9,8 +9,10 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   //위에 routes가 여기에 들어옴
+  mode: 'history',
   routes
 });
+
 
 
 new Vue({
@@ -18,3 +20,5 @@ new Vue({
   router,//사용되도록 설정
   render: h => h(App)
 });
+
+axios.defaults.baseURL   = 'http://www.pm0603.com';

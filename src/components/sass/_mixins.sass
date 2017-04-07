@@ -20,7 +20,6 @@
   transform: translate(-50%, -50%)
 
 =card-basic
-    // max-width:100%를 하는 이유를 사실 잘 모른다 ㅠ
         max-width: 100%
         background-color: $white
         box-shadow: 0 1px 2px rgba(0,0, 0,.1), 0 0 2px rgba(0,0,0,.1)
@@ -59,16 +58,16 @@
 // [[ modal mixin ]]
 // define modal-content
 // 높이에 대한 고민이 있습니다.
-=set-modal-content($width, $height)
+=set-modal-content($width:30rem, $height:30rem)
     position: fixed
     transform: translate(-50%, -50%)
-    width: 30rem
-    height: 30rem
+    width: $width
+    height: $height
     top: 50%
     left: 50%
-    z-index: 100
+    z-index: 900
     background-color: #fff
     background-position: center
-    border: 1px solid #463a3a
+    border: 1px solid #d5d6d8
     border-radius: 4px
     transition: all 3s ease

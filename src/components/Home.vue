@@ -1,10 +1,10 @@
 <template>
-<section>
-    <main-search></main-search>
-    <main-perform-list></main-perform-list>
-    <main-genre-list></main-genre-list>
-    <main-footer></main-footer>
-</section>
+    <section>
+        <main-search></main-search>
+        <main-perform-list></main-perform-list>
+        <main-genre-list></main-genre-list>
+        <main-footer></main-footer>
+    </section>
 </template>
 
 <script>

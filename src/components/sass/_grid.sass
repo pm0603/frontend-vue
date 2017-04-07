@@ -1,0 +1,55 @@
+.wrapper
+  max-width: $desktop
+  width: 100%
+  margin-right: auto
+  margin-left: auto
+
+.flex-grid
+  display: flex
+  justify-content: space-around
+
+.column
+  width: 100%
+  padding: $desktop-gutter
+
+.row
+  display: flex
+  flex-wrap: wrap
+
+// mobile
++breakpoint(mobile)
+  @for $i from 1 through $grid-columns
+    .col-sm-#{$i}
+      width: $width/$grid-columns*$i
+      padding: $mobile-gutter
+
+// tablet
++breakpoint(tablet)
+  @for $i from 1 through $grid-columns
+    .col-md-#{$i}
+      width: $width/$grid-columns*$i
+      padding: $tablet-gutter
+
+// desktop
++breakpoint(desktop)
+  @for $i from 1 through $grid-columns
+    .col-lg-#{$i}
+      width: $width/$grid-columns*$i
+      padding: $desktop-gutter
+
+// widescreen
++breakpoint(widescreen)
+  @for $i from 1 through $grid-columns
+    .col-xl-#{$i}
+      width: $width/$grid-columns*$i
+      padding: $desktop-gutter
+
+// push
+@for $i from 1 through $grid-columns
+  .push-#{$i}
+    margin-left: $width/$grid-columns*$i
+
+//pull
+@for $i from 1 through $grid-columns
+  .pull-#{$i}
+    margin-right: $width/$grid-columns*$i

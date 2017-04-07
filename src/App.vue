@@ -23,15 +23,16 @@ export default {
   },
   data () {
     return {
-      
+
     }
   }
 }
 </script>
-<style src="./components/css/pm0603.css"></style>
-<style>
+
+<style lang="sass">
+  @import './components/sass/pm0603.sass'
+
   .nav-heading img{
     width: 90%;
   }
 </style>
-

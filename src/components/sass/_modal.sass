@@ -1,6 +1,8 @@
-@import './_mixin.sass'
-@import './_normalize.sass'
-
+*, ::before, ::after
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: 'Spoqa Han Sans', 'Sans-serif'
 
 .result-fail
     color: #ef0c67
@@ -10,6 +12,7 @@ label
     left: -999em
 
 .modal
+    display: relative
     position: absolute
     top: 0
     left: 0
@@ -22,10 +25,10 @@ label
 .modal-content
     // +set-modal-content
     +set-modal-content(40%, 70%)
-    
+
 .modal-content-md
     +set-modal-content(40%, 60%)
-    
+
 // 이전 버튼
 .modal-prev-btn
     position: absolute
@@ -52,10 +55,10 @@ label
         padding-top: 2rem
         position: relative
         text-align: center
-    
+
     & p
         line-height: 2
-        text-align: center 
+        text-align: center
 
 
 .modal-body
@@ -75,7 +78,7 @@ label
 
     & p
         text-align: center
-        
+
         & a,a:link
             text-decoration: none
             color: #2f2a2c
@@ -93,11 +96,10 @@ label
     display: flex
     flex-direction: column
     justify-content: center
-    align-items: center
 
     & p
         text-align: center
-        
+
         & a,a:link
             text-decoration: none
             color: #2f2a2c
@@ -105,9 +107,9 @@ label
         & a:hover
             color: #ed2b79
 
-   
 
-// button for closing modal window 
+
+// button for closing modal window
 .modal-close
     position: absolute
     top: 1rem
@@ -119,8 +121,3 @@ label
     // !!접근성을 위해 커서를 포인터로 하고 늘렸는데 안된다;;
     cursor: pointer
     padding: 5px 8px
-
-    
-
-    
-            

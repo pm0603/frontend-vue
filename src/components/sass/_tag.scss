@@ -1,0 +1,47 @@
+//////////////////////
+//  Mango_trick_Tag //
+/////////////////////
+
+.tag {
+  background-color: $white;
+  border-radius: $radius-large;
+  color: $text;
+
+  display: inline-flex;
+  // font-size: $size-small;
+  height: 2em;
+  justify-content: center;
+  line-height: 2;
+  padding-left: 1em;
+  padding-right: 1em;
+  vertical-align: top;
+  // white-space: nowrap;
+
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    &.is-#{$name} {
+      background-color: $color;
+      color: $text;
+      opacity: 0.8;
+      &:hover {
+        @extend .tag;
+        opacity: 0.5;
+      }
+  &.is-la {
+    font-size: $size-2;
+    border-radius: $radius-large;
+    }
+  &.is-md {
+    font-size: $size-4;
+    border-radius: $radius-large;
+
+  }
+  &.is-sm {
+    font-size: $size-6;
+    border-radius: $radius-large;
+  }
+
+
+    }
+  }
+}

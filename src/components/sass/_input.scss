@@ -1,0 +1,158 @@
+////////////
+// input //
+///////////
+
+$input-background: $white;
+$input-hover-border: $primary;
+$input-border: $white-lo;
+$font-color: #404d57;
+
+$search-height: 6rem;
+$search-max-width: 60rem;
+
+// search bar
+.searchbar {
+  height: $search-height;
+  max-width: $search-max-width;
+  display: flex;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 6px 0 rgba(0,0,0,.1);
+  & input {
+    width: 100%;
+    border: none;
+    padding-left: 2rem;
+    border-radius: 3px 0 0 3px;
+    font-size: 2rem;
+  }
+  & input::placeholder {
+    font-weight: 300;
+    color: $font-color;
+  }
+  & input:focus {
+    outline: none;
+  }
+  & button {
+    border: none;
+    border-left: 1px solid #eee;
+    background: #fff;
+    border-radius: 0 3px 3px 0;
+    width: 7rem;
+    color: $font-color;
+  }
+}
+
+// log in
+.login {
+  & legend {
+    display: none;
+  }
+  & label {
+    display: none;
+  }
+  & fieldset {
+    border: none;
+  }
+  & input {
+    width: 100%;
+    border: 1px solid #eee;
+    padding-left: 4rem;
+    font-size: 1.6rem;
+    height: 3.5rem;
+    border-radius: $radius-medium;
+  }
+  & input::placeholder {
+    font-weight: 300;
+    color: $font-color;
+  }
+  & input:focus {
+    outline: none;
+  }
+  & span {
+    position: absolute;
+    left: 1.4rem;
+    top: 0.6rem;
+    color: $grey-lo;
+  }
+}
+.email {
+  position: relative;
+}
+.password {
+  margin-top: 1.2rem;
+  position: relative;
+  & span {
+    font-size: 1.8rem;
+  }
+}
+
+
+.input {
+  // box-shadow: 1px 1px 2px rgba(52, 52, 47, 0.33);
+  background-color: $input-background;
+  border: 1px solid $input-border;
+  border-radius: $radius-medium;
+  height: 2rem;
+  padding: 0.5em;
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    &.is-#{$name} {
+      border-color: $color;
+    }
+  }
+  &:hover,
+  &.is-hover {
+    // border-color: $input-hover-border;
+  }
+  &:active,
+  &.is-active {
+    border-color: none;
+    // color:
+  }
+  &:disabled,
+  &.is-disable {
+    background-color: $grey;
+  }
+  &:focus {
+    outline: none;
+  }
+  &.is-la {
+    font-size: $size-1;
+  }
+  &.is-md {
+    font-size: $size-3;
+  }
+  &.is-sm {
+    font-size: $size-5;
+  }
+
+  &.is-disable {
+    pointer-events: none;
+    opacity: 0.4;
+    box-shadow: none;
+  }
+
+  &.is-fullwidth {
+    width: 100%;
+    display: flex;
+  }
+}
+
+.input-status {
+  & .input-success, & .input-danger {
+    position: relative;
+  }
+  & span {
+    position: absolute;
+    right: 1.5rem;
+    top: 0.7rem;
+    color: $grey-lo;
+  }
+  & p {
+    font-size: 1rem;
+    color: $red;
+    padding: 0 0.8rem;
+    margin: 0;
+  }
+}

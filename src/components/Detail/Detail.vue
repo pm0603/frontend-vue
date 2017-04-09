@@ -45,5 +45,3 @@ function Showtab(val) {
   }
 };
 </script>
-
-<style lang="scss" src="../css/detail-style.scss"></style>

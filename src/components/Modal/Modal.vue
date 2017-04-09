@@ -17,7 +17,7 @@
                             <label for="password">password</label>
                             <input type="password" name="password" placeholder="password" v-model:password = "password">
                         </p>
-                  
+
                     <p>Forgotten your password? <a href>RESET IT NOW</a></p>
                     <p><button type="button" @click.prevent="facebookLogin">facebook</button></p>
                 </div>
@@ -43,7 +43,7 @@
         methods: {
             tempStopPropagation() {
                 console.log('click');
-                // 또는 event를 받아서 네이티브로는 이렇게 event.stopPropagation();를 써서 
+                // 또는 event를 받아서 네이티브로는 이렇게 event.stopPropagation();를 써서
             },
             closeModal: function(event){
                 event.stopPropagation();
@@ -53,7 +53,7 @@
             },
             login: function(val){
                 var _this = this;
-                
+
                 axios.post('/user/login/',{
                         params: {
                             email: this.email,
@@ -70,7 +70,7 @@
                             // sessionStorage.setItem('email',data.name);
                             user_name = data.name;
                             // 회원아이디나 이름을 가지고 가서 창이 꺼지면 거기에 회원님 반갑습니다 가 나오게 하기
-                            
+
                             _this.closeModal();
                         } else {
                             console.log('회원정보가 없습니다.');
@@ -91,8 +91,6 @@
     }
 </script>
 
-
-<style lang="sass" src="../css/modal.sass"></style>
 <style lang="sass">
     .result-fail
         color: #f01160

@@ -34,5 +34,4 @@ export default {
 
   .nav-heading img
     width: 90%
-  
 </style>

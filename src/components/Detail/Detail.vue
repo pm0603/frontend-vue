@@ -45,5 +45,8 @@ function Showtab(val) {
   }
 };
 </script>
+<<<<<<< HEAD
 
 <style lang="scss" src="../sass/_detail-style.scss"></style>
+=======
+>>>>>>> master

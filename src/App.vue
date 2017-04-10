@@ -32,7 +32,7 @@ export default {
 <style lang="sass">
   @import './components/sass/pm0603.sass'
 
-  .nav-heading img{
-    width: 90%;
-  }
+  .nav-heading img
+    width: 90%
+  
 </style>

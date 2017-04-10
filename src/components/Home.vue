@@ -1,10 +1,10 @@
 <template>
-<section>
-    <main-search></main-search>
-    <main-perform-list></main-perform-list>
-    <main-genre-list></main-genre-list>
-    <main-footer></main-footer>
-</section>
+    <section>
+        <main-search></main-search>
+        <main-perform-list></main-perform-list>
+        <main-genre-list></main-genre-list>
+        <main-footer></main-footer>
+    </section>
 </template>
 
 <script>
@@ -29,3 +29,6 @@
 
     }
 </script>
+<style lang="sass">
+  @import './sass/pm0603.sass'
+</style>

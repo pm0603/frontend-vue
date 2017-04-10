@@ -57,7 +57,6 @@
         methods: {
             tempStopPropagation() {
                 console.log('click');
-                // 또는 event를 받아서 네이티브로는 이렇게 event.stopPropagation();를 써서
             },
             closeModal(event){
                 event.stopPropagation();

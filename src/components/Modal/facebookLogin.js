@@ -1,44 +1,46 @@
-function setLogin(token, id){
-        console.log('setLogin!');
-        console.log("token:",token);
-        console.log("id:",id);
-        // axios.post('/member',
-        //     {
-        //       "email" : token,
-        //       "password" : id
-        //     }).then(function(response) {
-        //         'use strict';
-        //         console.log("response:",response.data[0]);
-        //         var data = response.data[0];
-        //         if(data){
-        //             // 아이디와 비번이 맞으면 첫번째 페이지로 이동하기
-        //             console.log('환영합니다.');
 
-        //         } else {
-        //             // 다르다고 알람 띄워주기
-        //             console.log('회원정보가 없습니다.');
-        //         }
-        //     })
-        //     .catch(function(error) {
-        //         console.error(error.message);
-        //     });
 
-    }
+    // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-    console.log('statusChangeCallback()');
+    console.log('2-statusChangeCallback');
+    console.log('stat-response:',response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
     if (response.status === 'connected') {
-        let accessToken =   response.authResponse.accessToken;
-        let userID      =   response.authResponse.userID;
-        setLogin(accessToken, userID);
+      // Logged into your app and Facebook.
+      console.log('connect');
+      FB.api('/me', function(response) {
+        console.log('FB-api:',response);
+        if( response == null ){
+          console.log('status-response:',response);
+          // FB.login();
+        } else {
+          console.log('로그인이 되어 있고 앱등록도 되어있음 앞으로 페이지 이동');
+        }
+      });
+
+
+    } else if(response.status === 'not_authorized'){
+      console.log('not_authorized');
+    
     } else {
-        console.log('please log into this app');
+      FB.login(function(response){
+        console.log('response-login:',response);
+      });
+      console.log('not connected');
+      // The person is not logged into your app or we are unable to tell.
+      // document.getElementById('status').innerHTML = 'Please log ' +
+      //   'into this app.';
     }
   }
 
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
   function checkLoginState() {
-    console.log('checkLoginState-function');
     FB.getLoginStatus(function(response) {
-        // 응답을 처리하는 함수
       statusChangeCallback(response);
     });
   }
@@ -46,22 +48,28 @@ function setLogin(token, id){
   window.fbAsyncInit = function() {
   FB.init({
     appId      : '1309084449153190',
-    cookie     : true,  // enable cookies to allow the server to access
+    cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.8' // use graph api version 2.8
   });
 
-    FB.getLoginStatus(function(response) {
-        // 응답을 처리하는 함수
-        statusChangeCallback(response);
-    });
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
 
-    FB.login(function(response){
-    // Handle the response object, like in statusChangeCallback() in our demo
-        console.log('login!');
-
-    });
+  FB.getLoginStatus(function(response) {
+    console.log('1-getLoginStatus');
+    statusChangeCallback(response);
+  });
 
   };
 
@@ -76,11 +84,11 @@ function setLogin(token, id){
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
-//   function testAPI() {
-//     console.log('Welcome!  Fetching your information.... ');
-//     FB.api('/me', function(response) {
-//       console.log('Successful login for: ' + response.name);
-//       document.getElementById('status').innerHTML =
-//         'Thanks for logging in, ' + response.name + '!';
-//     });
-//   }
+  function testAPI() {
+    console.log('Welcome!  connected Fetching your information.... ');
+    // FB.api('/me', function(response) {
+    //   console.log('Successful login for: ' + response.name);
+    //   document.getElementById('status').innerHTML =
+    //     'Thanks for logging in, ' + response.name + '!';
+    // });
+  }

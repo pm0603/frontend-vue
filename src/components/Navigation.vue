@@ -28,8 +28,12 @@
             </g>
           </svg>
         </button>
-        <button type="button" class="signin" @click="openAlert">sign up / login
-                <app-show v-if="open_it" @shutModal="closeModal"></app-show>
+        <button type="button" class="signin" v-if="!is_signin" @click="openAlert">sign up / login
+                <app-show v-if="open_it" @shutModal="closeModal" @isFacebookLogin="isFacebookLogin"></app-show>
+        </button>
+        <button type="button" v-else>
+          <p>{{on_user}}님 환영합니다.</p>
+          <img :src="user_profile" alt="id">
         </button>
       </div>
     </nav>
@@ -40,7 +44,10 @@
     export default {
         data(){
             return{
-              open_it : false
+              open_it : false,
+              is_signin : false,
+              on_user : '',
+              user_profile: ''
             }
         },
         components:{
@@ -59,9 +66,21 @@
           },
           noneToggleClass(){
             this.$refs.none.classList.toggle('dropdown');
+          },
+          isFacebookLogin(name, profile){
+            console.log('isFacebookLogin-네비');
+            if(name){
+              this.on_user = name;
+              this.user_profile = profile;
+              this.is_signin = true;
+            } else {
+              console.log('페북 로그인 실패');
+            }
           }
+          
         }
     }
+    
 </script>
 
 <style lang="sass">

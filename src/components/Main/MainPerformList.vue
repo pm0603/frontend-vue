@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="row">
-      <button class="button is-danger is-textInverted">SHOW ME MORE</button>
+      <button @click.prevent="nextPage" class="button is-danger is-textInverted">SHOW ME MORE</button>
     </div>
   </section>
 </template>
@@ -36,21 +36,49 @@ export default{
     return{
       // itemM : ['image', 'image', 'image', 'image', 'image','image'],
       // 객체 저장할 array
-      posts: []
+      posts: [],
+      errors: [],
+      next: null
     }
   },
   created: function() {
       // using JSONPlaceholder
       // firebase data url
-      const baseURI = 'https://show-api.firebaseio.com/.json';
-      // get Data
-      axios.get(baseURI)
-           .then((result) => {
-              console.log(result)
-              // Add data to posts
-              this.posts = result.data
-           })
-    },
+      // http://www.pm0603.com/api/area/?page=1
+      // next : ~
+      const baseURI = 'http://www.pm0603.com/api/area';
+      axios.get(`${baseURI}/?page=1`)
+          .then(result => {
+            console.log('result',result);
+            // Add data to posts
+            this.posts = result.data.results;
+            console.log('posts:',this.posts);
+            this.next = result.data.next;
+            console.log('next:',this.next);
+          })
+          .catch(e=> {
+            this.errors.push(e)
+          })
+  },
+  methods: {
+    nextPage: function(){
+      axios.get(this.next)
+          .then(result => {
+            console.log('result',result);
+            // Add data to posts
+            let performList = result.data.results;
+            for (var i=0; i<performList.length; i++) {
+              this.posts.push(performList[i]);
+            }
+            console.log('posts:',this.posts);
+            this.next = result.data.next;
+            console.log('next:',this.next);
+          })
+          .catch(e=> {
+            this.errors.push(e)
+          })
+    }
+  }
 
 }
 </script>

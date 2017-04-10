@@ -2,7 +2,7 @@
   "name": "pm0603",
   "description": "A Vue.js project",
   "version": "1.0.0",
-  "author": "Ji Hyun Lee <>",
+  "author": "pm0603",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",

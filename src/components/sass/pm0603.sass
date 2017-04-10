@@ -46,20 +46,21 @@ button
   border-bottom: 1px solid #ddd
   padding: 1rem
   // Button 수정 예정
-  & button
-    border: 1px solid #ddd
-    background: none
-    padding: 1.8rem 5rem
-    margin: 2rem auto 4rem auto
-    font-size: $size-6
-    cursor: pointer
-  & button:hover
+.loading-button
+  border: 1px solid #ddd
+  background: none
+  padding: 1.8rem 5rem
+  margin: 2rem auto 4rem auto
+  font-size: $size-6
+  cursor: pointer
+  &:hover
     color: $red
+
 .performance-list h2,
 .genre-list h2
     font-size: $size-3
     text-align: center
-    margin: 4rem auto
+    padding: 4rem 0
     color: $text
 .card,
 .card-side
@@ -92,3 +93,10 @@ button
     text-align: center
   & a
     display: block
+
+.performance-list,
+.genre-list
+  background: #f7f7f7
+
+.load
+  justify-content: center

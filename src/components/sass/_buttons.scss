@@ -24,18 +24,19 @@ $button-padding-left-right: 1em;
     &:hover {
       background-color: transparentize(nth($name, 2), 0.3);
     }
-
   }
 }
 .is-inverted {
-  transition: all 0.5s ease-in-out;
-  background-color: $white;
-  color: $white;
-  border: none;
-  &:active {
-    // background-color: nth($name,2);
+    transition: all 0.5s ease-in-out;
+    background-color: $white;
     color: $white;
-  }
+    border: none;
+    &:active {
+      @each $name in $colors {
+      background-color: nth($name,2);
+      color: $white;
+    }
+    }
 }
 
 .is-textInverted {
@@ -43,7 +44,9 @@ $button-padding-left-right: 1em;
   background-color: $white;
   color: $black;
   &:hover {
-    // color: nth($name,2);
+    @each $name in $colors {
+    color: nth($name,2);
+  }
   }
 }
 

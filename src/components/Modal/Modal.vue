@@ -90,11 +90,3 @@
         }
     }
 </script>
-
-<style lang="sass">
-    .result-fail
-        color: #f01160
-    .ss-delete
-        font-size: 22px
-        color: #2e2f33
-</style>

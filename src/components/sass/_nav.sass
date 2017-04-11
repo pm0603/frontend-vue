@@ -1,8 +1,3 @@
-// nav
-$nav-height: 5rem
-
-ul
-  list-style: none
 header
   width: 100%
   display: flex
@@ -11,25 +6,64 @@ header
   box-shadow: 0 1px 2px rgba(0,0,0,.1), 0 0 2px rgba(0,0,0,.1)
   color: #404d57
   position: relative
+
 .nav-heading
   font-size: 3rem
   padding: 0.7rem 2rem
   height: $nav-height
 
+.nav-heading img
+  width: 90%
+
+// dropdown
 .none
   display: none
+.dropdown
+  z-index: 10
+
+// burger bar
+.nav-menu
+  display: none
+
 .signin
   border: 0
-  background: #e8432e
+  background: darken($blue, 10%)
   color: #fff
   letter-spacing: 0.1rem
   text-transform: uppercase
   padding: 1rem 2rem
+  &:hover
+    background: darken($blue, 15%)
 
-.nav-menu
-  display: none
+.nav
+  width: 100%
+  display: flex
+  &-right
+    display: flex
+    justify-content: flex-end
 
+.nav-location,
+.search-category
+  height: $nav-height
+  position: relative
+
+.nav-location-all,
+.category-all
+  display: block
+  padding: 1.8rem 8rem
+.nav-location-all::after,
+.category-all::after
+  content: '▾'
+  padding-left: 1rem
+  position: absolute
+
+// tablet, mobile
 @media screen and (max-width: 900px)
+  .nav
+    flex-wrap: wrap
+    &-right
+      width: 100%
+      height: $nav-height
   .nav-left
     display: none
   .nav-heading
@@ -39,15 +73,6 @@ header
     font-size: 3rem
     cursor: pointer
     padding: 1rem 2rem
-  .nav
-    width: 100%
-    display: flex
-    flex-wrap: wrap
-    &-right
-      width: 100%
-      display: flex
-      justify-content: flex-end
-      height: $nav-height
   .mobile-menu
     width: 100%
     display: flex
@@ -75,8 +100,8 @@ header
       padding: 1.8rem
       height: $nav-height
     & ul a:hover
-      color: #ec5454
-    & .dropdown
+      color: $blue
+    .dropdown
       background: #fff
       position: absolute
       width: 100%
@@ -88,23 +113,11 @@ header
         display: block
   .nav-location,
   .search-category
-    height: $nav-height
-    position: relative
     width: 50%
-  .nav-location-all,
-  .category-all
-    display: block
-    padding: 1.8rem 8rem
-  .nav-location-all::after,
-  .category-all::after
-    content: '▾'
-    padding-left: 1rem
-    position: absolute
 
+// + desktop
 @media screen and (min-width: 901px)
   .nav
-    width: 100%
-    display: flex
     justify-content: space-between
     &-left
       display: flex
@@ -114,10 +127,6 @@ header
     &-img
       width: 120px
       height: $nav-height
-
-    &-right
-      display: flex
-      justify-content: flex-end
     &-left > ul
       display: inline-flex
     &-left li
@@ -130,8 +139,8 @@ header
       padding: 1.8rem
       height: $nav-height
     &-left ul a:hover
-      color: #ec5454
-    &-left .dropdown
+      color: $blue
+    .dropdown
       background: #fff
       position: absolute
       width: 100%
@@ -143,16 +152,5 @@ header
         display: block
   .nav-location,
   .search-category
-    height: $nav-height
-    position: relative
     border-right: 1px solid #ccc
     border-left: 1px solid #ccc
-  .nav-location-all,
-  .category-all
-    display: block
-    padding: 1.8rem 8rem
-  .nav-location-all::after,
-  .category-all::after
-    content: '▾'
-    padding-left: 1rem
-    position: absolute

@@ -1,14 +1,7 @@
 <template>
   <div id="app">
     <!--이곳에 라우터가 들어옴-->
-    <header>
-        <h2 class="nav-heading">
-          <router-link to="/" active-class="current-page" ><a href>
-            <img src="./assets/PM0603-3.png" alt="logo">
-          </a></router-link>
-        </h2>
-        <app-nav></app-nav>
-    </header>
+    <app-nav></app-nav>
     <router-view></router-view>
    </div>
 </template>
@@ -31,7 +24,4 @@ export default {
 
 <style lang="sass">
   @import './components/sass/pm0603.sass'
-
-  .nav-heading img
-    width: 90%
 </style>

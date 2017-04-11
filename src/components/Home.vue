@@ -22,8 +22,8 @@
         components: {
             mainSearch:      MainSearch,
             mainPerformList: MainPerformList,
-            MainGenreList:   MainGenreList,
-            MainFooter:      MainFooter
+            mainGenreList:   MainGenreList,
+            mainFooter:      MainFooter
 
         }
 

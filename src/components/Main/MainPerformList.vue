@@ -27,15 +27,14 @@
       </div>
     </div>
     <div class="row">
-      <button v-show="!loading" @click.prevent="nextPage" class="loading-button button is-danger is-textInverted">SHOW ME MORE</button>
+      <button v-show="!loading" @click.prevent="nextPage" class="loading-button">SHOW ME MORE</button>
     </div>
     <div v-show="loading" class="row load">
       <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
     </div>
   </section>
 </template>
-<!-- call axios --><i  v-show="loading" class="fa fa-spinner fa-spin"></i>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script>
 export default{
   data(){

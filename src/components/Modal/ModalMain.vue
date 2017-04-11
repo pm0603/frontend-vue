@@ -29,7 +29,7 @@
                             <a href v-on:click.prevent="showSignUpModal">회원가입 하기</a>
                         </p>
                         <p>
-                            비밀번호를 잊어버리셨나요? 
+                            비밀번호를 잊어버리셨나요?
                             <a href v-on:click.prevent="showFindPwdModal">비밀번호 찾기</a>
                         </p>
                     </div>
@@ -119,7 +119,7 @@
                         console.log('로그인이 되어 있고 앱등록도 되어있음 앞으로 페이지 이동');
                         }
                     });
-                 
+
                     // 서버로 토큰값과 아이디 보내기
                     axios.post('https://pm-824c9.firebaseio.com/member.json',{
                                 token : data.accessToken,
@@ -147,14 +147,7 @@
                 console.log('isFacebookLogin');
                 this.$emit('isFacebookLogin',this.user_name, this.user_profile);
             }
-            
+
         }
     }
 </script>
-
-
-<style lang="sass">
-    .ss-delete
-        font-size: 30px
-        color: #2e2f33
-</style>

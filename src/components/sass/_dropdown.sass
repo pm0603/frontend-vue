@@ -1,0 +1,47 @@
+// dropdown
+.none
+  display: none
+.dropdown
+  z-index: 10
+  background: #fff
+  position: absolute
+  width: 100%
+  top: 5rem
+  display: flex
+  flex-direction: column
+  & a
+    padding: 1.8rem
+    display: block
+
+.nav-location,
+.search-category
+  height: $nav-height
+  position: relative
+
+.nav-location-all,
+.category-all
+  display: block
+  padding: 1.8rem 8rem
+.nav-location-all::after,
+.category-all::after
+  content: '▾'
+  padding-left: 1rem
+  position: absolute
+
+.search-category
+  background: #fff
+
+// tablet, mobile
+@media screen and (max-width: 900px)
+  .nav-location
+    width: 50%
+  .search-category
+    width: 33.33%
+
+// + desktop
+@media screen and (min-width: 901px)
+  .nav-location
+    border-right: 1px solid #ccc
+    border-left: 1px solid #ccc
+  .search-category
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1)

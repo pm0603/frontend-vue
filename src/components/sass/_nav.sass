@@ -13,13 +13,7 @@ header
   height: $nav-height
 
 .nav-heading img
-  width: 90%
-
-// dropdown
-.none
-  display: none
-.dropdown
-  z-index: 10
+  width: 8rem
 
 // burger bar
 .nav-menu
@@ -41,21 +35,6 @@ header
   &-right
     display: flex
     justify-content: flex-end
-
-.nav-location,
-.search-category
-  height: $nav-height
-  position: relative
-
-.nav-location-all,
-.category-all
-  display: block
-  padding: 1.8rem 8rem
-.nav-location-all::after,
-.category-all::after
-  content: '▾'
-  padding-left: 1rem
-  position: absolute
 
 // tablet, mobile
 @media screen and (max-width: 900px)
@@ -101,19 +80,6 @@ header
       height: $nav-height
     & ul a:hover
       color: $blue
-    .dropdown
-      background: #fff
-      position: absolute
-      width: 100%
-      top: 5rem
-      display: flex
-      flex-direction: column
-      & a
-        padding: 1.8rem
-        display: block
-  .nav-location,
-  .search-category
-    width: 50%
 
 // + desktop
 @media screen and (min-width: 901px)
@@ -140,17 +106,3 @@ header
       height: $nav-height
     &-left ul a:hover
       color: $blue
-    .dropdown
-      background: #fff
-      position: absolute
-      width: 100%
-      top: 5rem
-      display: flex
-      flex-direction: column
-      & a
-        padding: 1.8rem
-        display: block
-  .nav-location,
-  .search-category
-    border-right: 1px solid #ccc
-    border-left: 1px solid #ccc

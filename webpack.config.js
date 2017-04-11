@@ -36,9 +36,7 @@ module.exports = {
           name: '[name].[ext]?[hash]'
         }
       }
-      
     ]
-    
   },
   resolve: {
     alias: {

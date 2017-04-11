@@ -8,6 +8,7 @@ $scroll-event-path: 400px;
 .main-image {
   position: relative;
   padding-bottom: 50%;
+  z-index: -1;
 }
 
 .image {
@@ -154,6 +155,7 @@ $scroll-event-path: 400px;
   background-color: #fff;
   border-radius: 10px;
   margin-top: 8px;
+  z-index: -1;
   &:before {
     content: '';
     position: absolute;

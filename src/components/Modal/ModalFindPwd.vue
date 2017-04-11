@@ -16,7 +16,7 @@
                             <label for="email">email</label>
                             <input  type="text" name="email" placeholder="email" v-model:email = "email">
                         </p>
-                       
+
                 </div>
                 <div class="modal-footer">
                     <a href @click.stop.prevent="findPwd">찾기</a>
@@ -33,7 +33,7 @@
                 main_message: '',
                 alert_message: '',
                 result_fail: false,
-                
+
             }
         },
         methods: {
@@ -55,12 +55,3 @@
         }
     }
 </script>
-
-<style lang="sass" scoped>
-    .modal-body
-        padding-top: 6rem
-
-    .ss-navigateleft
-        font-size: 26px
-        color: #2e2f33
-</style>

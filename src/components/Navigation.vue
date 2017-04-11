@@ -1,4 +1,10 @@
 <template>
+  <header>
+    <h2 class="nav-heading">
+      <router-link to="/" tag="a">
+        <img src="../assets/PM0603-3.png" alt="logo">
+      </router-link>
+    </h2>
     <nav class="nav">
       <div ref="navLeft" class="nav-left">
         <div class="nav-location">
@@ -20,7 +26,7 @@
       </div>
       <div class="nav-right">
         <a class="nav-menu" @click.prevent="navLeftToggleClass">&#9776;</a>
-        <button type="button">
+        <button type="button" @click.prevent="gotoSearch">
           <svg width="24" height="24" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none" fill-rule="evenodd">
               <ellipse cx="9.294" cy="9.262" rx="8.294" ry="8.262"></ellipse>
@@ -29,7 +35,7 @@
           </svg>
         </button>
         <button type="button" class="signin" v-if="!is_signin" @click="openAlert">sign up / login
-                <app-show v-if="open_it" @shutModal="closeModal" @isFacebookLogin="isFacebookLogin"></app-show>
+          <app-show v-if="open_it" @shutModal="closeModal" @isFacebookLogin="isFacebookLogin"></app-show>
         </button>
         <button type="button" v-else>
           <p>{{on_user}}님 환영합니다.</p>
@@ -37,6 +43,7 @@
         </button>
       </div>
     </nav>
+  </header>
 </template>
 
 <script>
@@ -54,8 +61,14 @@
           appShow : ShowModal
         },
         methods: {
+          gotoHome() {
+            this.$router.push({path: '/'});
+          },
+          gotoSearch() {
+            this.$router.push({path: '/search'});
+          },
           openAlert() {
-            this.open_it = true;            
+            this.open_it = true;
           },
           closeModal(isOpen){
             console.log('nav의closeModal:',isOpen);
@@ -77,14 +90,8 @@
               console.log('페북 로그인 실패');
             }
           }
-          
+
         }
     }
-    
-</script>
 
-<style lang="sass">
-     .open-modal
-        width : 200px
-        height : 50px
-</style>
+</script>

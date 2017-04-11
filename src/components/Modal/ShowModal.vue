@@ -1,13 +1,13 @@
 <template>
     <section>
-        <h1>modal window</h1>
-        <modal-main   v-if="is_whichModal === 1" 
+        <h1 class="modal-heading">modal window</h1>
+        <modal-main   v-if="is_whichModal === 1"
                       @closeModal = "closeModal"
                       @showSignUpModal  = "showSignUpModal"
                       @showFindPwdModal = "showFindPwdModal"
                       @isFacebookLogin  = "isFacebookLogin" ></modal-main>
         <modal-sign-up v-else-if = "is_whichModal === 2"
-                      @closeModal    = "closeModal" 
+                      @closeModal    = "closeModal"
                       @showMainModal = "showMainModal"></modal-sign-up>
         <!--비밀번호찾기-->
         <modal-find-password v-else
@@ -25,7 +25,7 @@
         data(){
             return{
                 is_whichModal : 1
-                
+
             }
         },
         components: {
@@ -53,11 +53,3 @@
         }
     }
 </script>
-
-<style scoped lang="scss">
-    h1{
-        position: absolute;
-        left: -999em;
-    }
-
-</style>

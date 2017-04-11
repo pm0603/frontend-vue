@@ -71,16 +71,16 @@
                 console.log('signData:',signData);
 
                 const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-                
+
                 // var request = new XMLHttpRequest();
                 // request.open('POST', "http://www.pm0603.com/user/signup");
                 // request.send(signData);
-                
-                
+
+
                 // /user/signup
                 // axios.post('https://pm-824c9.firebaseio.com/member.json',signData, config)
 
-                
+
                 axios.post('/user/signup/',{
                         email: signId,
                         password: signPwd
@@ -95,13 +95,3 @@
         }
     }
 </script>
-
-<style lang="sass" scoped>
-    .modal-body
-        padding-top: 6rem
-
-    .ss-navigateleft
-        font-size: 26px
-        color: #2e2f33
-</style>
-

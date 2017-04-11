@@ -13,8 +13,6 @@ const router = new VueRouter({
   routes
 });
 
-
-
 new Vue({
   el: '#app',
   router,//사용되도록 설정

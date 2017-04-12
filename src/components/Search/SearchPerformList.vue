@@ -46,13 +46,15 @@ export default{
     }
   },
   created: function() {
-      const baseURI = 'http://www.pm0603.com/api/detail';
+      this.loading = true;
+      const baseURI = 'http://www.pm0603.com/content/api/';
       // {{$route.query.term}}
       // http://www.pm0603.com/api/detail/?search=뮤지컬
       axios.get(`${baseURI}/?search=${this.$route.query.term}`)
           .then(result => {
             this.posts = result.data.results;
             this.next = result.data.next;
+            this.loading = false;
           })
           .catch(e=> {
             this.errors.push(e)

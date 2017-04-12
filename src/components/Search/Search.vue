@@ -21,6 +21,6 @@
       searchBar:         SearchBar,
       searchCategory:    SearchCategory,
       searchPerformList: SearchPerformList
-    }
+    },
   }
 </script>

@@ -10,15 +10,19 @@
                     <p v-if="!result_fail">{{main_message}}</p>
                     <p v-else class="result-fail">{{alert_message}}</p>
                 </div>
-                <form enctype="multipart/form-data" method="POST @submit.prevent">
+                <form enctype="multipart/form-data" method="POST" @submit.prevent="signUp" ref="form">
                 <div class="modal-body">
                         <p>
-                            <label for="email">email</label>
-                            <input  type="text" name="email" placeholder="email" v-model:email = "email">
+                            <label for="name">이름</label>
+                            <input  type="text" name="name" placeholder="name" v-model:name = "name">
                         </p>
                         <p>
-                            <label for="password">password</label>
-                            <input type="password" name="password" placeholder="password" v-model:password = "password">
+                            <label for="email">이메일</label>
+                            <input  type="text" name="email" placeholder="email" required v-model:email = "email">
+                        </p>
+                        <p>
+                            <label for="password">비밀번호</label>
+                            <input type="password" name="password" placeholder="password" required v-model:password = "password">
                         </p>
                         <p>
                             <label for="password">password</label>
@@ -26,7 +30,8 @@
                         </p>
                 </div>
                 <div class="modal-footer">
-                    <a href @click.stop.prevent="signUp">가입하기</a>
+                    <button type="submit" @click.stop.prevent="signUp">가입하기</button>
+
                 </div>
                 </form>
             </div>
@@ -40,6 +45,7 @@
                 result_fail: true,
                 main_message: '',
                 alert_message: '',
+                name: '',
                 email: '',
                 password: ''
             }
@@ -59,41 +65,29 @@
                 this.$emit('showMainModal');
             },
             signUp(){
-                var signId = this.email;
-                var signPwd = this.password;
-                console.log('signId:',signId);
-                console.log('signPwd:',signPwd);
-
-                let signData = new FormData();
-                signData.append('email', signId+'');
-                signData.append('password', signPwd+'');
-
-                console.log('signData:',signData);
-
-                const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-                
-                // var request = new XMLHttpRequest();
-                // request.open('POST', "http://www.pm0603.com/user/signup");
-                // request.send(signData);
-                
-                
-                // /user/signup
-                // axios.post('https://pm-824c9.firebaseio.com/member.json',signData, config)
-
-                
-                axios.post('/user/signup/',{
-                        email: signId,
-                        password: signPwd
-                    })
-                    .then(function(response){
+                var _this = this;
+                console.log('form:',this.$refs.form);
+                let signData = new FormData(this.$refs.form);
+               
+                axios.post('/user/signup/', signData)
+                     .then(function(response){
+                        // 앞으로 가기
+                        // _this.$emit('isLogin');
+                        _this.$router.push('/');
                         console.log('회원가입성공:',response);
+                        
                     })
                     .catch(function(error){
                         console.log(error);
+                        _this.alert_message = '이메일 혹은 비밀번호가 올바르지 않습니다.';
+                        _this.email = '';
+                        _this.password = '';
                     });
             }
+           
         }
     }
+
 </script>
 
 <style lang="sass" scoped>

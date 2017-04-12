@@ -12,7 +12,8 @@
         <!--비밀번호찾기-->
         <modal-find-password v-else
                              @closeModal    = "closeModal"
-                             @showMainModal = "showMainModal"></modal-find-password>
+                             @showMainModal = "showMainModal"
+                             @isLogin       = "isLogin"></modal-find-password>
     </section>
 </template>
 
@@ -46,9 +47,12 @@
             showFindPwdModal(){
                 this.is_whichModal = 3;
             },
-            isFacebookLogin(name, profile){
+            isFacebookLogin(){
                 // 회원정보값던져주기
-                this.$emit('isFacebookLogin',name, profile);
+                this.$emit('isFacebookLogin');
+            },
+            isLogin(){
+                this.$emit('isLogin');
             }
         }
     }

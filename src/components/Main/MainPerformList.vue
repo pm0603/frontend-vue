@@ -46,8 +46,7 @@ export default{
     }
   },
   created: function() {
-      const baseURI = 'http://www.pm0603.com/content/api/';
-      axios.get(`${baseURI}/?page=1`)
+      axios.get('/content/api/?page=1')
           .then(result => {
             // Add data to posts
             this.posts = result.data.results;

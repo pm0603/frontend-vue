@@ -11,7 +11,5 @@ export const routes = [
   { path: '/user/:id', component: User },
   { path: '/detail', component: Detail },
   { path: '/search', component: Search },
-  {
-    path: '*', redirect: '/'
-  }
+  { path: '*', redirect: '/' }
 ];

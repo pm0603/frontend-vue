@@ -26,11 +26,16 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" v-show="lists">
       <button v-show="!loading" @click.prevent="nextPage" class="loading-button">SHOW ME MORE</button>
     </div>
     <div v-show="loading" class="row load">
       <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
+    </div>
+    <div v-show="!lists" class="search-none">
+      <p><span>'{{searchTerm}}'</span>와 일치하는 검색결과가 없습니다.</p>
+      <p>한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.</p>
+      <p>검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.</p>
     </div>
   </section>
 </template>
@@ -42,19 +47,32 @@ export default{
       posts: [],
       errors: [],
       next: null,
-      loading: false
+      loading: false,
+      lists: true,
+      searchTerm: this.$route.query.q
     }
   },
   created: function() {
       this.loading = true;
-      const baseURI = 'http://www.pm0603.com/content/api/';
+      // const baseURI = 'http://www.pm0603.com/content/api/';
       // {{$route.query.term}}
       // http://www.pm0603.com/api/detail/?search=뮤지컬
-      axios.get(`${baseURI}/?search=${this.$route.query.q}`)
+      axios.get(`/content/api/?search=${this.$route.query.q}`)
           .then(result => {
-            this.posts = result.data.results;
-            this.next = result.data.next;
-            this.loading = false;
+            console.log(result.data.results.length);
+            if (result.data.results.length>0){
+              // posts에 data results 추가
+              this.posts = result.data.results;
+              // next page 링크를 기억
+              this.next = result.data.next;
+              // loading -> false로 변경
+              this.loading = false;
+            }
+            else {
+              // loading -> false로 변경
+              this.loading = false;
+              this.lists = false;
+            }
           })
           .catch(e=> {
             this.errors.push(e)

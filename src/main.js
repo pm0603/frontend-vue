@@ -19,5 +19,5 @@ new Vue({
   render: h => h(App)
 });
 
-
-axios.defaults.baseURL   = 'http://www.pm0603.com';
+// const baseURI = 'http://www.pm0603.com/content/api/';
+axios.defaults.baseURL   = 'http://api.pm0603.com';

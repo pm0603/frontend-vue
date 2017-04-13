@@ -22,5 +22,4 @@ new Vue({
   render: h => h(App)
 });
 
-
 axios.defaults.baseURL   = 'http://api.pm0603.com';

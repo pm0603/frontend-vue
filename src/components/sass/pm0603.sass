@@ -1,5 +1,6 @@
 @import "mango-trick"
-@import "webfont"
+@import "add-pm0603"
+
 *,
 *::after,
 *::before
@@ -15,19 +16,28 @@ body
 a
   text-decoration: none
   color: #000
+a:hover
+  color: darken($blue, 20%)
 img
   width: 100%
 
+button
+  cursor: pointer
 // Button 수정 예정
 $btn-bg-none: none !default
+
 button
   border: none
   padding: 1rem 1.5rem
   background: $btn-bg-none
+
+/////////////////
+//  main page  //
+/////////////////
 .main
   background: #eee url('https://images3.alphacoders.com/151/151409.jpg') center center no-repeat
   background-size: cover
-  height: 80vh
+  height: 70vh
   display: flex
   align-items: center
 .main-search
@@ -46,20 +56,21 @@ button
   border-bottom: 1px solid #ddd
   padding: 1rem
   // Button 수정 예정
-  & button
-    border: 1px solid #ddd
-    background: none
-    padding: 1.8rem 5rem
-    margin: 2rem auto 4rem auto
-    font-size: $size-6
-    cursor: pointer
-  & button:hover
+.loading-button
+  border: 1px solid #ddd
+  background: none
+  padding: 1.8rem 5rem
+  margin: 2rem auto 4rem auto
+  font-size: $size-6
+  cursor: pointer
+  &:hover
     color: $red
+
 .performance-list h2,
 .genre-list h2
     font-size: $size-3
     text-align: center
-    margin: 4rem auto
+    padding: 4rem 0
     color: $text
 .card,
 .card-side
@@ -76,9 +87,13 @@ button
   .genre-list
     padding: 1rem
 
+/////////////////
+// search page //
+/////////////////
 .search-main
   padding: 2rem
   width: 100%
+  background: #f7f7f7
   & .searchbar
     width: 100%
     max-width: 100%
@@ -92,3 +107,10 @@ button
     text-align: center
   & a
     display: block
+
+.performance-list,
+.genre-list
+  background: #f7f7f7
+
+.load
+  justify-content: center

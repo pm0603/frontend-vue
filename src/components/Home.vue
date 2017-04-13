@@ -22,13 +22,10 @@
         components: {
             mainSearch:      MainSearch,
             mainPerformList: MainPerformList,
-            MainGenreList:   MainGenreList,
-            MainFooter:      MainFooter
+            mainGenreList:   MainGenreList,
+            mainFooter:      MainFooter
 
         }
 
     }
 </script>
-<style lang="sass">
-  @import './sass/pm0603.sass'
-</style>

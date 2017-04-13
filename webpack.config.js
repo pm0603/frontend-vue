@@ -20,8 +20,9 @@ module.exports = {
             // other preprocessors should work out of the box, no loader config like this necessary.
             'scss': 'vue-style-loader!css-loader!sass-loader',
             'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          }
+          },
           // other vue-loader options go here
+          sourceMap: true
         }
       },
       {
@@ -36,9 +37,7 @@ module.exports = {
           name: '[name].[ext]?[hash]'
         }
       }
-      
     ]
-    
   },
   resolve: {
     alias: {
@@ -52,7 +51,8 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  // devtool: '#eval-source-map'
+  devtool: '#source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {

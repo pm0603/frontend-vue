@@ -1,4 +1,10 @@
 <template>
+  <header>
+    <h2 class="nav-heading">
+      <router-link to="/" tag="a">
+        <img src="../assets/PM0603-3.png" alt="logo">
+      </router-link>
+    </h2>
     <nav class="nav">
       <div ref="navLeft" class="nav-left">
         <div class="nav-location">
@@ -20,7 +26,7 @@
       </div>
       <div class="nav-right">
         <a class="nav-menu" @click.prevent="navLeftToggleClass">&#9776;</a>
-        <button type="button">
+        <button type="button" @click.prevent="gotoSearch">
           <svg width="24" height="24" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none" fill-rule="evenodd">
               <ellipse cx="9.294" cy="9.262" rx="8.294" ry="8.262"></ellipse>
@@ -28,46 +34,68 @@
             </g>
           </svg>
         </button>
-               <button type="button" class="signin" v-if="!is_signin" @click="openAlert"> sign up / login
-                <app-show v-if="open_it" 
-                          @shutModal="closeModal" 
-                          @isFacebookLogin="isFacebookLogin"
-                          @isLogin="isLogin"></app-show>
-               </button>
-               <button type="button" v-else @click="openUserService">
-          <img :src="user_profile" alt="id" class="facebook-profile">
-          <p>{{on_user}}님</p>
-          <div v-if="show_service">
-            <ul>
-              <li><a href >개인정보</a></li>
-              <li><a href @click="logout">로그아웃</a></li>
-            </ul>
-          </div>
-
+        <button type="button" class="signin" v-if="!is_signin" @click.prevent="openAlert"> sign up / login
+          <show-modal v-show="openIt"></show-modal>
+        </button>
+        <button type="button" v-else v-show="!openIt" @click.prevent="openUserService" class="online">
+            <img :src="user_profile" alt="profile" class="facebook-profile">
+            <i class="pe-7s-angle-down" aria-hidden="true"></i>
+            <div v-if="showService" class="mymenu">
+              <ul>
+                <li>
+                  <button type="button" @click="openUserDetail">나의 정보
+                    <user-detail v-show="isUserDetail"></user-detail>
+                  </button>
+                </li>
+                <li>
+                  <router-link to="/bookmark" tag="button" active-class="current-page" ><button type="button">나의 북마크</button></router-link>
+                </li>
+                <li>
+                  <button type="button" @click="logout">로그아웃</button>
+                </li>
+              </ul>
+            </div>
         </button>
       </div>
     </nav>
+  </header>
 </template>
 
 <script>
     import ShowModal from './Modal/ShowModal.vue';
+    import UserDetail from './User/UserDetail.vue';
+
     export default {
         data(){
             return{
-              open_it     : false,
-              is_signin   : false,
-              show_service: false,
-              
-              on_user     : '',
-              user_profile: '',
+              is_signin       : false,
 
+              on_user         : '',
+              user_profile    : '',
             }
+        },
+        components:{
+          showModal : ShowModal,
+          userDetail :UserDetail
+        },
+        computed: {
+            // 모달창의 on/off
+            openIt(){
+              return this.$store.getters.getModalStatus;
+            },
+            // 로그인 후 토글되는 메뉴
+            showService(){
+              return this.$store.getters.getUserShowMenu;
+            },
+            isUserDetail(){
+              return this.$store.getters.getUserDetailStatus;
+            }
+
         },
         beforeCreate(){
           console.log('생성전!');
-          this.open_it      = false;
+          this.$store.commit('setModalStatus', false );
           console.log('bCreate:', this.$store);
-          
         },
         created () {
           console.log('생성!');
@@ -85,26 +113,25 @@
           }else{
             this.is_signin    = false;
           }
-            
-          
         },
         updated () {
-          console.log('업데이트!');
+          console.log('업데이트! - 개인정보');
+          // this.$store.commit('setUserDetailStatus', true );
+          let update_detail = this.isUserDetail;
+          if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
+          
         },
         activated () {
           console.log('액티브됨!');
         },
 
-        components:{
-          appShow : ShowModal
-        },
+
         methods: {
-          openAlert() {
-            this.open_it = true;            
+          gotoHome() {
+            this.$router.push({path: '/'});
           },
-          closeModal(isOpen){
-            console.log('nav의closeModal:',isOpen);
-            this.open_it = isOpen;
+          gotoSearch() {
+            this.$router.push({path: '/search'});
           },
           navLeftToggleClass(){
             this.$refs.navLeft.classList.toggle('mobile-menu');
@@ -112,55 +139,60 @@
           noneToggleClass(){
             this.$refs.none.classList.toggle('dropdown');
           },
+          openUserDetail(){
+            console.log('open@');
+            this.$store.commit('setUserDetailStatus', true );
+          },
+          openAlert() {
+            this.$store.commit('setModalStatus', true );
+          },
+          closeModal(){
+            this.$store.commit('setModalStatus', false );
+          },
           isFacebookLogin(){
-            console.log('isFacebookLogin-네비');
-                       // if(name){
-              // this.on_user = name;
-              this.on_user      = this.$store.getters.getUserName;
-              this.user_profile = this.$store.getters.getUserProfile;
-              // this.on_user      = this.$store.getters.getUserInfo.name;
-              // this.user_profile = profile;
-              this.is_signin    = true;
-            // } else {
-            //   console.log('페북 로그인 실패');
-            // }
+            this.on_user      = this.$store.getters.getUserName;
+            this.user_profile = this.$store.getters.getUserProfile;
+            this.is_signin    = true;
           },
           isLogin(){
             this.on_user      = "welcome!";
             this.user_profile = "";
           },
           openUserService(){
-            this.show_service = this.show_service ? false : true ;
+            let is_spread = this.showService ? false : true ;
+            this.$store.commit('setUserShowMenu', is_spread );
           },
           logout(){
-            
+            var _this = this;
             let is_profile = this.$store.getters.getUserProfile;
             if(is_profile){
             // 페이스북 로그인이면
-              FB.logout(function(){
-
+              FB.getLoginStatus(function(response){
+                if(response.status=='connected'){
+                  FB.logout();
+                  sessionStorage.clear();
+                  _this.is_signin = false;
+                  // _this.$router.push('/');
+                } 
               });
-            }
+            } else {
               // 일반 로그인이면
-              sessionStorage.clear();
-              this.is_signin = false;
-              this.$router.path({name: 'home'});
-            
-
-          
+              axios.post('/user/logout/')
+                   .then(function(response) {
+                        // 로그아웃 성공
+                      sessionStorage.clear();
+                      _this.is_signin = false;
+                      _this.$router.push({path: '/'});
+                  })
+                  .catch(function(error){
+                        // 네트워크 오류
+                  });
+              
+            }
         }
     }
   }
     
 </script>
 
-<style lang="sass">
-    .open-modal
-      width : 200px
-      height : 50px
-    .facebook-profile
-      border-radius : 50%
-      width : 38%
-      height : 38%
 
-</style>

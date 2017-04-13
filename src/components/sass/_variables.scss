@@ -1,8 +1,3 @@
-// 지현님 컬러
-// colors
-// $white: #fff;
-// $black: #eee;
-
 $text : #4b4c55;
 $text-grey : rgba(165, 161, 162, 1);
 
@@ -36,10 +31,10 @@ $purple: rgb(0, 0, 0);
 
 // // sns colors
 
-// $facebook: #3B5998;
-// $google: #EA4335;
-// $twitter: #33CCFF;
-// $naver: #00D337;
+$facebook: #3B5998;
+$google: #EA4335;
+$twitter: #33CCFF;
+$naver: #00D337;
 
 // Typography
 
@@ -74,62 +69,39 @@ $dark: $black-md;
 $light: $white-md;
 
 //  3. Applied variables
-
-// Invert colors
-//  colorInvert 함수 짜기(예정)
-$red-invert: colorInvert($red);
-$orange-invert: colorInvert($orange);
-$green-invert: colorInvert($green);
-$blue-invert: colorInvert($blue);
-$pink-invert: colorInvert($pink);
-// $purple-invert: colorInvert($purple);
-
-$primary-invert: colorInvert($orange);
-$info-invert: colorInvert($blue);
-$success-invert: colorInvert($green);
-$danger-invert: colorInvert($red);
-$warning-invert: colorInvert($pink);
-
-$black-invert: colorInvert($black);
-$dark-invert: colorInvert($black-md);
-$light-invert: colorInvert($white-md);
-
-
 // Text colors
 // $text: $white;
 $text-strong: $grey;
 $text-light: $grey-lo;
-$text-invert: colorInvert($grey-md);
 
 // Link colors
 $link: $primary;
-$link-invert: colorInvert(primary-invert);
 $link-visited: $purple;
 
 
 $hover-border: $grey-lo;
 $hover-color: $primary;
 
-$link-active-border: $grey-lo;
+$link-active-border: $white;
 $link-active-color: $grey;
 
-$link-focus-border: $grey-lo;
+$link-focus-border: $white;
 $link-focus-color: $grey;
 
-$link-link-border: $grey-lo;
+$link-link-border: $white;
 $link-link-color: $grey;
 
-// list
 
+// list
 $colors: (
-primary: ($primary, $primary-invert),
-info: ($blue, $info-invert),
-success: ($success, $success-invert),
-danger: ($red, $danger-invert),
-warning: ($pink, $warning-invert),
-dark: ($black-md, $dark-invert),
-black: ($black, $black-invert),
-light: ($white-md, $light-invert)
+primary: ($primary),
+info: ($blue),
+success: ($success),
+danger: ($red),
+warning: ($pink),
+dark: ($black-md),
+black: ($black),
+light: ($white-md)
 );
 
 // grid variables
@@ -139,6 +111,9 @@ $tablet: 780px;
 $desktop: 1200px;
 
 $width: 100%;
-$desktop-gutter: 1rem;
+$desktop-gutter: 1.5rem;
 $tablet-gutter: 1rem;
 $mobile-gutter: 0;
+
+// nav
+$nav-height: 5rem

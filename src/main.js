@@ -15,8 +15,6 @@ const router = new VueRouter({
   routes
 });
 
-
-
 new Vue({
   el: '#app',
   router,//사용되도록 설정
@@ -25,4 +23,4 @@ new Vue({
 });
 
 
-axios.defaults.baseURL   = 'http://www.pm0603.com';
+axios.defaults.baseURL   = 'http://api.pm0603.com';

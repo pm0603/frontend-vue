@@ -16,14 +16,14 @@
   export default {
   data() {
     return {
-      searchTerm: this.$route.query.term
+      searchTerm: this.$route.query.q
     }
   },
   methods: {
     inputValue: function() {
       let inputValue = document.querySelector('input[name="research"]').value;
       console.log(inputValue);
-      this.$router.push({path: '/search', query: {term: inputValue}});
+      this.$router.push({path: '/search', query: {q: inputValue}});
     }
   }
 }

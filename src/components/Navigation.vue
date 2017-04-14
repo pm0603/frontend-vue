@@ -9,19 +9,20 @@
       <div ref="navLeft" class="nav-left">
         <div class="nav-location">
           <a href="#" class="nav-location-all"
-          @click.prevent="noneToggleClass">All</a>
+          @click.prevent="noneToggleClass">전국</a>
           <ul ref="none" class="none">
-            <li><a href="#">SEOUL</a></li>
-            <li><a href="#">GYUNGGGI</a></li>
-            <li><a href="#">BUSAN</a></li>
+            <li><a href="#">서울</a></li>
+            <li><a href="#">경기</a></li>
+            <li><a href="#">대전</a></li>
+            <li><a href="#">부산</a></li>
           </ul>
         </div>
         <ul class="category">
           <router-link to="/detail" tag="li" active-class="current-page" ><a href>상세페이지</a></router-link>
-          <li><a href="#">category</a></li>
-          <li><a href="#">category</a></li>
-          <li><a href="#">category</a></li>
-          <li><a href="#">category</a></li>
+          <li><a href="#">연극</a></li>
+          <li><a href="#">미술</a></li>
+          <li><a href="#">음악</a></li>
+          <li><a href="#">콘서트</a></li>
         </ul>
       </div>
       <div class="nav-right">

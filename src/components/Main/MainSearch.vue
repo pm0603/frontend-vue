@@ -28,7 +28,7 @@
       inputValue: function() {
         let inputValue = document.querySelector('input[name="search"]').value;
         console.log(inputValue);
-        this.$router.push({path: '/search', query: {q: inputValue}});
+        this.$router.push({path: `/search`, query: {q: inputValue}});
       }
     }
   }

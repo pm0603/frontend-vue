@@ -1,97 +1,120 @@
 <template>
     <div class="modal" @click="closeModal">
         <div class="modal-background" @click="closeModal"></div>
-        <div class="modal-content-md" @click.stop="tempStopPropagation">
+        <div class="modal-content-md" @click.stop>
                 <a role="button" href class="modal-prev-btn" aria-label="prev" @click.prevent="showMainModal">
-                    <i class="ss-navigateleft" aria-hidden="true"></i>
+                    <i class="pe-7s-angle-left" aria-hidden="true"></i>
                 </a>
                 <div class="modal-header">
                     <h2>회원가입</h2>
                     <p v-if="!result_fail">{{main_message}}</p>
                     <p v-else class="result-fail">{{alert_message}}</p>
                 </div>
-                <form enctype="multipart/form-data" method="POST @submit.prevent">
+                <form enctype="multipart/form-data" method="POST" @submit.prevent="signUp" ref="form">
                 <div class="modal-body">
                         <p>
-                            <label for="email">email</label>
-                            <input  type="text" name="email" placeholder="email" v-model:email = "email">
+                            <label for="name">이름</label>
+                            <input  type="text" name="username" placeholder="이름을 입력해주세요." required v-model:name = "name" ref="username">
                         </p>
                         <p>
-                            <label for="password">password</label>
-                            <input type="password" name="password" placeholder="password" v-model:password = "password">
+                            <label for="email">이메일</label>
+                            <input  type="text" name="email" placeholder="이메일을 입력하세요." required v-model:email = "email" ref="email">
                         </p>
                         <p>
-                            <label for="password">password</label>
-                            <input type="password" name="password" placeholder="password" v-model:password = "password">
+                            <label for="password">비밀번호</label>
+                            <input type="password" name="password" placeholder="비밀번호를 입력해주세요." required v-model:password = "password" ref="password">
+                        </p>
+                        <p>
+                            <label for="password">비밀번호</label>
+                            <input type="password" name="password2" placeholder="비밀번호를 확인해주세요." v-model = "passwordCheck" class="password2" v-model:passwordtwo="passwordtwo">
                         </p>
                 </div>
                 <div class="modal-footer">
-                    <a href @click.stop.prevent="signUp">가입하기</a>
+                    <button type="submit" @click.stop.prevent="signUp" 
+                                          @keyup.enter="signUp">가입하기</button>
                 </div>
                 </form>
             </div>
     </div>
 </template>
-
+<style lang="sass">
+    .modal-header
+        padding-bottom: 4rem
+</style>
 <script>
     export default{
         data(){
             return{
-                result_fail: true,
-                main_message: '',
-                alert_message: '',
-                email: '',
-                password: ''
+                result_fail     : true,
+                main_message    : '',
+                alert_message   : '',
+                name            : '',
+                email           : '',
+                password        : '',
+                passwordtwo     : '',
+                passwordCheck   : ''
+                
             }
         },
+        watch: {
+            passwordCheck(new_password){
+                this.alert_message = '체크중..';
+                this.alert_message = this.password !== new_password ? '비밀번호가 일치하지 않습니다.' : '';
+            }
+            
+        },
         methods: {
-            tempStopPropagation() {
-                console.log('click');
-                // 또는 event를 받아서 네이티브로는 이렇게 event.stopPropagation();를 써서
-            },
             closeModal(event){
                 event.stopPropagation();
-                // event.stopImmediatePropagation();
-                var is_Open = false;
-                this.$emit('closeModal',is_Open);
+                this.$store.commit('setModalStatus',false);
             },
             showMainModal(){
-                this.$emit('showMainModal');
+                this.$store.commit('setModalStage', 1);
             },
+            
             signUp(){
-                var signId = this.email;
-                var signPwd = this.password;
-                console.log('signId:',signId);
-                console.log('signPwd:',signPwd);
+                var _this = this;
+                let signData = new FormData(this.$refs.form);
 
-                let signData = new FormData();
-                signData.append('email', signId+'');
-                signData.append('password', signPwd+'');
+                    axios.post('/user/signup/', signData)
+                         .then(function(response){
+                                console.log('응답토큰:',response);
+                            // 회원정보 저장
+                                let userInfo = {
+                                    "name"      :   _this.name, 
+                                    "email"     :   _this.email,
+                                    "profile"   :   null
+                                };
 
-                console.log('signData:',signData);
+                                _this.$store.commit('setUserInfo',      userInfo);
+                                _this.$store.commit('setModalStatus',   false );
 
-                const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+                                window.alert(response.data.success + ' 인증을 하시면 서비스를 이용하실수 있습니다.');
+                                // 모달 닫히기
+                                _this.name = '';
+                                _this.email = '';
+                                _this.password = '';
+                                _this.passwordtwo = '';
+                                
+                                _this.$router.push({ path: '/'});
+                            
+                        })
+                        .catch(function(error){
+                            if(error.response.status === 400){
+                                 _this.alert_message = '이미 존재하는 email 입니다.';
+                            }else{
+                                _this.alert_message  = 'Network Error';
+                            }
+                            _this.name          = '';
+                            _this.password      = '';
+                            _this.passwordtwo   = '';
+                            
+                        });
+                
 
-                // var request = new XMLHttpRequest();
-                // request.open('POST', "http://www.pm0603.com/user/signup");
-                // request.send(signData);
-
-
-                // /user/signup
-                // axios.post('https://pm-824c9.firebaseio.com/member.json',signData, config)
-
-
-                axios.post('/user/signup/',{
-                        email: signId,
-                        password: signPwd
-                    })
-                    .then(function(response){
-                        console.log('회원가입성공:',response);
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                    });
             }
+           
         }
     }
+
 </script>

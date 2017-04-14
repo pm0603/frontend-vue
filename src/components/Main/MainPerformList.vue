@@ -53,7 +53,7 @@ export default{
             this.next = result.data.next;
           })
           .catch(e=> {
-            this.errors.push(e)
+            // this.errors.push(e)
           })
   },
   methods: {
@@ -70,7 +70,7 @@ export default{
             this.next = result.data.next;
           })
           .catch(e=> {
-            this.errors.push(e)
+            // this.errors.push(e)
           })
     }
   },

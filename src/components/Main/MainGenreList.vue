@@ -30,22 +30,19 @@
 </template>
 
 <script>
-import MainTestDB from './MainTestDB.js'
-var dbMoodel = [
-                    'image',
-                    'image',
-                    'image',
-                    'image',
-                    'image',
-                    'image'
-                ];
-    export default{
-        data(){
-            return{
-                items : dbMoodel
-                // items : MainTestDB.card 이런식으로 접근이 가능한지?
-
-            }
-        }
-    }
+  var dbMoodel = [
+                      'image',
+                      'image',
+                      'image',
+                      'image',
+                      'image',
+                      'image'
+                  ];
+  export default{
+      data(){
+          return{
+              items : dbMoodel
+          }
+      }
+  }
 </script>

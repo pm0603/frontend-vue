@@ -12,15 +12,10 @@
   import SearchPerformList from './SearchPerformList.vue';
 
   export default {
-    data() {
-      return {
-
-      }
-    },
     components: {
       searchBar:         SearchBar,
       searchCategory:    SearchCategory,
       searchPerformList: SearchPerformList
-    },
+    }
   }
 </script>

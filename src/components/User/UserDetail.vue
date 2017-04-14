@@ -1,25 +1,23 @@
 <template>
       <div class="modal" @click="closeModal">
         <div class="modal-background" @click="closeModal"></div>
-        <div class="modal-content-md" @click.stop="tempStopPropagation">
-                <a role="button" href class="modal-prev-btn" aria-label="prev" @click.prevent="showMainModal">
-                    <i class="ss-navigateleft" aria-hidden="true"></i>
+        <div class="modal-content-md" @click.stop>
+                <a role="button" href class="modal-prev-btn" aria-label="content" @click.prevent="closeModal">
+                    <span class="pe-7s-close-circle" aria-hidden="true"></span>
                 </a>
                 <div class="modal-header">
-                    <h2>비밀번호 찾기</h2>
-                    <p v-if="!result_fail">{{main_message}}</p>
-                    <p v-else class="result-fail">{{alert_message}}</p>
+                    <h2>나의 정보</h2>
+                    <!--<p v-if="!result_fail">{{main_message}}</p>
+                    <p v-else class="result-fail">{{alert_message}}</p>-->
                 </div>
                 <div class="modal-body">
-
                         <p>
                             <label for="email">email</label>
                             <input  type="text" name="email" placeholder="email" v-model:email = "email">
                         </p>
-
                 </div>
                 <div class="modal-footer">
-                    <a href @click.stop.prevent="findPwd">찾기</a>
+                    <a href @click.stop.prevent="findPwd">비밀번호 수정</a>
                 </div>
             </div>
     </div>
@@ -29,25 +27,18 @@
     export default{
         data(){
             return{
-                email: '',
-                main_message: '',
-                alert_message: '',
-                result_fail: false,
-
+                email : ''
+                
             }
         },
+    
         methods: {
-            tempStopPropagation(){
-
-            },
+           
             closeModal(event){
                 event.stopPropagation();
-                var is_Open = false;
-                this.$emit('closeModal',is_Open);
+                this.$store.commit('setUserDetailStatus',false);
             },
-            showMainModal(){
-                this.$emit('showMainModal');
-            },
+            
             findPwd(){
                 //attatch email infomation
                 this.$emit('findPwd');

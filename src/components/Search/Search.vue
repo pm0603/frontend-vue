@@ -3,6 +3,7 @@
     <search-bar></search-bar>
     <search-category></search-category>
     <search-perform-list></search-perform-list>
+    <!-- <router-view name="searchPerfoemList"></router-view> -->
   </main>
 </template>
 
@@ -23,4 +24,5 @@
       searchPerformList: SearchPerformList
     },
   }
+
 </script>

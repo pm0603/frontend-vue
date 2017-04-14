@@ -46,15 +46,16 @@ export default{
     }
   },
   created: function() {
-      axios.get('/content/api/?page=1')
-          .then(result => {
-            // Add data to posts
-            this.posts = result.data.results;
-            this.next = result.data.next;
-          })
-          .catch(e=> {
-            this.errors.push(e)
-          })
+    const baseURI = 'http://api.pm0603.com/content/api';
+    axios.get(`${baseURI}/content/api/?page=1`)
+        .then(result => {
+          // Add data to posts
+          this.posts = result.data.results;
+          this.next = result.data.next;
+        })
+        .catch(e=> {
+          this.errors.push(e)
+        })
   },
   methods: {
     nextPage: function(){

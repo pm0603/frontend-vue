@@ -56,7 +56,6 @@
                 
                 user_name       : '',
                 user_profile    : ''
-
             }
         },
         methods: {
@@ -83,7 +82,9 @@
                             window.localStorage.setItem( 'token', response.data.token );
 
                             _this.$store.commit('setUserInfo', { 'name': _this.username, 'email': _this.email});
-                            _this.$store.commit('setModalStatus',false);
+                            _this.$store.commit('setModalStatus',     false );
+                            _this.$store.commit('setUserLoginStatus', true );
+                            _this.$store.commit('setMainTitle', _this.username );
 
                             _this.$router.push('/');
                             
@@ -94,13 +95,10 @@
                             _this.result_fail = true;
                             _this.alert_message  = '네트워크 에러';
                         }
-
                 });
-
-// "3294b5d7b66d9b6ce3c6f2ff53cc9b74c39c864e"
             },
             facebookLogin(){
-                console.log('facebookLogin');
+
                 var _this = this;
                 FB.login(function(response){
 
@@ -109,6 +107,7 @@
                     FB.getLoginStatus(function(response) {
                         if (response.status === 'connected') {
                             FB.api('/me?fields=id,name,picture.width(100).height(100).as(picture_small)', function(response) {
+                                
                                 console.log('FB.api(응답:',response);
                                 
                                 if ( response !== null ){
@@ -116,36 +115,32 @@
                                     let profile  = response.picture_small.data.url;
                                     let userName = response.name;
                                     
-                                    // 세션에 저장
-                                    // sessionStorage.setItem("id",    userName);
-                                    // sessionStorage.setItem("profile", profile);
-
-                                    _this.$store.commit('setUserName',  userName);
                                     _this.$store.commit('setUserProfile',  profile);
+                                    _this.$store.commit('setUserInfo',  { name   : userName, 
+                                                                          email  : '', 
+                                                                          profile: profile}); 
                                     
-                                    var userToken = new FormData();
-                                    userToken.append('access_token',data.accessToken);
-                                   
+                                    // var userToken = new FormData();
+                                    // userToken.append('access_token',data.accessToken);
 
                                     // save token in DB
-                                    axios.post('/user/fblogin/',userToken)
+                                    axios.post('/user/fblogin/',data.accessToken)
                                          .then(function(responseData) {
-                                            console.log('FBlogin-우리서버(응답:',responseData.statusText);
-                                            // if( responseData.statusText === "OK" ){
-                                                // 아이디와 비번이 맞으면 첫번째 페이지로 이동하기
-                                                console.log('환영합니다.');
-                                                console.log('router',_this.$router);
+                                            console.log('FBlogin-우리서버(응답:',responseData);
 
-                                                 _this.$router.go({ path: '/'});
+                                            _this.$store.commit('setModalStatus', false); // 모달창 닫기
+                                            _this.$store.commit('setUserLoginStatus', true);
+                                            _this.$store.commit('setMainTitle', username );
+                                            _this.$router.push({ path: '/'});
                                             
                                     }).catch(function(error) {
                                             _this.alert_message = "NetWork Error";
-                                            // _this.$router.push({ name: 'home'});
                                     });
 
                                 } else {
                                     console.log('로그인이 되어 있고 앱등록도 되어있음 앞으로 페이지 이동');
-                                //    _this.isFacebookLogin();
+                                    _this.$store.commit('setUserLoginStatus', true);
+                                    _this.$store.commit('setModalStatus', false); 
                                     this.$router.push('/');
                                 }
                             });

@@ -41,15 +41,12 @@ const getters = {
 const  mutations = {
     setUserName(state, new_user_name) {
       state.userName = new_user_name;
-      // sessionStorage.setItem('name', new_user_name);
     },
     setUserProfile(state, new_user_profile) {
       state.userProfile = new_user_profile;
-      // sessionStorage.setItem('profile', new_user_profile);
     },
     setUserToken(state, new_user_token) {
       state.userToken = new_user_token;
-      // sessionStorage.setItem(new_user_token);
     },
     setUserInfo(state, new_user_info) {
       state.userInfo = new_user_info;

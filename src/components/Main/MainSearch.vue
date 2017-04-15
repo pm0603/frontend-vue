@@ -1,7 +1,7 @@
 <template>
     <main class="main">
     <div class="main-search">
-      <h2>Live Your city</h2>
+      <h2>{{mainTitle}}</h2>
       <p>We uncover the best events every day</p>
       <form class="searchbar">
         <input type="text" name="search" placeholder="Search by event, area, ot venue..." autofocus>
@@ -22,6 +22,12 @@
   export default {
     data() {
       return{
+
+      }
+    },
+    computed: {
+      mainTitle(){
+        return this.$store.getters.getMainTitle;
       }
     },
     methods: {

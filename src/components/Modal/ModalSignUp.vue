@@ -37,9 +37,10 @@
             </div>
     </div>
 </template>
-<style lang="sass">
-    .modal-header
-        padding-bottom: 4rem
+<style lang="scss">
+    .modal-header{
+        padding-bottom: 4rem;
+    }
 </style>
 <script>
     export default{
@@ -61,7 +62,6 @@
                 this.alert_message = '체크중..';
                 this.alert_message = this.password !== new_password ? '비밀번호가 일치하지 않습니다.' : '';
             }
-            
         },
         methods: {
             closeModal(event){
@@ -71,7 +71,7 @@
             showMainModal(){
                 this.$store.commit('setModalStage', 1);
             },
-            
+            // 회원가입
             signUp(){
                 var _this = this;
                 let signData = new FormData(this.$refs.form);
@@ -91,11 +91,12 @@
 
                                 window.alert(response.data.success + ' 인증을 하시면 서비스를 이용하실수 있습니다.');
                                 // 모달 닫히기
-                                _this.name = '';
+                                _this.name  = '';
                                 _this.email = '';
-                                _this.password = '';
+                                _this.password    = '';
                                 _this.passwordtwo = '';
-                                
+
+                                _this.$store.commit('setUserLoginStatus', true );
                                 _this.$router.push({ path: '/'});
                             
                         })
@@ -110,8 +111,6 @@
                             _this.passwordtwo   = '';
                             
                         });
-                
-
             }
            
         }

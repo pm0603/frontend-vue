@@ -38,7 +38,7 @@
         <button type="button" class="signin" v-if="!is_signin" @click.prevent="openAlert"> sign up / login
           <show-modal v-show="openIt"></show-modal>
         </button>
-        <button type="button" v-else v-show="!openIt" @click.prevent="openUserService" class="online">
+        <button type="button" v-else v-show="!openIt" @click.prevent="openUserService" class="signin online">
             <img :src="user_profile" alt="profile" class="facebook-profile">
             <i class="pe-7s-angle-down" aria-hidden="true"></i>
             <div v-if="showService" class="mymenu">
@@ -69,8 +69,6 @@
     export default {
         data(){
             return{
-              is_signin       : false,
-
               on_user         : '',
               user_profile    : '',
             }
@@ -90,8 +88,24 @@
             },
             isUserDetail(){
               return this.$store.getters.getUserDetailStatus;
+            },
+            // 로그인 상태 체크
+            is_signin(){
+              return this.$store.getters.getUserLoginStatus;
             }
 
+        },
+        beforeRouteEnter(to, from, next){
+          // console.log('라우터,토큰값:',window.localStorage.token);
+          // 회원이면 
+          if(window.localStorage.token){
+            this.$store.commit('setUserLoginStatus', true);
+            this.$store.commit('setModalStatus', true);
+            next();
+          } else {
+          // 회원이 아니면
+            this.$route.push('/');
+          }
         },
         beforeCreate(){
           console.log('생성전!');
@@ -108,11 +122,11 @@
           console.log('마운트됨!');
 
           if( sessionStorage.length ){
-            this.is_signin    = true;
+            this.$store.commit('setUserLoginStatus', true);
             this.user_profile = this.$store.getters.getUserProfile;
             this.on_user      = this.$store.getters.getUserName;
           }else{
-            this.is_signin    = false;
+            this.$store.commit('setUserLoginStatus', false);
           }
         },
         updated () {
@@ -125,7 +139,6 @@
         activated () {
           console.log('액티브됨!');
         },
-
 
         methods: {
           gotoHome() {
@@ -153,7 +166,7 @@
           isFacebookLogin(){
             this.on_user      = this.$store.getters.getUserName;
             this.user_profile = this.$store.getters.getUserProfile;
-            this.is_signin    = true;
+            this.$store.commit('setUserLoginStatus', true);
           },
           isLogin(){
             this.on_user      = "welcome!";
@@ -172,7 +185,8 @@
                 if(response.status=='connected'){
                   FB.logout();
                   sessionStorage.clear();
-                  _this.is_signin = false;
+                  _this.$store.commit('setUserLoginStatus', false);
+                  
                   // _this.$router.push('/');
                 } 
               });
@@ -182,7 +196,8 @@
                    .then(function(response) {
                         // 로그아웃 성공
                       sessionStorage.clear();
-                      _this.is_signin = false;
+                      // _this.is_signin = false;
+                      _this.$store.commit('setUserLoginStatus', false);
                       _this.$router.push({path: '/'});
                   })
                   .catch(function(error){

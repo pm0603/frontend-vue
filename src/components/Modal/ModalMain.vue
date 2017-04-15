@@ -67,46 +67,35 @@
             showSignUpModal(){
                 this.$store.commit('setModalStage', 2);
             },
-            
+            // 로그인하기
             doLogin(){
-
                 var _this = this;
                 let loginData = new FormData(this.$refs.loginForm);
 
                 axios.post('/user/login/', loginData)
                      .then(function(response) {
                         let data = response.data;
-                        console.log(data);
-                        // if( data ){
+                        console.log('응답:',response);
+                        if( response.status === 200 ){
                             // set user id
-                            _this.$store.commit('setUserName', _this.user_name);
-                            _this.$store.commit('setUserToken', data.token);
+                            _this.$store.commit('setUserToken', response.data.token);
 
-                            // sessionStorage.setItem("id",    _this.user_name);
-                            localStorage.setItem('token', data.token);
-                            console.log('로컬에되나저장:', localStorage);
+                            window.localStorage.setItem( 'token', response.data.token );
 
-                            // sessionStorage.setItem("token", data.token);
-                            // console.log('sessionStorage:',sessionStorage);
-                            console.log('여기는?');
-                            _this.login.commit('setUserInfo', { 'name': user_this.username, 'email': data.token});
-                            console.log('store저장:', _this.$store);
-
+                            _this.$store.commit('setUserInfo', { 'name': _this.username, 'email': _this.email});
                             _this.$store.commit('setModalStatus',false);
+
                             _this.$router.push('/');
+                            
+                        }else if( response.status === 400 ){
+                            _this.result_fail = true;
+                            _this.alert_message = '이메일 또는 비밀번호가 올바르지 않습니다.';
+                        } else {
+                            _this.result_fail = true;
+                            _this.alert_message  = '네트워크 에러';
+                        }
 
-                        // } else {
-                            // console.log('회원정보가 없습니다.');
-                            // _this.result_fail = true;
-                        // }
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                        
-                        _this.result_fail   = true;
-                        _this.alert_message = 'NetWork Error';
-
-                    });
+                });
 
 // "3294b5d7b66d9b6ce3c6f2ff53cc9b74c39c864e"
             },
@@ -135,10 +124,8 @@
                                     _this.$store.commit('setUserProfile',  profile);
                                     
                                     var userToken = new FormData();
-                                    // userToken.append('access_token',data.accessToken);
+                                    userToken.append('access_token',data.accessToken);
                                    
-                                    // 임의의 토큰값을 보내기 - test
-                                    userToken.append('access_token','dfsfdsffsdfsdfsdfsd');
 
                                     // save token in DB
                                     axios.post('/user/fblogin/',userToken)
@@ -165,16 +152,10 @@
 
                         } else if( response.status === 'not_authorized' ){
                             console.log('not_authorized');
-                        
                         }
                     });
-
-
-
                 },{scope: 'public_profile,email'});
             }
-            
-
         }
     }
 </script>

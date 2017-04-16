@@ -19,10 +19,10 @@
         </div>
         <ul class="category">
           <router-link to="/detail" tag="li" active-class="current-page" ><a href>상세페이지</a></router-link>
-          <li><a href="#">연극</a></li>
-          <li><a href="#">미술</a></li>
-          <li><a href="#">음악</a></li>
-          <li><a href="#">콘서트</a></li>
+          <router-link to="/genre?k=연극" tag="li" active-class="current-page" ><a href>연극</a></router-link>
+          <router-link to="/genre?k=미술" tag="li" active-class="current-page" ><a href>미술</a></router-link>
+          <router-link to="/genre?k=음악" tag="li" active-class="current-page" ><a href>음악</a></router-link>
+          <router-link to="/genre?k=콘서트" tag="li" active-class="current-page" ><a href>콘서트</a></router-link>
         </ul>
       </div>
       <div class="nav-right">
@@ -120,7 +120,7 @@
           // this.$store.commit('setUserDetailStatus', true );
           let update_detail = this.isUserDetail;
           if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
-          
+
         },
         activated () {
           console.log('액티브됨!');
@@ -174,7 +174,7 @@
                   sessionStorage.clear();
                   _this.is_signin = false;
                   // _this.$router.push('/');
-                } 
+                }
               });
             } else {
               // 일반 로그인이면
@@ -188,12 +188,10 @@
                   .catch(function(error){
                         // 네트워크 오류
                   });
-              
+
             }
         }
     }
   }
-    
+
 </script>
-
-

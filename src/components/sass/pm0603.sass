@@ -36,10 +36,26 @@ button
 /////////////////
 .main
   background: #eee url('https://images3.alphacoders.com/151/151409.jpg') center center no-repeat
+  // https://i.ytimg.com/vi/h4sl3sQPzgc/maxresdefault.jpg
+  // https://images3.alphacoders.com/151/151409.jpg
   background-size: cover
   height: 70vh
   display: flex
   align-items: center
+  z-index: 1
+  position: relative
+
+.main::before
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: inherit
+  z-index: -1
+  filter: blur(2px)
+
 .main-search
   width: 100%
   padding: 0 2rem 5rem 2rem
@@ -125,4 +141,15 @@ button
   p
     margin: 1rem 0
   span
-    color: darken($blue, 15%) 
+    color: darken($blue, 15%)
+
+.genre-heading
+  text-align: center
+  padding: 10rem 3rem
+  font-size: $size-3
+  color: #fff
+  background: url('https://tumblbug-psi.imgix.net/b0167175e584dc13adc380994472dd161672bc8b/54b9171623c9c77ecf3aa065125784d31cabdff1/4ace3d09e808db689a6f63d4e10c2e2c1001e339/91ada17fff67f628c79b2b13008f37b1ba6a357e.jpg?ixlib=rb-1.1.0&w=620&auto=format%2C%20compress&lossless=true&ch=save-data&s=8dec220b0ee46e8c01a96304698b67aa') center center
+
+.genre-category
+  display: flex
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1)

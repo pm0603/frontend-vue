@@ -10,7 +10,6 @@
           </div>
         </section>
 </template>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 export default{
   data(){
@@ -21,14 +20,14 @@ export default{
   created: function() {
       // using JSONPlaceholder
       // firebase data url
-      const baseURI = 'https://detail-a2b27.firebaseio.com/.json';
-      // get Data
-      axios.get(baseURI)
-           .then((result) => {
-              console.log(result)
-              // Add data to posts
-              this.posts = result.data
-           })
+      // const baseURI = 'https://detail-a2b27.firebaseio.com/.json';
+      // // get Data
+      // axios.get(baseURI)
+      //      .then((result) => {
+      //         console.log(result)
+      //         // Add data to posts
+      //         this.posts = result.data
+      //      })
     },
 
 }

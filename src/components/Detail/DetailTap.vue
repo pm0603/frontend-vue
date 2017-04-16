@@ -10,12 +10,14 @@
             </div>
           </div>
           <div class="tab_contents">
-            <div class="tab-item" id="tab_0" style="display: block; background-color: red;">
+            <div class="tab-item" id="tab_0">
+               <!--style="display: block; background-color: red;"-->
               <div class="tab_content">
                 내용은 내용내용
               </div>
             </div>
-            <div class="tab-item" id="tab_1" style="background-color: blue">
+            <div class="tab-item" id="tab_1">
+               <!--style="background-color: blue"-->
               <div class="tab_content">
                 내용은 내용내용
               </div>

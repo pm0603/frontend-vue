@@ -14,8 +14,12 @@
                 <a>{{post.title}}</a>
               </p>
               <ul class="card-list">
-                <li class="card-list-item"><span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>{{post.end_date}}</li>
-                <li class="card-list-item"><span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>{{post.area}}</li>
+                <li class="card-list-item">
+                  <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                  {{post.start_date}} ~ {{post.end_date}}</li>
+                <li class="card-list-item">
+                  <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
+                  {{post.area}}</li>
               </ul>
               <!-- <div class="card-footer"> -->
                 <!-- <div class="card-price">{{post.price}}</div> -->

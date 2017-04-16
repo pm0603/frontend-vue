@@ -11,13 +11,16 @@
     transition: all .3s
     +set-overflow-hidden
 
-.card-button
+.card-button,
+.card-footer-btn
   display: none
 
-.card:hover
+.card:hover,
+.card-side:hover
   box-shadow: 0 4px 6px rgba(0,0,0,.1), 0 0 2px rgba(0,0,0,.1)
   transform: translateY(-4px)
-  & .card-button
+  .card-button,
+  .card-footer-btn
     display: block
     position: absolute
     bottom: 2rem
@@ -29,40 +32,23 @@
     &:hover
       background: darken($blue, 10%)
 
-
 .bookmark
   position: absolute
   top: 0
   right: 0
   color: #fff
 
-
-//안줘도 될듯
 .card-side
     display: flex
     overflow: auto
     +card-basic
-    max-width: 100%
-    background-color: $white
-    box-shadow: 0 1px 2px rgba(0,0, 0,.1), 0 0 2pxrgba(0,0,0,.1)
-    border-radius: 3px
-    border: 1px solid $border-color
-    position: relative
-    cursor: pointer
-// 기본값을 설정해서 너비지정- 이미지가 absolute라 붕뜨게 되서 가로가없음?
-.card-side > div[class^='card-']:nth-child(1)
-    // flex-basis: 2000px
+    width: 100%
+    height: 30rem
 
 .card-menu
     padding: 22px
     +card-basic
     max-width: 100%
-    background-color: $white
-    box-shadow: 0 1px 2px rgba(0,0, 0,.1), 0 0 2px rgba(0,0,0,.1)
-    border-radius: 3px
-    border: 1px solid $border-color
-    position: relative
-    cursor: pointer
 
 .card-image
     background-repeat:no-repeat
@@ -75,12 +61,14 @@
 
 //  하위에 속한 자식을 column으로 일단 배치
 div.card-image-wide
-    // background: $main-color
     position: relative
     display: flex
     flex-direction: column
-    width: 400%
-
+    width: 70%
+    background-repeat:no-repeat
+    background-position: center center
+    background-size: cover
+    background-color: #eee
 
     & .card-image-small img,
     & .card-image-medium img
@@ -131,10 +119,11 @@ div.card-content-wide::before
     padding: 24px
     position: relative
     +set-overflow-hidden
+    width: 30%
 
 .card-title
     font-weight: bold
-    font-size: 1.5rem
+    font-size: 1.6rem
     color: $text
     padding-bottom: 18px
     +set-overflow-hidden
@@ -145,7 +134,7 @@ div.card-content-wide::before
 
 .card-title a:link, .card-title a:hover
     /*지정한 색깔모드에 따라 변하게 하기*/
-    color: $main-color
+    color: darken($blue, 10%)
     text-decoration: none
 
 .card-about

@@ -13,7 +13,7 @@
             <ul class="card-list">
               <li class="card-list-item">
                 <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
-                {{post.end_date}}</li>
+                {{post.start_date}} ~ {{post.end_date}}</li>
               <li class="card-list-item">
                 <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
                 {{post.area}}</li>

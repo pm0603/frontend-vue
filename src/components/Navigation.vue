@@ -101,7 +101,7 @@
         },
         beforeRouteEnter(to, from, next){
           console.log('라우터,토큰값:',window.localStorage.token);
-          // 회원이면 
+          // 회원이면
           if(window.localStorage.token){
             this.$store.commit('setUserLoginStatus', true);
             this.$store.commit('setModalStatus', true);
@@ -136,15 +136,7 @@
           console.log('업데이트! - 개인정보');
           // this.$store.commit('setUserDetailStatus', true );
           let update_detail = this.isUserDetail;
-<<<<<<< HEAD
           if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
-
-||||||| merged common ancestors
-          if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
-          
-=======
-          if( update_detail ){ this.$store.commit('setUserDetailStatus', true );}
->>>>>>> 58c7d9f35d78699acfb0da337105862a7803728c
         },
         activated () {
           console.log('액티브됨!');
@@ -183,64 +175,17 @@
             console.log('로그아웃: '+is_profile);
             if(is_profile){
             // 페이스북 로그인이면
-<<<<<<< HEAD
-              FB.getLoginStatus(function(response){
-                if(response.status=='connected'){
-                  FB.logout();
-                  sessionStorage.clear();
-                  _this.is_signin = false;
-                  // _this.$router.push('/');
-                }
-              });
-            } else {
-              // 일반 로그인이면
-              axios.post('/user/logout/')
-                   .then(function(response) {
-                        // 로그아웃 성공
-                      sessionStorage.clear();
-                      _this.is_signin = false;
-                      _this.$router.push({path: '/'});
-                  })
-                  .catch(function(error){
-                        // 네트워크 오류
-                  });
-
-            }
-||||||| merged common ancestors
-              FB.getLoginStatus(function(response){
-                if(response.status=='connected'){
-                  FB.logout();
-                  sessionStorage.clear();
-                  _this.is_signin = false;
-                  // _this.$router.push('/');
-                } 
-              });
-            } else {
-              // 일반 로그인이면
-              axios.post('/user/logout/')
-                   .then(function(response) {
-                        // 로그아웃 성공
-                      sessionStorage.clear();
-                      _this.is_signin = false;
-                      _this.$router.push({path: '/'});
-                  })
-                  .catch(function(error){
-                        // 네트워크 오류
-                  });
-              
-            }
-=======
               console.log('페북로그아웃');
                 FB.getLoginStatus(function(response){
                   if(response.status=='connected'){
                     FB.logout();
 
                     localStorage.clear();
-                    
+
                     _this.$store.commit('setUserLoginStatus', false);
                     _this.$store.commit('setModalStatus', false);
-                    
-                  } 
+
+                  }
                 });
               } else {
                 // 일반 로그인이면
@@ -256,20 +201,6 @@
                     });
               }
           }
->>>>>>> 58c7d9f35d78699acfb0da337105862a7803728c
         }
     }
-<<<<<<< HEAD
-  }
-||||||| merged common ancestors
-  }
-    
-</script>
-
-=======
-
-</script>
-
->>>>>>> 58c7d9f35d78699acfb0da337105862a7803728c
-
 </script>

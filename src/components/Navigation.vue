@@ -35,10 +35,12 @@
             </g>
           </svg>
         </button>
+        <!--로그인이 안된 상태-->
         <button type="button" class="signin" v-if="!is_signin" @click.prevent="openAlert"> sign up / login
           <show-modal v-show="openIt"></show-modal>
         </button>
-        <button type="button" v-else v-show="!openIt" @click.prevent="openUserService" class="online">
+        <!--로그인이 된 상태-->
+        <button type="button" v-else v-show="!openIt" @click.prevent="openUserService" class="signin online">
             <img :src="user_profile" alt="profile" class="facebook-profile">
             <i class="pe-7s-angle-down" aria-hidden="true"></i>
             <div v-if="showService" class="mymenu">
@@ -63,23 +65,24 @@
 </template>
 
 <script>
-    import ShowModal from './Modal/ShowModal.vue';
+    import ShowModal  from './Modal/ShowModal.vue';
     import UserDetail from './User/UserDetail.vue';
 
     export default {
         data(){
             return{
-              is_signin       : false,
-
               on_user         : '',
-              user_profile    : '',
+              // user_profile    : '',
             }
         },
         components:{
-          showModal : ShowModal,
-          userDetail :UserDetail
+          showModal  : ShowModal,
+          userDetail : UserDetail
         },
         computed: {
+            user_profile(){
+              return this.$store.getters.getUserProfile;
+            },
             // 모달창의 on/off
             openIt(){
               return this.$store.getters.getModalStatus;
@@ -90,13 +93,28 @@
             },
             isUserDetail(){
               return this.$store.getters.getUserDetailStatus;
+            },
+            // 로그인 상태 체크
+            is_signin(){
+              return this.$store.getters.getUserLoginStatus;
             }
+        },
+        beforeRouteEnter(to, from, next){
+          console.log('라우터,토큰값:',window.localStorage.token);
+          // 회원이면 
+          if(window.localStorage.token){
+            this.$store.commit('setUserLoginStatus', true);
+            this.$store.commit('setModalStatus', true);
+            next();
 
+          } else {
+          // 회원이 아니면
+            this.$route.push('/');
+          }
         },
         beforeCreate(){
           console.log('생성전!');
           this.$store.commit('setModalStatus', false );
-          console.log('bCreate:', this.$store);
         },
         created () {
           console.log('생성!');
@@ -106,26 +124,23 @@
         },
         mounted () {
           console.log('마운트됨!');
-
           if( sessionStorage.length ){
-            this.is_signin    = true;
+            this.$store.commit('setUserLoginStatus', true);
             this.user_profile = this.$store.getters.getUserProfile;
             this.on_user      = this.$store.getters.getUserName;
           }else{
-            this.is_signin    = false;
+            this.$store.commit('setUserLoginStatus', false);
           }
         },
         updated () {
           console.log('업데이트! - 개인정보');
           // this.$store.commit('setUserDetailStatus', true );
           let update_detail = this.isUserDetail;
-          if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
-          
+          if( update_detail ){ this.$store.commit('setUserDetailStatus', true );}
         },
         activated () {
           console.log('액티브됨!');
         },
-
 
         methods: {
           gotoHome() {
@@ -150,15 +165,6 @@
           closeModal(){
             this.$store.commit('setModalStatus', false );
           },
-          isFacebookLogin(){
-            this.on_user      = this.$store.getters.getUserName;
-            this.user_profile = this.$store.getters.getUserProfile;
-            this.is_signin    = true;
-          },
-          isLogin(){
-            this.on_user      = "welcome!";
-            this.user_profile = "";
-          },
           openUserService(){
             let is_spread = this.showService ? false : true ;
             this.$store.commit('setUserShowMenu', is_spread );
@@ -166,34 +172,38 @@
           logout(){
             var _this = this;
             let is_profile = this.$store.getters.getUserProfile;
+            console.log('로그아웃: '+is_profile);
             if(is_profile){
             // 페이스북 로그인이면
-              FB.getLoginStatus(function(response){
-                if(response.status=='connected'){
-                  FB.logout();
-                  sessionStorage.clear();
-                  _this.is_signin = false;
-                  // _this.$router.push('/');
-                } 
-              });
-            } else {
-              // 일반 로그인이면
-              axios.post('/user/logout/')
-                   .then(function(response) {
-                        // 로그아웃 성공
-                      sessionStorage.clear();
-                      _this.is_signin = false;
-                      _this.$router.push({path: '/'});
-                  })
-                  .catch(function(error){
-                        // 네트워크 오류
-                  });
-              
-            }
+              console.log('페북로그아웃');
+                FB.getLoginStatus(function(response){
+                  if(response.status=='connected'){
+                    FB.logout();
+
+                    localStorage.clear();
+                    
+                    _this.$store.commit('setUserLoginStatus', false);
+                    _this.$store.commit('setModalStatus', false);
+                    
+                  } 
+                });
+              } else {
+                // 일반 로그인이면
+                console.log('일반로그아웃');
+                axios.post('/user/logout/')
+                    .then(function(response) {
+                          // 로그아웃 성공
+                        localStorage.clear();
+                        _this.$store.commit('setUserLoginStatus', false);
+                    })
+                    .catch(function(error){
+                          // 네트워크 오류
+                    });
+              }
+          }
         }
     }
-  }
-    
+
 </script>
 
 

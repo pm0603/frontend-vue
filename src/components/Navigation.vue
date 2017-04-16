@@ -19,10 +19,10 @@
         </div>
         <ul class="category">
           <router-link to="/detail" tag="li" active-class="current-page" ><a href>상세페이지</a></router-link>
-          <li><a href="#">연극</a></li>
-          <li><a href="#">미술</a></li>
-          <li><a href="#">음악</a></li>
-          <li><a href="#">콘서트</a></li>
+          <router-link to="/genre?k=연극" tag="li" active-class="current-page" ><a href>연극</a></router-link>
+          <router-link to="/genre?k=미술" tag="li" active-class="current-page" ><a href>미술</a></router-link>
+          <router-link to="/genre?k=음악" tag="li" active-class="current-page" ><a href>음악</a></router-link>
+          <router-link to="/genre?k=콘서트" tag="li" active-class="current-page" ><a href>콘서트</a></router-link>
         </ul>
       </div>
       <div class="nav-right">
@@ -101,7 +101,7 @@
         },
         beforeRouteEnter(to, from, next){
           console.log('라우터,토큰값:',window.localStorage.token);
-          // 회원이면 
+          // 회원이면
           if(window.localStorage.token){
             this.$store.commit('setUserLoginStatus', true);
             this.$store.commit('setModalStatus', true);
@@ -136,7 +136,7 @@
           console.log('업데이트! - 개인정보');
           // this.$store.commit('setUserDetailStatus', true );
           let update_detail = this.isUserDetail;
-          if( update_detail ){ this.$store.commit('setUserDetailStatus', true );}
+          if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
         },
         activated () {
           console.log('액티브됨!');
@@ -181,11 +181,11 @@
                     FB.logout();
 
                     localStorage.clear();
-                    
+
                     _this.$store.commit('setUserLoginStatus', false);
                     _this.$store.commit('setModalStatus', false);
-                    
-                  } 
+
+                  }
                 });
               } else {
                 // 일반 로그인이면
@@ -203,7 +203,4 @@
           }
         }
     }
-
 </script>
-
-

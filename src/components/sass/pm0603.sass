@@ -39,22 +39,21 @@ button
   // https://i.ytimg.com/vi/h4sl3sQPzgc/maxresdefault.jpg
   // https://images3.alphacoders.com/151/151409.jpg
   background-size: cover
-  height: 70vh
+  height: 50rem
   display: flex
   align-items: center
-  z-index: 1
-  position: relative
+  // position: relative
 
-.main::before
-  content: ''
-  position: absolute
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-  background: inherit
-  z-index: -1
-  filter: blur(2px)
+// .main::before
+//   content: ''
+//   position: absolute
+//   top: 0
+//   left: 0
+//   right: 0
+//   bottom: 0
+//   background: inherit
+//   z-index: -1
+//   filter: blur(2px)
 
 .main-search
   width: 100%
@@ -80,7 +79,8 @@ button
   font-size: $size-6
   cursor: pointer
   &:hover
-    color: $red
+    color: $blue
+
 
 .performance-list h2,
 .genre-list h2
@@ -110,7 +110,6 @@ button
   padding: 2rem
   width: 100%
   background: #f7f7f7
-  height: 93vh
   & .searchbar
     width: 100%
     max-width: 100%

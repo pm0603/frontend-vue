@@ -113,7 +113,7 @@ div.card-content-wide::before
   border-right:  16px solid #fff
 
 .card-content
-  margin: 2rem
+  margin: 1.5rem 2rem 2rem 2rem
 .card-content-wide
   padding: 2rem
   position: relative
@@ -123,11 +123,11 @@ div.card-content-wide::before
   font-weight: bold
   font-size: 1.6rem
   color: $text
-  padding-bottom: 18px
+  padding: 1rem 0
+  +set-overflow-hidden
 
 .card-title a
   color: $text
-  +set-overflow-hidden
 
 .card-title a:link, .card-title a:hover
   /*지정한 색깔모드에 따라 변하게 하기*/

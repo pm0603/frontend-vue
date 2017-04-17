@@ -11,7 +11,7 @@ import UserBookMark from './components/User/UserBookMark.vue';
 export const routes = [
   { path: '/',         component: Home,   name: 'home' },
   { path: '/bookmark', component: UserBookMark },
-  { path: '/detail',   component: Detail },
+  { path: '/detail/:id',   component: Detail },
   { path: '/search',   component: Search },
   { path: '/genre',    component: Genre },
   { path: '*', redirect: '/' }

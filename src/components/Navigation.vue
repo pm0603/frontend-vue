@@ -18,7 +18,6 @@
           </ul>
         </div>
         <ul class="category">
-          <router-link to="/detail"      tag="li" active-class="current-page" ><a href>상세페이지</a></router-link>
           <router-link to="/genre?k=연극" tag="li" active-class="current-page" ><a href>연극</a></router-link>
           <router-link to="/genre?k=미술" tag="li" active-class="current-page" ><a href>미술</a></router-link>
           <router-link to="/genre?k=음악" tag="li" active-class="current-page" ><a href>음악</a></router-link>
@@ -99,6 +98,10 @@
             }
         },
         beforeRouteEnter(to, from, next){
+<<<<<<< HEAD
+=======
+          // console.log('라우터,토큰값:',window.localStorage.token);
+>>>>>>> 782651342b2c7ecbc601d659f35494892f33a94e
           // 회원이면
           if(window.localStorage.token){
             this.$store.commit('setUserLoginStatus', true);
@@ -111,10 +114,24 @@
           }
         },
         beforeCreate(){
+<<<<<<< HEAD
           this.$store.commit('setModalStatus', false );
         },
        
         mounted () {
+=======
+          // console.log('생성전!');
+          this.$store.commit('setModalStatus', false );
+        },
+        // created () {
+        //   // console.log('생성!');
+        // },
+        // beforeMount () {
+        //   // console.log('마운트되기전!');
+        // },
+        mounted () {
+          // console.log('마운트됨!');
+>>>>>>> 782651342b2c7ecbc601d659f35494892f33a94e
           if( sessionStorage.length ){
             this.$store.commit('setUserLoginStatus', true);
             this.user_profile = this.$store.getters.getUserProfile;
@@ -128,13 +145,19 @@
           let update_detail = this.isUserDetail;
           if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
         },
+<<<<<<< HEAD
+=======
+        // activated () {
+        //   console.log('액티브됨!');
+        // },
+>>>>>>> 782651342b2c7ecbc601d659f35494892f33a94e
 
         methods: {
           gotoHome() {
             this.$router.push({path: '/'});
           },
           gotoSearch() {
-            this.$router.push({path: '/search'});
+            this.$router.push({path: '/search?q='});
           },
           navLeftToggleClass(){
             this.$refs.navLeft.classList.toggle('mobile-menu');
@@ -153,7 +176,7 @@
             this.$store.commit('setModalStatus', false );
           },
           openUserService(){
-            console.log('openUserService'); 
+            console.log('openUserService');
             let is_spread = this.showService ? false : true ;
             this.$store.commit('setUserShowMenu', is_spread );
           },
@@ -180,6 +203,10 @@
                 axios.post('/user/logout/')
                     .then(function(response) {
 
+<<<<<<< HEAD
+=======
+                        // console.log('일반로그아웃response:', response);
+>>>>>>> 782651342b2c7ecbc601d659f35494892f33a94e
                           // 로그아웃 성공
                         localStorage.clear();
                         _this.$store.commit('setUserLoginStatus', false);

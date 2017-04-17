@@ -23,7 +23,7 @@
                         </p>
                         <p>
                             <label for="password">password</label>
-                            <input type="password" name="password" placeholder="password" 
+                            <input type="password" name="password" placeholder="password"
                             required v-model:password = "password">
                         </p>
                     </div>
@@ -53,7 +53,7 @@
                 main_message    : '',
                 alert_message   : '',
                 result_fail     : false,
-                
+
                 user_name       : '',
                 user_profile    : ''
             }
@@ -74,7 +74,7 @@
                 axios.post('/user/login/', loginData)
                      .then(function(response) {
                         let data = response.data;
-                        console.log('응답:',response);
+                        // console.log('응답:',response);
                         if( response.status === 200 ){
                             // set user id
                             _this.$store.commit('setUserToken', response.data.token);
@@ -87,7 +87,7 @@
                             _this.$store.commit('setMainTitle', _this.username );
 
                             _this.$router.push('/');
-                            
+
                         }else if( response.status === 400 ){
                             _this.result_fail = true;
                             _this.alert_message = '이메일 또는 비밀번호가 올바르지 않습니다.';
@@ -107,17 +107,18 @@
                     FB.getLoginStatus(function(response) {
                         if (response.status === 'connected') {
                             FB.api('/me?fields=id,name,picture.width(100).height(100).as(picture_small)', function(response) {
-                                
+
                                 if ( response !== null ){
 
                                     let profile  = response.picture_small.data.url;
                                     let userName = response.name;
-                                    
+
                                     _this.$store.commit('setUserProfile',  profile);
-                                    _this.$store.commit('setUserInfo',  { name   : userName, 
-                                                                          email  : '', 
-                                                                          profile: profile}); 
-                                    
+                                    _this.$store.commit('setUserInfo',  { name   : userName,
+                                                                          email  : '',
+                                                                          profile: profile});
+
+
                                     var userToken = new FormData();
                                     userToken.append('access_token', data.accessToken);
 
@@ -132,14 +133,14 @@
                                             _this.$store.commit('setUserLoginStatus', true);
                                             _this.$store.commit('setMainTitle', username );
                                             _this.$router.push({ path: '/'});
-                                            
+
                                     }).catch(function(error) {
                                             _this.alert_message = "NetWork Error";
                                     });
 
                                 } else {
                                     _this.$store.commit('setUserLoginStatus', true);
-                                    _this.$store.commit('setModalStatus', false); 
+                                    _this.$store.commit('setModalStatus', false);
                                     this.$router.push('/');
                                 }
                             });
@@ -153,3 +154,4 @@
         }
     }
 </script>
+

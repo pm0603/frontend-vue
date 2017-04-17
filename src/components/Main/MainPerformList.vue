@@ -1,35 +1,37 @@
 <template>
   <section class="performance-list">
     <div class="wrapper">
-      <h2>Now Trending in London</h2>
+      <h2>Now Trending in Korea</h2>
       <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12"
              v-for="post in posts">
-          <div class="card">
-            <div :style="{ 'background-image': 'url(' + post.thumbnail + ')' }" class="card-image">
+          <router-link :to="'/detail/' + post.seq" tag="a" active-class="current-page">
+            <div class="card">
+              <div :style="{ 'background-image': 'url(' + post.thumbnail + ')' }" class="card-image">
+              </div>
+              <button class="bookmark"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
+              <div class="card-content">
+                <p class="card-title">
+                  <a>{{post.title}}</a>
+                </p>
+                <ul class="card-list">
+                  <li class="card-list-item">
+                    <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                    {{post.start_date}} ~ {{post.end_date}}</li>
+                  <li class="card-list-item">
+                    <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
+                    {{post.area}}</li>
+                  <li class="card-list-item">
+                    <span class="card-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                    {{post.place}}</li>
+                </ul>
+                <!-- <div class="card-footer"> -->
+                  <!-- <div class="card-price">{{post.price}}</div> -->
+                <button class="card-button">Detail</button>
+                <!-- </div> -->
+              </div>
             </div>
-            <button class="bookmark"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
-            <div class="card-content">
-              <p class="card-title">
-                <a>{{post.title}}</a>
-              </p>
-              <ul class="card-list">
-                <li class="card-list-item">
-                  <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
-                  {{post.start_date}} ~ {{post.end_date}}</li>
-                <li class="card-list-item">
-                  <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
-                  {{post.area}}</li>
-                <li class="card-list-item">
-                  <span class="card-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
-                  {{post.place}}</li>
-              </ul>
-              <!-- <div class="card-footer"> -->
-                <!-- <div class="card-price">{{post.price}}</div> -->
-              <button class="card-button">Detail</button>
-              <!-- </div> -->
-            </div>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -53,8 +55,8 @@ export default{
     }
   },
   created: function() {
-    const baseURI = 'http://api.pm0603.com/content/api';
-    axios.get(`${baseURI}/content/api/?page=1`)
+    const baseURI = 'http://api.pm0603.com';
+    axios.get(`${baseURI}/api_content/?page=1`)
         .then(result => {
           // Add data to posts
           this.posts = result.data.results;

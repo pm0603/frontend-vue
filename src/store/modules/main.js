@@ -13,8 +13,15 @@ const getters = {
 
 const mutations = {
     setMainTitle(state, new_title){
-        if(!new_title){ new_title = "회원";}
-        state.title = new_title + '님, 환영합니다!';
+        var base = '님, 환영합니다!';
+        if(!new_title){ 
+            new_title = "회원" + base; 
+        }else if(new_title === 'default'){
+            new_title = 'Live your city';
+        }else{
+            new_title += base;
+        }
+        state.title   = new_title;
     },
 
 };

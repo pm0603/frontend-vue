@@ -81,7 +81,7 @@
 
                             window.localStorage.setItem( 'token', response.data.token );
 
-                            _this.$store.commit('setUserInfo', { 'name': _this.username, 'email': _this.email});
+                            _this.$store.commit('setUserInfo', { 'name': _this.username, 'email': _this.email });
                             _this.$store.commit('setModalStatus',     false );
                             _this.$store.commit('setUserLoginStatus', true );
                             _this.$store.commit('setMainTitle', _this.username );
@@ -108,7 +108,7 @@
                         if (response.status === 'connected') {
                             FB.api('/me?fields=id,name,picture.width(100).height(100).as(picture_small)', function(response) {
                                 
-                                console.log('FB.api(응답:',response);
+                                console.log('FB.api(응답:',data.accessToken);
                                 
                                 if ( response !== null ){
 
@@ -120,14 +120,18 @@
                                                                           email  : '', 
                                                                           profile: profile}); 
                                     
-                                    // var userToken = new FormData();
-                                    // userToken.append('access_token',data.accessToken);
+                                    console.log('엑세스토큰: ', data.accessToken);
+
+                                    var userToken = new FormData();
+                                    userToken.append('access_token', data.accessToken);
 
                                     // save token in DB
-                                    axios.post('/user/fblogin/',data.accessToken)
+                                    axios.post('/user/fblogin/', userToken)
                                          .then(function(responseData) {
-                                            console.log('FBlogin-우리서버(응답:',responseData);
 
+                                            let db_token = responseData.data;
+
+                                            localStorage.setItem('token',db_token.token);
                                             _this.$store.commit('setModalStatus', false); // 모달창 닫기
                                             _this.$store.commit('setUserLoginStatus', true);
                                             _this.$store.commit('setMainTitle', username );
@@ -138,7 +142,6 @@
                                     });
 
                                 } else {
-                                    console.log('로그인이 되어 있고 앱등록도 되어있음 앞으로 페이지 이동');
                                     _this.$store.commit('setUserLoginStatus', true);
                                     _this.$store.commit('setModalStatus', false); 
                                     this.$router.push('/');

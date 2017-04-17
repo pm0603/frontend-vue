@@ -183,6 +183,7 @@
 
                     _this.$store.commit('setUserLoginStatus', false);
                     _this.$store.commit('setModalStatus', false);
+                     _this.$router.push('/');
 
                   }
                 });
@@ -191,14 +192,18 @@
                 console.log('일반로그아웃');
                 axios.post('/user/logout/')
                     .then(function(response) {
+
+                        console.log('일반로그아웃response:', response);
                           // 로그아웃 성공
                         localStorage.clear();
                         _this.$store.commit('setUserLoginStatus', false);
+                        _this.$router.push('/');
                     })
                     .catch(function(error){
                           // 네트워크 오류
                     });
               }
+              this.$store.commit('setMainTitle','default');
           }
         }
     }

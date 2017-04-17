@@ -4,7 +4,7 @@
             <div class="modal-background" @click="closeModal"></div>
             <div class="modal-content-md" @click.stop>
                 <a role="button" href class="modal-prev-btn" aria-label="content" @click.prevent="closeModal">
-                    <span class="pe-7s-close-circle" aria-hidden="true"></span>
+                    <span class="pe-7s-close" aria-hidden="true"></span>
                 </a>
                 <div class="modal-header">
                     <h2>로그인</h2>

@@ -58,15 +58,19 @@
 // [[ modal mixin ]]
 // define modal-content
 =set-modal-content($width:30rem, $height:30rem)
-  position: fixed
-  transform: translate(-50%, -50%)
-  width: $width
-  height: $height
-  top: 50%
-  left: 50%
-  z-index: 1000
-  background-color: #fff
-  background-position: center
-  border: 1px solid #d5d6d8
-  border-radius: 4px
-  // transition: all 3s ease
+    position: fixed
+    transform: translate(-50%, -50%)
+    width: $width
+    height: $height
+    top: 50%
+    left: 50%
+    z-index: 1000
+    background-color: #fff
+    background-position: center
+    border: 1px solid #d5d6d8
+    border-radius: 4px
+
+=set-overflow-hidden
+    text-overflow: ellipsis
+    overflow: hidden
+

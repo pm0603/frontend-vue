@@ -17,6 +17,9 @@
               <li class="card-list-item">
                 <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
                 {{post.area}}</li>
+              <li class="card-list-item">
+                <span class="card-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                {{post.place}}</li>
             </ul>
             <!-- <div class="card-footer"> -->
               <!-- <div class="card-price">{{post.price}}</div> -->
@@ -71,7 +74,8 @@ export default{
             .then(result => {
               console.log('this.$route.query.q:',this.$route.query.q);
               console.log('result.data.results.length:',result.data.results.length);
-              if (result.data.results.length>0){
+              if (result.data.results.length>0 || this.$route.query.q === undefined){
+                this.morebtn = true;
                 // posts에 data results 추가
                 this.posts = result.data.results;
                 // next page 링크를 기억

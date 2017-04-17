@@ -1,33 +1,31 @@
 <template>
     <footer class="footer-center">
         <div class="footer-content">
-            <div class="footer-header">
-
-                    <section class="footer-item">
-                        <h4>Useful Stuff</h4>
-                        <ul>
-                            <li><a>Help + FAQ</a></li>
-                            <li><a>Privacy Policy</a></li>
-                            <li><a>The Small Print</a></li>
-                        </ul>
-                    </section>
-                    <section class="footer-item">
-                        <h4>Work with us</h4>
-                        <ul>
-                            <li><a>Help + FAQ</a></li>
-                            <li><a>Privacy Policy</a></li>
-                            <li><a>The Small Print</a></li>
-                        </ul>
-                    </section>
-                    <section class="footer-item">
-                        <h4>Meet Yplan</h4>
-                        <ul>
-                            <li><a>Help + FAQ</a></li>
-                            <li><a>Privacy Policy</a></li>
-                            <li><a>The Small Print</a></li>
-                        </ul>
-                    </section>
-
+            <div class="footer-header row">
+                <section class="footer-item col-sm-12">
+                    <h4>Useful Stuff</h4>
+                    <ul>
+                        <li><a href="#">Help + FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">The Small Print</a></li>
+                    </ul>
+                </section>
+                <section class="footer-item col-sm-12">
+                    <h4>Work with us</h4>
+                    <ul>
+                        <li><a href="#">List My Event</a></li>
+                        <li><a href="#">Let's Do Business</a></li>
+                        <li><a href="#">Parter Portal Login</a></li>
+                    </ul>
+                </section>
+                <section class="footer-item col-sm-12">
+                    <h4>Meet Yplan</h4>
+                    <ul>
+                        <li><a href="#">Our Blog</a></li>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Join Us</a></li>
+                    </ul>
+                </section>
             </div>
             <div class="footer-footer">
                 <div class="footer-logo">

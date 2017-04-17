@@ -18,7 +18,7 @@
           </ul>
         </div>
         <ul class="category">
-          <router-link to="/detail" tag="li" active-class="current-page" ><a href>상세페이지</a></router-link>
+          <router-link to="/detail"      tag="li" active-class="current-page" ><a href>상세페이지</a></router-link>
           <router-link to="/genre?k=연극" tag="li" active-class="current-page" ><a href>연극</a></router-link>
           <router-link to="/genre?k=미술" tag="li" active-class="current-page" ><a href>미술</a></router-link>
           <router-link to="/genre?k=음악" tag="li" active-class="current-page" ><a href>음악</a></router-link>
@@ -71,8 +71,7 @@
     export default {
         data(){
             return{
-              on_user         : '',
-              // user_profile    : '',
+              on_user : '', // need this?
             }
         },
         components:{
@@ -94,7 +93,7 @@
             isUserDetail(){
               return this.$store.getters.getUserDetailStatus;
             },
-            // 로그인 상태 체크
+            // 로그인 상태 체크 - 버튼 변화
             is_signin(){
               return this.$store.getters.getUserLoginStatus;
             }
@@ -133,7 +132,6 @@
           }
         },
         updated () {
-          console.log('업데이트! - 개인정보');
           // this.$store.commit('setUserDetailStatus', true );
           let update_detail = this.isUserDetail;
           if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
@@ -166,6 +164,7 @@
             this.$store.commit('setModalStatus', false );
           },
           openUserService(){
+            console.log('openUserService'); 
             let is_spread = this.showService ? false : true ;
             this.$store.commit('setUserShowMenu', is_spread );
           },

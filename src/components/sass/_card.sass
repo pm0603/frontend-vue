@@ -1,3 +1,5 @@
+
+
 .card
     max-width: 100%
     background-color: $white
@@ -7,6 +9,7 @@
     cursor: pointer
     height: 40rem
     transition: all .3s
+    +set-overflow-hidden
 
 .card-button,
 .card-footer-btn
@@ -111,9 +114,11 @@ div.card-content-wide::before
 
 .card-content
     padding: 18px 20px
+    +set-overflow-hidden
 .card-content-wide
     padding: 24px
     position: relative
+    +set-overflow-hidden
     width: 30%
 
 .card-title
@@ -121,9 +126,11 @@ div.card-content-wide::before
     font-size: 1.6rem
     color: $text
     padding-bottom: 18px
+    +set-overflow-hidden
 
 .card-title a
     color: $text
+    +set-overflow-hidden
 
 .card-title a:link, .card-title a:hover
     /*지정한 색깔모드에 따라 변하게 하기*/
@@ -133,21 +140,26 @@ div.card-content-wide::before
 .card-about
     line-height: 1.5
     color: $text-grey
+    +set-overflow-hidden
 
 .card-list
     list-style: none
     color: $text-grey
+    +set-overflow-hidden
 
 .card-list-item
     padding-bottom: 10px
+    +set-overflow-hidden
 
 .card-icon
     width: 100%
     height: 100%
     margin-right: 1rem
+    +set-overflow-hidden
 
 .card-footer
     display: flex
     justify-content: space-between
     padding-top: 24px
     color: $text-grey
+    +set-overflow-hidden

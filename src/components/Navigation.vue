@@ -99,7 +99,6 @@
             }
         },
         beforeRouteEnter(to, from, next){
-          console.log('라우터,토큰값:',window.localStorage.token);
           // 회원이면
           if(window.localStorage.token){
             this.$store.commit('setUserLoginStatus', true);
@@ -112,17 +111,10 @@
           }
         },
         beforeCreate(){
-          console.log('생성전!');
           this.$store.commit('setModalStatus', false );
         },
-        created () {
-          console.log('생성!');
-        },
-        beforeMount () {
-          console.log('마운트되기전!');
-        },
+       
         mounted () {
-          console.log('마운트됨!');
           if( sessionStorage.length ){
             this.$store.commit('setUserLoginStatus', true);
             this.user_profile = this.$store.getters.getUserProfile;
@@ -135,9 +127,6 @@
           // this.$store.commit('setUserDetailStatus', true );
           let update_detail = this.isUserDetail;
           if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
-        },
-        activated () {
-          console.log('액티브됨!');
         },
 
         methods: {
@@ -171,10 +160,9 @@
           logout(){
             var _this = this;
             let is_profile = this.$store.getters.getUserProfile;
-            console.log('로그아웃: '+is_profile);
+
             if(is_profile){
             // 페이스북 로그인이면
-              console.log('페북로그아웃');
                 FB.getLoginStatus(function(response){
                   if(response.status=='connected'){
                     FB.logout();
@@ -189,11 +177,9 @@
                 });
               } else {
                 // 일반 로그인이면
-                console.log('일반로그아웃');
                 axios.post('/user/logout/')
                     .then(function(response) {
 
-                        console.log('일반로그아웃response:', response);
                           // 로그아웃 성공
                         localStorage.clear();
                         _this.$store.commit('setUserLoginStatus', false);

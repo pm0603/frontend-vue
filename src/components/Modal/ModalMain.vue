@@ -108,8 +108,6 @@
                         if (response.status === 'connected') {
                             FB.api('/me?fields=id,name,picture.width(100).height(100).as(picture_small)', function(response) {
                                 
-                                console.log('FB.api(응답:',data.accessToken);
-                                
                                 if ( response !== null ){
 
                                     let profile  = response.picture_small.data.url;
@@ -120,8 +118,6 @@
                                                                           email  : '', 
                                                                           profile: profile}); 
                                     
-                                    console.log('엑세스토큰: ', data.accessToken);
-
                                     var userToken = new FormData();
                                     userToken.append('access_token', data.accessToken);
 
@@ -157,11 +153,3 @@
         }
     }
 </script>
-
-<style lang="sass">
-    button[type="submit"]
-        font-size: 1.6rem
-    .result-fail
-        height: 2rem
-
-</style>

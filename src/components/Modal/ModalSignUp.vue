@@ -37,11 +37,6 @@
             </div>
     </div>
 </template>
-<style lang="scss">
-    .modal-header{
-        padding-bottom: 4rem;
-    }
-</style>
 <script>
     export default{
         data(){
@@ -67,6 +62,10 @@
             closeModal(event){
                 event.stopPropagation();
                 this.$store.commit('setModalStatus',false);
+                _this.name  = '';
+                                _this.email = '';
+                                _this.password    = '';
+                                _this.passwordtwo = '';
             },
             showMainModal(){
                 this.$store.commit('setModalStage', 1);

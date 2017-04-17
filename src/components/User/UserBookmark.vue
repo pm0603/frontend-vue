@@ -37,6 +37,8 @@
             </div>
         </div>
     </div>
+
+    <!-- erase from this part -->
     <div class="row bookmark-info" >
         <div class="card-menu col-xl-6 col-lg-6 push-3">
             <div class="card-content">

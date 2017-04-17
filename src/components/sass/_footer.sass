@@ -34,19 +34,21 @@
 
 // footeritem의 갯수에 따라 퍼센테이지가 바뀌는 함수가 필요
 .footer-item
-    width: 15%
     text-align: center
-
+    margin: 1rem 5rem
     & h4
-        font-size: 1.2rem
+        font-size: $size-4
         padding-bottom: 1rem
     & ul
         list-style: none
         color: #c3bcc0
-
-        & li a:hover
-            color: #f3532a
-            cursor: pointer
+    & li
+        line-height: 1.2
+        a
+          color: #aaa
+    & li a:hover
+        color: darken($blue, 15%)
+        cursor: pointer
 
 
 
@@ -60,4 +62,4 @@
 // 이걸 만들어 줘야 하는가? 고민됨.
 .footer-logo
     display: flex
-    align-content: center 
+    align-content: center

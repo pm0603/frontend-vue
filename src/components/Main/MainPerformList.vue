@@ -20,6 +20,9 @@
                 <li class="card-list-item">
                   <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
                   {{post.area}}</li>
+                <li class="card-list-item">
+                  <span class="card-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                  {{post.place}}</li>
               </ul>
               <!-- <div class="card-footer"> -->
                 <!-- <div class="card-price">{{post.price}}</div> -->

@@ -6,15 +6,15 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12" v-for="(genrelist, index) in genreLists" >
           <router-link :to="genrelist.link" tag="a" active-class="current-page">
             <div class="card-side">
-                <div :style="{ 'background-image': 'url(' + genrelist.image + ')' }" class="card-image-wide">
-                </div>
-                <div class="card-content-wide">
-                    <p class="card-title">{{genrelist.genre}}</p>
-                    <p class="card-about">{{genrelist.desc}}</p>
-                     <div class="card-footer">
-                       <button type="button" class="card-footer-btn">더보기</button>
-                     </div>
-                </div>
+              <div :style="{ 'background-image': 'url(' + genrelist.image + ')' }" class="card-image-wide">
+              </div>
+              <div class="card-content-wide">
+                <p class="card-title">{{genrelist.genre}}</p>
+                <p class="card-about">{{genrelist.desc}}</p>
+                 <div class="card-footer">
+                   <button type="button" class="card-footer-btn">더보기</button>
+                 </div>
+              </div>
             </div>
           </router-link>
         </div>
@@ -43,7 +43,7 @@
             {genre: "콘서트",
             desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, rerum.",
             link: "/genre?k=콘서트",
-            image: "http://www.cjenm.com/common/images/bg/bg_music_concert3.jpg"},
+            image: "http://www.iamsterdam.com/media/agenda/festivals/ade/loveland-deepdish-amsterdam-dance-event-coen-van-tartwijk.jpg"},
           ]
       }
     }

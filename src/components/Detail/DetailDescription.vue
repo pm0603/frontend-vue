@@ -1,7 +1,7 @@
 <template>
        <section class="description-section">
           <div class="row">
-            <div class="description-contents" v-for="post in posts">
+            <div class="description-contents">
               <span class="description-contents-text">
                 <h1>{{post.title}}</h1>
                 <p>{{post.content}}</p>
@@ -21,13 +21,16 @@ export default{
   created: function() {
       // using JSONPlaceholder
       // firebase data url
-      const baseURI = 'https://detail-a2b27.firebaseio.com/.json';
+      const baseURI = 'http://api.pm0603.com/api_content/';
       // get Data
       axios.get(baseURI)
            .then((result) => {
               console.log(result)
               // Add data to posts
               this.posts = result.data
+           })
+           .catch(e=> {
+             this.errors.push(e)
            })
     },
 

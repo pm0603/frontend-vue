@@ -2,11 +2,11 @@
   <section class="performance-list">
     <div class="row">
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" v-for="post in posts">
-        <router-link :to="'/detail/' + post.seq" tag="a" active-class="current-page">
-          <div class="card">
-            <div :style="{ 'background-image': 'url(' + post.thumbnail + ')' }" class="card-image">
-            </div>
-            <button class="bookmark"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
+        <div class="card">
+          <div :style="{ 'background-image': 'url(' + post.thumbnail + ')' }" class="card-image">
+          </div>
+          <button class="bookmark"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
+          <router-link :to="'/detail/' + post.seq" tag="a" active-class="current-page">
             <div class="card-content">
               <p class="card-title">
                 <a>{{post.title}}</a>
@@ -27,8 +27,8 @@
               <button class="card-button">Detail</button>
               <!-- </div> -->
             </div>
-          </div>
-        </router-link>
+          </router-link>
+        </div>
       </div>
     </div>
     <div class="row" v-show="morebtn">

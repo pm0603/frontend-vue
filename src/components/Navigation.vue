@@ -98,6 +98,9 @@
             }
         },
         beforeRouteEnter(to, from, next){
+          console.log('to:',to);
+          console.log('from:',from);
+          console.log('next:',next);
           // 회원이면
           if(window.localStorage.token){
             this.$store.commit('setUserLoginStatus', true);

@@ -107,16 +107,18 @@
 
                     FB.getLoginStatus(function(response) {
                         if (response.status === 'connected') {
-                            FB.api('/me?fields=id,name,picture.width(100).height(100).as(picture_small)', function(response) {
+                            FB.api('/me?fields=id,name,email,picture.width(100).height(100).as(picture_small)', function(response) {
 
                                 if ( response !== null ){
 
                                     let profile  = response.picture_small.data.url;
                                     let userName = response.name;
+                                    let email    = response.email;
+                                    console.log('email:',email);
 
                                     _this.$store.commit('setUserProfile',  profile);
                                     _this.$store.commit('setUserInfo',  { name   : userName,
-                                                                          email  : '',
+                                                                          email  : email,
                                                                           profile: profile});
 
 

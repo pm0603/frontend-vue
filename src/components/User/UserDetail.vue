@@ -13,11 +13,11 @@
                 <div class="modal-body">
                     <p>
                         <label for="name">name</label>
-                        <input  type="text" name="username" placeholder="이름" v-model:username = "username" readonly>
+                        <input type="text" name="username" placeholder="이름" v-model="username" readonly>
                     </p>
                     <p>
                         <label for="email">email</label>
-                        <input  type="text" name="email" placeholder="이메일" v-model:email = "email" readonly>
+                        <input  type="text" name="email" placeholder="이메일" v-model= "email" readonly>
                     </p>
                     <p>
                         <button type="button" @click.stop.prevent="findPwd">비밀번호 수정하기</button>
@@ -31,20 +31,24 @@
     export default{
         data(){
             return{
-                email : ''
+                username: 'username',
+                email : 'email@com',
+
+                main_message: '',
+                alert_message: '',
+                result_fail: true
             }
         },
-        beforeCreate () {
-            console.log('모달오픈-비포크리에이터');
-
+        created () {
+            let userInfo = this.$store.getters.getUserInfo;
+            this.username = userInfo.name;
+            this.email    = userInfo.email;
         },
         methods: {
-           
             closeModal(event){
                 event.stopPropagation();
                 this.$store.commit('setUserDetailStatus',false);
             },
-            
             findPwd(){
                 //attatch email infomation
                 this.$emit('findPwd');

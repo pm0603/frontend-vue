@@ -98,10 +98,6 @@
             }
         },
         beforeRouteEnter(to, from, next){
-<<<<<<< HEAD
-=======
-          // console.log('라우터,토큰값:',window.localStorage.token);
->>>>>>> 782651342b2c7ecbc601d659f35494892f33a94e
           // 회원이면
           if(window.localStorage.token){
             this.$store.commit('setUserLoginStatus', true);
@@ -114,25 +110,16 @@
           }
         },
         beforeCreate(){
-<<<<<<< HEAD
-          this.$store.commit('setModalStatus', false );
+          if(window.localStorage.token){
+            this.$store.commit('setUserLoginStatus', true);
+            // this.$store.commit('setModalStatus', true);
+            this.user_profile = this.$store.getters.getUserProfile;
+            this.on_user      = this.$store.getters.getUserName;
+            this.$store.commit('setMainTitle', this.on_user );
+          }
         },
-       
         mounted () {
-=======
-          // console.log('생성전!');
-          this.$store.commit('setModalStatus', false );
-        },
-        // created () {
-        //   // console.log('생성!');
-        // },
-        // beforeMount () {
-        //   // console.log('마운트되기전!');
-        // },
-        mounted () {
-          // console.log('마운트됨!');
->>>>>>> 782651342b2c7ecbc601d659f35494892f33a94e
-          if( sessionStorage.length ){
+          if( localStorage.length ){
             this.$store.commit('setUserLoginStatus', true);
             this.user_profile = this.$store.getters.getUserProfile;
             this.on_user      = this.$store.getters.getUserName;
@@ -145,12 +132,6 @@
           let update_detail = this.isUserDetail;
           if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
         },
-<<<<<<< HEAD
-=======
-        // activated () {
-        //   console.log('액티브됨!');
-        // },
->>>>>>> 782651342b2c7ecbc601d659f35494892f33a94e
 
         methods: {
           gotoHome() {
@@ -166,7 +147,6 @@
             this.$refs.none.classList.toggle('dropdown');
           },
           openUserDetail(){
-            console.log('open@');
             this.$store.commit('setUserDetailStatus', true );
           },
           openAlert() {
@@ -176,7 +156,6 @@
             this.$store.commit('setModalStatus', false );
           },
           openUserService(){
-            console.log('openUserService');
             let is_spread = this.showService ? false : true ;
             this.$store.commit('setUserShowMenu', is_spread );
           },
@@ -194,26 +173,21 @@
 
                     _this.$store.commit('setUserLoginStatus', false);
                     _this.$store.commit('setModalStatus', false);
-                     _this.$router.push('/');
-
+                    _this.$router.push('/');
                   }
                 });
               } else {
                 // 일반 로그인이면
                 axios.post('/user/logout/')
                     .then(function(response) {
-
-<<<<<<< HEAD
-=======
-                        // console.log('일반로그아웃response:', response);
->>>>>>> 782651342b2c7ecbc601d659f35494892f33a94e
-                          // 로그아웃 성공
+                        // 로그아웃 성공
                         localStorage.clear();
                         _this.$store.commit('setUserLoginStatus', false);
                         _this.$router.push('/');
                     })
                     .catch(function(error){
                           // 네트워크 오류
+
                     });
               }
               this.$store.commit('setMainTitle','default');

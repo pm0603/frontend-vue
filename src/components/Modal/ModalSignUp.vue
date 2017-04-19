@@ -5,6 +5,9 @@
                 <a role="button" href class="modal-prev-btn" aria-label="prev" @click.prevent="showMainModal">
                     <i class="pe-7s-angle-left" aria-hidden="true"></i>
                 </a>
+                <a role="button" href class="modal-close-btn" aria-label="close" @click.prevent="closeModal">
+                    <i class="pe-7s-close" aria-hidden="true"></i>
+                </a>
                 <div class="modal-header">
                     <h2>회원가입</h2>
                     <p v-if="!result_fail">{{main_message}}</p>
@@ -61,11 +64,11 @@
         methods: {
             closeModal(event){
                 event.stopPropagation();
-                this.$store.commit('setModalStatus',false);
-                _this.name  = '';
-                                _this.email = '';
-                                _this.password    = '';
-                                _this.passwordtwo = '';
+                this.$store.commit('setModalStatus', false);
+                this.name  = '';
+                this.email = '';
+                this.password    = '';
+                this.passwordtwo = '';
             },
             showMainModal(){
                 this.$store.commit('setModalStage', 1);
@@ -77,7 +80,6 @@
 
                     axios.post('/user/signup/', signData)
                          .then(function(response){
-                                console.log('응답토큰:',response);
 
                                 let userInfo = {
                                     "name"      :   _this.name, 
@@ -98,7 +100,6 @@
 
                                 // _this.$store.commit('setUserLoginStatus', true );
                                 _this.$router.push({ path: '/'});
-                                // 가입하면 바로 로그인으로 넘어감 이건 아님;;
                         })
                         .catch(function(error){
                             if(response.status === 400){
@@ -115,5 +116,4 @@
            
         }
     }
-
 </script>

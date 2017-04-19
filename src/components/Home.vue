@@ -14,18 +14,11 @@
     import MainFooter      from './Main/MainFooter.vue';
 
     export default{
-        data(){
-            return{
-
-            }
-        },
         components: {
             mainSearch:      MainSearch,
             mainPerformList: MainPerformList,
             mainGenreList:   MainGenreList,
             mainFooter:      MainFooter
-
         }
-
     }
 </script>

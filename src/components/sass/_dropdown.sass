@@ -1,3 +1,4 @@
+$menu-line-height: 3.5
 // dropdown
 .none
   display: none
@@ -14,6 +15,9 @@
     padding: 1.8rem
     display: block
 
+.search-category
+  background: #fff
+
 .nav-location,
 .search-category
   height: $nav-height
@@ -21,7 +25,7 @@
 .nav-location-all,
 .category-all
   display: block
-  line-height: 3.5
+  line-height: $menu-line-height
 .nav-location-all::after,
 .category-all::after
   content: '▾'
@@ -29,7 +33,22 @@
   position: absolute
 
 .search-category
+  position: relative
+.selected
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
   background: #fff
+  height: $nav-height
+  button
+    font-size: 2.5rem
+    position: absolute
+    top: 2px
+    right: 0
+  p
+    font-size: $size-5
+    line-height: $menu-line-height
 
 // tablet, mobile
 @media screen and (max-width: 900px)

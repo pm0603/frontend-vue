@@ -1,0 +1,99 @@
+header
+  width: 100%
+  display: flex
+  text-align: center
+  background: #fff
+  box-shadow: 0 1px 2px rgba(0,0,0,.1), 0 0 2px rgba(0,0,0,.1)
+  color: #404d57
+  position: relative
+a
+  font-size: 1.6rem
+.nav-heading
+  font-size: 3rem
+  padding: 1rem 2rem
+  height: $nav-height
+
+.nav-heading img
+  width: 8rem
+
+// burger bar
+.nav-menu
+  display: none
+
+.signin
+  border: 0
+  background: darken($blue, 10%)
+  color: #fff
+  letter-spacing: 0.1rem
+  text-transform: uppercase
+  padding: 1rem 2rem
+  &:hover
+    background: darken($blue, 15%)
+
+.nav
+  width: 100%
+  display: flex
+  &-right
+    display: flex
+    justify-content: flex-end
+  & li
+    display: inline-block
+    font-size: 1.4rem
+    height: $nav-height
+  .category li:hover
+    border-bottom: 3px solid $blue
+  & ul > li > a
+    display: inline-block
+    padding: 2rem
+    height: $nav-height
+
+// tablet, mobile
+@media screen and (max-width: 900px)
+  .nav
+    flex-wrap: wrap
+    &-right
+      width: 100%
+      height: $nav-height
+  .nav-left
+    display: none
+  .nav-heading
+    position: absolute
+  .nav-menu
+    display: block
+    font-size: 3rem
+    cursor: pointer
+    padding: 1.3rem 2rem
+  .mobile-menu
+    width: 100%
+    display: flex
+    justify-content: flex-start
+    border-top: 1px solid #ddd
+    order: 1
+    white-space: nowrap
+    align-items: center
+    position: relative
+    & .category
+      width: 100%
+      display: flex
+      flex-flow: column
+      position: absolute
+      background: #fff
+      right: 0
+      top: 0
+
+
+// + desktop
+@media screen and (min-width: 901px)
+  .nav
+    justify-content: space-between
+    &-left
+      display: flex
+      justify-content: flex-start
+      white-space: nowrap
+      align-items: center
+    &-img
+      width: 120px
+      height: $nav-height
+    &-left > ul
+      display: inline-flex
+      margin-left: 2rem

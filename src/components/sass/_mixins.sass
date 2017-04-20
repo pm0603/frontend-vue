@@ -1,0 +1,99 @@
+// $point: (widescreen, desktop, tablet, mobile)
+=breakpoint($point)
+  @if $point == widescreen
+    @media screen and (min-width: $desktop + 1 )
+      @content
+  @else if $point == desktop
+    @media screen and (min-width: $tablet + 1 ) and (max-width: $desktop)
+      @content
+  @else if $point == tablet
+    @media screen and (min-width: $mobile + 1 ) and (max-width: $tablet)
+      @content
+  @else if $point == mobile
+    @media screen and (max-width: $mobile)
+      @content
+
+=centerer
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+=card-basic
+  max-width: 100%
+  background-color: $white
+  box-shadow: 0 1px 2px rgba(0,0, 0,.1), 0 0 2px rgba(0,0,0,.1)
+  border-radius: 3px
+  border: 1px solid $border-color
+  position: relative
+  cursor: pointer
+
+
+=fit-image
+  & .card-image-small  img,
+  & .card-image-medium img,
+  & .card-image-large  img
+    bottom: 0
+    left: 0
+    right: 0
+    top: 0
+    height: 100%
+    position: absolute
+  & .card-image-medium img,
+  & .card-image-large  img
+    width: 100%
+  & .card-image-small  img
+    width: 50%
+    height: 50%
+
+=set-image-size
+  & .card-image-small
+    padding-top: 30%
+  & .card-image-medium
+    padding-top: 45%
+  & .card-image-large
+    padding-top: 55%
+
+
+// [[ modal mixin ]]
+// define modal-content
+=set-modal-content($width:30rem, $height:30rem)
+    position: fixed
+    transform: translate(-50%, -50%)
+    width: $width
+    height: $height
+    top: 50%
+    left: 50%
+    z-index: 1000
+    background-color: #fff
+    background-position: center
+    border: 1px solid #d5d6d8
+    border-radius: 4px
+
+    +breakpoint(moblie)
+      .modal-content-md
+          width: 100%
+          height: 100%
+          overflow: scroll
+
+=set-overflow-hidden
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+=set-modal-btn($place)
+  position: absolute
+  top: 0rem
+  margin: 1.5rem
+  width:  40px
+  height: 40px
+  text-align: center
+  padding: 0.4rem
+  z-index: 10
+  @if $place == left
+    left: 1rem
+  @if $place == right
+    right: 1rem
+
+  &, &:link
+      text-decoration: none

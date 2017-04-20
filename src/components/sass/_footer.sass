@@ -1,0 +1,65 @@
+=set-footer($display: left)
+    border-top: 1px solid #ebebeb
+    background: #fff
+    display: flex
+    color: #404d57
+    padding-top: 4rem
+    border-top: 1px solid #d2c7cd
+
+    @if $display == center
+        justify-content : center
+        align-items: center
+    @else if $display == right
+        justify-content : flex-end
+    @else if $display == left
+        justify-content : flex-start
+
+.footer
+    +set-footer
+
+.footer-center
+    +set-footer(center)
+
+.footer-right
+    +set-footer(right)
+
+
+.footer-content
+    width: 100%
+
+.footer-header
+    display: flex
+    justify-content: center
+
+
+// footeritem의 갯수에 따라 퍼센테이지가 바뀌는 함수가 필요
+.footer-item
+    text-align: center
+    margin: 1rem 5rem
+    & h4
+        font-size: $size-4
+        padding-bottom: 1rem
+    & ul
+        list-style: none
+        color: #c3bcc0
+    & li
+        line-height: 1.2
+        a
+          color: #aaa
+    & li a:hover
+        color: darken($blue, 15%)
+        cursor: pointer
+
+
+
+.footer-footer
+    margin-top: 3rem
+    border-top: 1px solid #ddd9db
+    padding: 5rem 0
+    display: flex
+    justify-content: center
+
+// 이걸 만들어 줘야 하는가? 고민됨.
+.footer-logo
+    display: flex
+    align-content: center

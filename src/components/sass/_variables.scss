@@ -1,0 +1,122 @@
+$text : #4b4c55;
+$text-grey : rgba(165, 161, 162, 1);
+
+$border-color: #c9c7c7;
+
+$main-color: #e6265d;
+////////////////////////
+
+// 1. Initial variables
+
+// colors
+
+$black: rgba(0, 0, 0, 1);
+$black-md: rgba(0, 0, 0, 0.8);
+$black-lo: rgba(0, 0, 0, 0.9);
+
+$grey:  rgb(55, 55, 55);
+$grey-md:  rgb(100, 100, 100);
+$grey-lo: rgb(130, 130, 130);
+
+$white:  rgb(255, 255, 255);
+$white-md:  rgb(231, 231, 231);
+$white-lo:  rgb(222, 222, 222);
+
+$red: rgb(255, 120, 121);
+$orange:  rgb(242, 202, 104);
+$green:  rgb(92, 209, 139);
+$blue:  rgb(88, 162, 237);
+$pink:  rgb(101, 211, 228);
+$purple: rgb(0, 0, 0);
+
+// // sns colors
+
+$facebook: #3B5998;
+$google: #EA4335;
+$twitter: #33CCFF;
+$naver: #00D337;
+
+// Typography
+
+// font size
+$size-1: 5rem;
+$size-2: 4rem;
+$size-3: 3rem;
+$size-4: 2rem;
+$size-5: 1.6rem;
+$size-6: 1.2rem;
+//
+// $weight-bold: ;
+// $weight-normal: ;
+// $weight-light: ;
+
+// radius
+$radius-large: 5px;
+$radius-medium: 3px;
+$radius-small: 2px;
+
+
+// // 2. primary color
+//
+// // primary 대표색상 (orange는 우리 대표색상인 망고 색깔로 변경예정)
+$primary: $orange;
+$info: $blue;
+$success: $green;
+$danger: $red;
+$warning: $pink;
+
+$dark: $black-md;
+$light: $white-md;
+
+//  3. Applied variables
+// Text colors
+// $text: $white;
+$text-strong: $grey;
+$text-light: $grey-lo;
+
+// Link colors
+$link: $primary;
+$link-visited: $purple;
+
+
+$hover-border: $grey-lo;
+$hover-color: $primary;
+
+$link-active-border: $white;
+$link-active-color: $grey;
+
+$link-focus-border: $white;
+$link-focus-color: $grey;
+
+$link-link-border: $white;
+$link-link-color: $grey;
+
+
+// list
+$colors: (
+primary: ($primary),
+info: ($blue),
+success: ($success),
+danger: ($red),
+warning: ($pink),
+dark: ($black-md),
+black: ($black),
+light: ($white-md)
+);
+
+// grid variables
+$grid-columns: 12;
+$mobile: 480px;
+$tablet: 780px;
+$desktop: 1200px;
+
+$width: 100%;
+$desktop-gutter: 1.5rem;
+$tablet-gutter: 1rem;
+$mobile-gutter: 0;
+
+// nav
+$nav-height: 5.5rem;
+
+// defaut card image
+$card-image: url("https://jumin.gangdong.go.kr/Upload/BbsPhoto01/%EB%AA%A9%EC%9A%94%EC%9C%A0%ED%99%94%20%EC%A0%84%EC%8B%9C%ED%9A%8C1.jpg") !default;

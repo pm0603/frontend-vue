@@ -1,0 +1,102 @@
+// button-basic-variable
+$button-background-color: $white;
+$button-border-color: $grey;
+$button-text-color: $black;
+$button-padding-top-bottom: 0.5em;
+$button-padding-left-right: 1em;
+
+
+.button {
+  background-color: $button-background-color;
+  border: 1px solid $button-border-color;
+  color: $button-text-color;
+  cursor: pointer;
+  padding: $button-padding-top-bottom $button-padding-left-right;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: $radius-medium;
+  position: relative;
+}
+
+@each $name in $colors {
+  .is-#{nth($name, 1)} {
+    background-color: nth($name, 2);
+    &:hover {
+      background-color: transparentize(nth($name, 2), 0.3);
+    }
+  }
+}
+.is-inverted {
+    transition: all 0.5s ease-in-out;
+    background-color: $white;
+    color: $white;
+    border: none;
+    &:active {
+      @each $name in $colors {
+      background-color: nth($name,2);
+      color: $white;
+    }
+    }
+}
+
+.is-textInverted {
+  border: none;
+  background-color: $white;
+  color: $black;
+  &:hover {
+    @each $name in $colors {
+    color: nth($name,2);
+  }
+  }
+}
+
+.is-disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.is-fullwidth {
+  display: flex;
+  width: 100%;
+}
+
+.is-circle {
+  border-radius: 50%;
+}
+
+.twitter {
+  background-color: $twitter;
+  color: $white;
+  border: none;
+}
+
+.facebook {
+  background-color: $facebook;
+  color: $white;
+  border: none;
+}
+
+.google {
+  background-color: $google;
+  color: $white;
+  border: none;
+}
+
+.naver {
+  background-color: $naver;
+  color: $white;
+  border: none;
+}
+
+.is-la {
+  border-radius: $radius-large;
+  font-size: $size-2;
+}
+.is-md {
+  border-radius: $radius-medium;
+  font-size: $size-4;
+}
+.is-sm {
+  border-radius: $radius-small;
+  font-size: $size-6;
+}

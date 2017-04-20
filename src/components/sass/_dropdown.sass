@@ -1,0 +1,80 @@
+$menu-line-height: 3.5
+// dropdown
+.none
+  display: none
+.dropdown
+  z-index: 10
+  background: #fff
+  position: absolute
+  width: 100%
+  top: 5.5rem
+  display: flex
+  flex-direction: column
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1)
+  & a
+    padding: 1.8rem
+    display: block
+
+.search-category
+  background: #fff
+
+.nav-location,
+.search-category
+  height: $nav-height
+
+.nav-location-all,
+.category-all
+  display: block
+  line-height: $menu-line-height
+.nav-location-all::after,
+.category-all::after
+  content: '▾'
+  padding-left: 1rem
+  position: absolute
+
+.search-category
+  position: relative
+.selected
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  background: #fff
+  height: $nav-height
+  button
+    font-size: 2.5rem
+    position: absolute
+    top: 2px
+    right: 0
+  button:hover
+    color: darken($blue, 15%)
+  p
+    font-size: $size-5
+    line-height: $menu-line-height
+
+// tablet, mobile
+@media screen and (max-width: 900px)
+  .search
+    position: relative
+  .nav-location
+    width: 50%
+    position: relative
+  .search-category
+    width: 33.33%
+  .category-all
+    width: 100%
+  .dropdown
+    left: 0
+
+// + desktop
+@media screen and (min-width: 901px)
+  .nav-location
+    border-right: 1px solid #ccc
+    border-left: 1px solid #ccc
+  .nav-location-all
+    padding: 0 7rem
+  .search-category
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1)
+  .nav-location,
+  .search-category
+    position: relative

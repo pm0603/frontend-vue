@@ -3,7 +3,7 @@
     <div class="modal">
             <div class="modal-background" @click="closeModal"></div>
             <div class="modal-content-md" @click.stop>
-                <a role="button" href class="modal-prev-btn" aria-label="content" @click.prevent="closeModal">
+                <a role="button" href class="modal-close-btn" aria-label="content" @click.prevent="closeModal">
                     <span class="pe-7s-close" aria-hidden="true"></span>
                 </a>
                 <div class="modal-header">
@@ -74,17 +74,17 @@
                 axios.post('/user/login/', loginData)
                      .then(function(response) {
                         let data = response.data;
-                        // console.log('응답:',response);
+                        console.log(response);
                         if( response.status === 200 ){
                             // set user id
-                            _this.$store.commit('setUserToken', response.data.token);
+                            _this.$store.commit('setUserToken', data.token);
 
-                            window.localStorage.setItem( 'token', response.data.token );
+                            window.localStorage.setItem( 'token', data.token );
 
-                            _this.$store.commit('setUserInfo', { 'name': _this.username, 'email': _this.email });
+                            _this.$store.commit('setUserInfo', { 'name': data.username, 'email': data.email });
                             _this.$store.commit('setModalStatus',     false );
                             _this.$store.commit('setUserLoginStatus', true );
-                            _this.$store.commit('setMainTitle', _this.username );
+                            _this.$store.commit('setMainTitle', data.username );
 
                             _this.$router.push('/');
 
@@ -95,8 +95,9 @@
                             _this.result_fail = true;
                             _this.alert_message  = '네트워크 에러';
                         }
-                });
+                    });
             },
+
             facebookLogin(){
 
                 var _this = this;
@@ -106,21 +107,20 @@
 
                     FB.getLoginStatus(function(response) {
                         if (response.status === 'connected') {
-                            FB.api('/me?fields=id,name,picture.width(100).height(100).as(picture_small)', function(response) {
-
-                                // console.log('FB.api(응답:',data.accessToken);
+                            FB.api('/me?fields=id,name,email,picture.width(100).height(100).as(picture_small)', function(response) {
 
                                 if ( response !== null ){
 
                                     let profile  = response.picture_small.data.url;
                                     let userName = response.name;
+                                    let email    = response.email;
+                                    console.log('email:',email);
 
                                     _this.$store.commit('setUserProfile',  profile);
                                     _this.$store.commit('setUserInfo',  { name   : userName,
-                                                                          email  : '',
+                                                                          email  : email,
                                                                           profile: profile});
 
-                                    // console.log('엑세스토큰: ', data.accessToken);
 
                                     var userToken = new FormData();
                                     userToken.append('access_token', data.accessToken);
@@ -132,7 +132,7 @@
                                             let db_token = responseData.data;
 
                                             localStorage.setItem('token',db_token.token);
-                                            _this.$store.commit('setModalStatus', false); // 모달창 닫기
+                                            _this.$store.commit('setModalStatus', false);
                                             _this.$store.commit('setUserLoginStatus', true);
                                             _this.$store.commit('setMainTitle', username );
                                             _this.$router.push({ path: '/'});
@@ -158,10 +158,3 @@
     }
 </script>
 
-<style lang="sass">
-    button[type="submit"]
-        font-size: 1.6rem
-    .result-fail
-        height: 2rem
-
-</style>

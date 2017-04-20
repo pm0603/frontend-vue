@@ -70,7 +70,30 @@
     border: 1px solid #d5d6d8
     border-radius: 4px
 
+    +breakpoint(moblie)
+      .modal-content-md
+          width: 100%
+          height: 100%
+          overflow: scroll
+
 =set-overflow-hidden
     overflow: hidden
     text-overflow: ellipsis
     white-space: nowrap
+
+=set-modal-btn($place)
+  position: absolute
+  top: 0rem
+  margin: 1.5rem
+  width:  40px
+  height: 40px
+  text-align: center
+  padding: 0.4rem
+  z-index: 10
+  @if $place == left
+    left: 1rem
+  @if $place == right
+    right: 1rem
+
+  &, &:link
+      text-decoration: none

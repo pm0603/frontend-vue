@@ -5,7 +5,7 @@
         <div class="card">
           <div :style="{ 'background-image': 'url(' + post.thumbnail + ')' }" class="card-image">
           </div>
-          <button class="bookmark"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
+          <button class="bookmark" @click.stop="addBookmark(post.id)"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
           <router-link :to="'/detail/' + post.seq" tag="a" active-class="current-page">
             <div class="card-content">
               <p class="card-title">
@@ -94,25 +94,43 @@ export default{
             })
     },
     nextPage: function(){
-    this.loading = true;
-    axios.get(this.next)
-        .then(result => {
-          // Add data to posts
-          let performList = result.data.results;
-          for (var i=0; i<performList.length; i++) {
-            this.posts.push(performList[i]);
-          }
-          this.loading = false;
-          this.next = result.data.next;
-          if(!this.next){
-            this.morebtn = false;
-          }
-        })
-        .catch(e=> {
-          this.errors.push(e)
-        })
-    }
+      this.loading = true;
+      axios.get(this.next)
+          .then(result => {
+            // Add data to posts
+            let performList = result.data.results;
+            for (var i=0; i<performList.length; i++) {
+              this.posts.push(performList[i]);
+            }
+            this.loading = false;
+            this.next = result.data.next;
+            if(!this.next){
+              this.morebtn = false;
+            }
+          })
+          .catch(e=> {
+            this.errors.push(e)
+          })
+      },
+
+      addBookmark(contentId){
+        var id = new FormData();
+        id.append('content',contentId);
+
+        axios.post('/api/bookmark/create',id,
+                  {
+                      headers: {'Authorization': 'Token '+localStorage.token},
+                  })
+                  .then(function(response){
+                    console.log('로그인없이 할경우:',response);
+                      // if(response.status)
+                      window.alert('북마크가 추가되었습니다.');
+                      this.loading = false;
+                      this.list = response.data.results;
+                  });
+      } 
   },
+
   watch: {
     '$route' () {
       this.posts = [];

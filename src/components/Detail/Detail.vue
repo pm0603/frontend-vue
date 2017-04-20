@@ -33,7 +33,6 @@ export default{
     }
 
 var tab_item = document.getElementsByClassName('tab-item');
-console.log(tab_item);
 function Showtab(val) {
   for(i=0; i<tab_item.length; i++) {
     var tb = document.getElementById('tab_'+ i);

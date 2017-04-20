@@ -18,7 +18,7 @@
             </div>
             <div class="tab-item" id="tab_1"  @click.prevent="Showtab" >
               <div class="tab_content">
-                내용은 내용내용
+                내용은
               </div>
             </div>
           </div>

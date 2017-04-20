@@ -72,17 +72,18 @@ export default{
         const baseURI = 'http://api.pm0603.com';
         // {{$route.query.term}}
         // http://www.pm0603.com/api/detail/?search=뮤지컬
-        axios.get(`${baseURI}/api_content/?search=${this.$route.query.q}`)
+        console.log('this.$route.fullPath:', this.$route.fullPath);
+        axios.get(`${baseURI}/api_content/?${this.$route.fullPath}`)
             .then(result => {
-              console.log('this.$route.query.q:',this.$route.query.q);
-              console.log('result.data.results.length:',result.data.results.length);
+              // console.log('this.$route.query.q:',this.$route.query.q);
+              // console.log('result.data.results.length:',result.data.results.length);
               if (result.data.results.length>0 || this.$route.query.q === undefined){
                 this.morebtn = true;
                 // posts에 data results 추가
                 this.posts = result.data.results;
                 // next page 링크를 기억
                 this.next = result.data.next;
-                console.log('this.next:',this.next);
+                // console.log('this.next:',this.next);
                 if(!this.next){
                   this.morebtn = false;
                 }
@@ -95,7 +96,7 @@ export default{
                 this.morebtn = false;
                 this.usermsg = true;
               }
-              console.log('this.posts:', this.posts);
+              // console.log('this.posts:', this.posts);
             })
             .catch(e=> {
               this.errors.push(e)

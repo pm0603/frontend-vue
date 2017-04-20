@@ -30,11 +30,11 @@
         </div>
     </div>
     <!--로딩-->
-    <div v-show="loading" class="row load">
-      <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
-    </div>
     <div class="alert-delete" v-if="alert">
         <span class="pe-7s-close">삭제되었습니다.</span>
+    </div>
+    <div v-show="loading" class="row load">
+      <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
     </div>
 </section>
 </template>
@@ -54,8 +54,8 @@
         },
         beforeCreate () {
             // 북마크리스트의 경우 헤더에 토큰값을 보내야된다는데...
-            console.log('유저토큰:', localStorage.token);
             var _this = this;
+            this.loading   = true;
             axios.get('http://api.pm0603.com/api/bookmark/list/', {
                 headers: {'Authorization': 'Token '+localStorage.token},
             })
@@ -88,23 +88,23 @@
                     _this.list      = response.data.results;
                 });
             },
+
             viewMoreList(){
-            
-                if(!this.next){
-                    console.log('this.next:', this.next);
+                console.log('this.next:', this.next);
+                if(this.next){
                     var _this = this;
+                    console.log('after-this.next:', this.next);
                     // axios.get('/api/bookmark/list/?page='+this.cnt,
-                    axios.get(this.next,
+                    axios.get( this.next,
                         {
                             headers: {'Authorization': 'Token '+localStorage.token},
                         })
                         .then(function(response){
-
-                            _this.loading = false;
                             let moreData = response.data.results;
                             for(var i=0; i<moreData.length; i++){
                                 _this.list.push(_this.list[i]);
                             }
+                            _this.loading = false;
                         });
 
                 } else {

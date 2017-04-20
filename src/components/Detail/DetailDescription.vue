@@ -10,29 +10,36 @@
           </div>
         </section>
 </template>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 export default{
   data(){
     return{
-      posts: []
+      post: [],
+      errors: []
     }
   },
   created: function() {
-      // using JSONPlaceholder
-      // firebase data url
-      const baseURI = 'http://api.pm0603.com/api_content/';
-      // get Data
-      axios.get(baseURI)
-           .then((result) => {
-              console.log(result)
-              // Add data to posts
-              this.posts = result.data
-           })
-           .catch(e=> {
-             this.errors.push(e)
-           })
+    const baseURI = 'http://api.pm0603.com';
+    axios.get(`${baseURI}/api_content/?seq=${this.$route.params.id}`)
+        .then(result => {
+          // Add data to posts
+          this.post = result.data.results[0];
+        })
+        .catch(e=> {
+          this.errors.push(e)
+        })
     },
-
+  // Vue Directive, Filter, Mixin
+  // Vue.directive('only-text', {
+  //   bind(el, binding, vnode){
+  //     let content = binding.value;
+  //     let d = document.createDocumentFragment();
+  //     d.createElement( document.createElement('div') );
+  //     let dd = d.firstChild;
+  //     dd.innerHTML = content;
+  //     el.innerHTML = dd.textContent;
+  //     d.firstChild.innerHTML = '';
+  //   }
+  // });
 }
 </script>

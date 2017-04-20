@@ -2,28 +2,33 @@
   <section class="performance-list">
     <div class="row">
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" v-for="post in posts">
-        <div class="card">
-          <div :style="{ 'background-image': 'url(' + post.thumbnail + ')' }" class="card-image">
+        <router-link :to="'/detail/' + post.seq" tag="a" active-class="current-page">
+          <div class="card">
+            <div :style="{ 'background-image': 'url(' + post.thumbnail + ')' }" class="card-image">
+            </div>
+            <button class="bookmark"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
+            <div class="card-content">
+              <p class="card-title">
+                <a>{{post.title}}</a>
+              </p>
+              <ul class="card-list">
+                <li class="card-list-item">
+                  <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                  {{post.start_date}} ~ {{post.end_date}}</li>
+                <li class="card-list-item">
+                  <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
+                  {{post.area}}</li>
+                <li class="card-list-item">
+                  <span class="card-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                  {{post.place}}</li>
+              </ul>
+              <!-- <div class="card-footer"> -->
+                <!-- <div class="card-price">{{post.price}}</div> -->
+              <button class="card-button">Detail</button>
+              <!-- </div> -->
+            </div>
           </div>
-          <button class="bookmark"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
-          <div class="card-content">
-            <p class="card-title">
-              <a>{{post.title}}</a>
-            </p>
-            <ul class="card-list">
-              <li class="card-list-item">
-                <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
-                {{post.end_date}}</li>
-              <li class="card-list-item">
-                <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
-                {{post.area}}</li>
-            </ul>
-            <!-- <div class="card-footer"> -->
-              <!-- <div class="card-price">{{post.price}}</div> -->
-            <button class="card-button">Detail</button>
-            <!-- </div> -->
-          </div>
-        </div>
+        </router-link>
       </div>
     </div>
     <div class="row" v-show="morebtn">
@@ -67,11 +72,12 @@ export default{
         const baseURI = 'http://api.pm0603.com';
         // {{$route.query.term}}
         // http://www.pm0603.com/api/detail/?search=뮤지컬
-        axios.get(`${baseURI}/content/api/?search=${this.$route.query.q}`)
+        axios.get(`${baseURI}/api_content/?search=${this.$route.query.q}`)
             .then(result => {
               console.log('this.$route.query.q:',this.$route.query.q);
               console.log('result.data.results.length:',result.data.results.length);
-              if (result.data.results.length>0){
+              if (result.data.results.length>0 || this.$route.query.q === undefined){
+                this.morebtn = true;
                 // posts에 data results 추가
                 this.posts = result.data.results;
                 // next page 링크를 기억

@@ -10,12 +10,13 @@
             </div>
           </div>
           <div class="tab_contents">
-            <div class="tab-item" id="tab_0" >
+            <div class="tab-item" id="tab_0"  @click.prevent="Showtab" >
+               <!--style="display: block; background-color: red;"-->
               <div class="tab_content">
                 내용은 내용내용
               </div>
             </div>
-            <div class="tab-item" id="tab_1">
+            <div class="tab-item" id="tab_1"  @click.prevent="Showtab" >
               <div class="tab_content">
                 내용은 내용내용
               </div>
@@ -29,26 +30,24 @@
 export default{
   data(){
     return{
-      posts: [],
+      post: [],
       errors: []
     }
   },
   created: function() {
-    const baseURI = 'http://api.pm0603.com/api_content/';
-    axios.get(`${baseURI}/api_content/?page=1`)
+    const baseURI = 'http://api.pm0603.com';
+    axios.get(`${baseURI}/api_content/?seq=${this.$route.params.id}`)
         .then(result => {
           // Add data to posts
-          this.posts = result.data.results;
+          this.post = result.data.results[0];
         })
         .catch(e=> {
           this.errors.push(e)
         })
   },
   methods: {
-    // var tab_item = document.getElementsByClassName('tab-item');
-    // console.log(tab_item);
     Showtab: function Showtab(val) {
-        for(i=0; i<tab_item.length; i++) {
+        for(i=0; i<tabItem.length; i++) {
           var tb = document.getElementById('tab_'+ i);
           if(i != val) {
             tb.style.display = 'none';

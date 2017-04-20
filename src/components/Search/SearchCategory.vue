@@ -23,21 +23,24 @@
             category: ["서울", "경기", "부산", "대전"],
             isActive: false,
             selected: false,
-            selectedValue: null
+            selectedValue: null,
+            query: "area"
           },
           {
             name: "공연일자",
-            category: ["공연시작일", "공연마감일"],
+            category: ["종료일 빠른순", "종료일 늦은순"],
             isActive: false,
             selected: false,
-            selectedValue: null
+            selectedValue: null,
+            query: "end_date"
           },
           {
             name: "장르",
             category: ["연극", "미술", "음악", "콘서트"],
             isActive: false,
             selected: false,
-            selectedValue: null
+            selectedValue: null,
+            query: "realm_name"
           }
        ],
       }
@@ -52,47 +55,38 @@
         filter.isActive = !filter.isActive;
       },
       searchFilter(list, filter) {
-        console.log('list:', list);
-        console.log('index:', filter);
-        console.log('this.filters:', this.filters);
-        // console.log('this.filters[index].selected:', this.filters[index].selected);
-        filter.isActive = false
-        filter.selected = true
-        filter.selectedValue = list
+        filter.isActive = false;
+        filter.selected = true;
+        filter.selectedValue = list;
+        if (filter === this.filters[0]) {
+          this.$router.push({path: this.$route.fullPath, query: {area: list}});
+        }
+        else if (filter === this.filters[1]) {
+          if (list === "종료일 빠른순") {
+            this.$router.push({path: this.$route.fullPath, query: {ordering: "end_date"}});
+          }
+          else {
+            this.$router.push({path: this.$route.fullPath, query: {ordering: "-end_date"}});
+          }
+        }
+        else if (filter === this.filters[2]) {
+          this.$router.push({path: this.$route.fullPath, query: {realm_name: list}});
+        }
       },
       offFilter(index) {
         this.filters[index].selected = false
+        let deleteQuery = this.filters[index].query;
+        if (deleteQuery === "area") {
+          this.$router.push({path: '/search', query: {q: this.$route.query.q, area: undefined, ordering: this.$route.query.ordering, realm_name: this.$route.query.realm_name}});
+        }
+        else if (deleteQuery === "end_date") {
+          this.$router.push({path: '/search', query: {q: this.$route.query.q, area: this.$route.query.area, ordering: undefined, realm_name: this.$route.query.realm_name}});
+        }
+        else if (deleteQuery === "realm_name") {
+          this.$router.push({path: '/search', query: {q: this.$route.query.q, area: this.$route.query.area, ordering: this.$route.query.ordering, realm_name: undefined}});
+        }
+        // delete route.deleteQuery;
       }
-    //   menuToggleClass1(){
-    //     if (this.$el.children[0].children[1].classList.length === 1){
-    //       for(var i=0; i<this.$el.children.length; i++) {
-    //         // this.$el.children[i].classList.toggle('category-active');
-    //         this.$el.children[i].children[1].classList.remove('dropdown');
-    //       }
-    //       this.$refs.toggle1.classList.toggle('dropdown');
-    //     }
-    //     else {this.$refs.toggle1.classList.toggle('dropdown');}
-    //   },
-    //   menuToggleClass2(){
-    //     if (this.$el.children[1].children[1].classList.length === 1){
-    //       for(var i=0; i<this.$el.children.length; i++) {
-    //         // this.$el.children[i].classList.toggle('category-active');
-    //         this.$el.children[i].children[1].classList.remove('dropdown');
-    //       }
-    //       this.$refs.toggle2.classList.toggle('dropdown');
-    //     }
-    //     else {this.$refs.toggle2.classList.toggle('dropdown');}
-    //   },
-    //   menuToggleClass3(){
-    //     if (this.$el.children[2].children[1].classList.length === 1){
-    //       for(var i=0; i<this.$el.children.length; i++) {
-    //         // this.$el.children[i].classList.toggle('category-active');
-    //         this.$el.children[i].children[1].classList.remove('dropdown');
-    //       }
-    //       this.$refs.toggle3.classList.toggle('dropdown');
-    //     }
-    //     else {this.$refs.toggle3.classList.toggle('dropdown');}
-    //   },
     }
   }
 </script>

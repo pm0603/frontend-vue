@@ -4,7 +4,6 @@
 .pe-7s-close::before
     font-size: 55px
 
-
 .pe-7s-left-arrow::before
     font-size: 50px
 
@@ -21,18 +20,20 @@
 // 동그라미안에 체크
 .pe-7s-check::before
     font-size: 26px
-    
+
+
 // | Navigation.vue |
 
 .open-modal
-      width : 200px
-      height : 50px
+    width : 200px
+    height : 50px
 
 .facebook-profile
-      border-radius : 50%
-      width : 3.4rem
-      height : 3.4rem
-      background-color: #9ca9be
+    background-color: #fff
+    border-radius : 50%
+    width: 3.4rem
+    height: 3.4rem
+
 
 .signin
     cursor: pointer
@@ -54,24 +55,7 @@
     top: -1.2rem
     right: 1.2rem
 
-.mymenu
-    background: #fff
-    position: absolute
-    bottom: -180px
-    left: -90px
-    border-radius: 4px
-    outline: none
-    z-index: 99
 
-    & li
-        outline: none
-        font-size: 1.6rem
-        font-weight: 600
-        border-bottom: 1px solid #e9e4e6
-        padding: 0.6rem 0
-
-        & button
-            cursor: pointer
 
 
 // Detail View | 상세 페이지
@@ -81,93 +65,4 @@
     & h2
         font-size: 2rem
 
-
 // 북마크 페이지
-.book-header
-    height: 300px
-    background: linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.4)),url("https://static.pexels.com/photos/373966/pexels-photo-373966.jpeg")bottom 10% center no-repeat
-    background-size: cover
-    margin-bottom: 10rem
-    display: flex
-    flex-direction: column
-
-    & h1
-        padding-top: 10rem
-        color: #fff
-        font-size: 6.2rem
-        font-weight: bolder
-        text-align: center
-        letter-spacing: 0
-
-    & h3
-        padding-top: 2rem
-        color: #d5d8dc
-        font-size: 2rem
-        text-align: center
-
-
-div.bookmark-info__name
-    font-size: 2.5rem
-    letter-spacing: -0.3px
-    font-weight: lighter
-    padding-bottom: 1rem
-    position: relative
-
-    // &::after
-    //     content: ''
-    //     position: absolute
-    //     background: #505258
-    //     width: 40px
-    //     height: 4px
-    //     bottom: 1.5rem
-    //     left: 0
-
-.bookmark-section
-    padding-bottom: 10rem
-    background: #f7f7f7
-div.bookmark-info
-    margin-bottom: 3rem
-   
-    & .card-menu
-        height: 160px
-        border: 1px solid #ebebeb
-        border-left: 4px solid #4867c2
-        box-shadow: none
-        &:hover
-            background: #f3f7fa
-    & .card-icon
-        display: inline
-    & .pe-7s-date::before,
-    & .pe-7s-map-marker::before
-        font-size: 2rem
-        display: absolute
-        top: 10px
-    & .card-list-item
-        font-size: 1.6rem
-        vertical-align: middle
-        color: #187ce0
-        font-weight: 300
-        margin-right: 20px
-
-    & .bookmark-info__delete
-        position: absolute
-        top: 40%
-        right: 4rem
- 
-
-    & .pe-7s-close::before
-        font-size: 50px
-        position: absolute
-        top: -10px
-        left: 10%
-        opacity: 1
-        transform: scale(.9)
-        transition: all .35s cubic-bezier(.455,.03,.515,.955)
-
-
-// modal window
-.login-detail a
-    font-size: 1.2rem
-
-
-

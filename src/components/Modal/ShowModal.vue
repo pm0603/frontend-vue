@@ -12,7 +12,7 @@
 
     export default{
         components: {
-            modalMain: ModalMain,
+            modalMain:   ModalMain,
             modalSignUp: ModalSignUp,
         },
         computed: {

@@ -1,0 +1,156 @@
+$black-BM: #60636b
+
+
+.bookmark-header
+    height: 300px
+    background: linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.4)),url("https://static.pexels.com/photos/373966/pexels-photo-373966.jpeg")bottom 10% center no-repeat
+    background-size: cover
+    margin-bottom: 5rem
+    display: flex
+    flex-direction: column
+
+    & h1
+        padding-top: 10rem
+        color: #fff
+        font-size: 6.2rem
+        font-weight: bolder
+        text-align: center
+        letter-spacing: 0
+
+    & h3
+        padding-top: 2rem
+        color: #d5d8dc
+        font-size: 2rem
+        text-align: center
+
+
+// div.bookmark-info__title
+//     font-size: 3rem
+//     letter-spacing: -0.3px
+//     font-weight: lighter
+//     padding-bottom: 1rem
+//     position: relative
+
+.bookmark-section
+    padding-bottom: 10rem
+    background: #f7f7f7
+
+.bookmark-total
+    font-size: 3.6rem
+    color: $black-lo
+    padding: 0 0 50px 180px
+    font-weight: lighter
+
+    & span
+        color: $grey-lo
+        font-weight: bolder
+
+/* CARD View */
+.bookmark-card-view
+    
+    & .bookmark-info__title 
+        padding: 20px 0 80px 0
+        font-weight: lighter
+        color: $black-BM
+        font-size: 2.6rem
+        letter-spacing: -1px
+
+    & .bookmark-info
+        margin-bottom: 3rem
+        display: flex
+        justify-content: center
+
+
+        & .card-menu
+            padding-top: 40px
+            height: 340px
+            border: 1px solid #ebebeb
+            border-top: 4px solid #4867c2
+            box-shadow: none
+            margin-left: 3rem
+            margin-bottom: 4rem
+
+            &:hover
+                background: #f3f7fa
+
+            
+        & .card-icon
+            display: inline
+        & .pe-7s-date::before,
+        & .pe-7s-map-marker::before,
+        & .pe-7s-ticket::before
+            font-size: 2rem
+            display: absolute
+            top: 10px
+
+        & .card-list-item
+            font-size: 1.6rem
+            vertical-align: middle
+            color: #187ce0
+            font-weight: 300
+            margin-right: 20px
+
+        & .bookmark-info__delete
+            position: absolute
+            top: 20px
+            right: 2rem
+    
+
+        & .pe-7s-close::before
+            font-size: 50px
+            position: absolute
+            top: -10px
+            left: 10%
+            opacity: 1
+            transform: scale(.9)
+            transition: all .35s cubic-bezier(.455,.03,.515,.955)
+
+
+// modal window
+.login-detail a
+    font-size: 1.2rem
+
+
+.modal-header
+    padding-bottom: 4rem
+
+button[type="submit"]
+    font-size: 1.6rem
+.result-fail
+    height: 2rem
+    
+.bookmark-button
+    background: #4867c2
+    color: #fff
+    width: 300px
+    height: 50px
+    font-size: 16px
+
+.bookmark-footer
+   text-align: center
+
+
+
+/* LIST View */
+.bookmark-list-view
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.bookmark-list-row
+    border-top: 1px solid $grey-md
+    width: 500px
+    padding: 15px 0 20px 0
+    
+    // & .bookmark-info__title
+    //     font-size: 1.8rem
+    //     font-weight: light
+    //     color: $black-BM
+
+
++breakpoint(moblie)
+    .modal-content-md
+        width: 100%
+        height: 100%
+
+    

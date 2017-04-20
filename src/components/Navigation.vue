@@ -43,14 +43,14 @@
             <img :src="user_profile" alt="profile" class="facebook-profile">
             <i class="pe-7s-angle-down" aria-hidden="true"></i>
             <div v-if="showService" class="mymenu">
-              <ul>
+              <ul class="mymenu-list">
                 <li>
                   <button type="button" @click="openUserDetail">나의 정보
                     <user-detail v-show="isUserDetail"></user-detail>
                   </button>
                 </li>
                 <li>
-                  <router-link to="/bookmark" tag="button" active-class="current-page" ><button type="button">나의 북마크</button></router-link>
+                  <router-link to="/bookmark" tag="button" active-class="current-page" >나의 북마크</router-link>
                 </li>
                 <li>
                   <button type="button" @click="logout">로그아웃</button>
@@ -79,7 +79,11 @@
         },
         computed: {
             user_profile(){
-              return this.$store.getters.getUserProfile;
+              let profile = localStorage.profile;
+              if( !profile ){
+                profile = this.$store.getters.getUserProfile;
+              }
+              return profile;
             },
             // 모달창의 on/off
             openIt(){

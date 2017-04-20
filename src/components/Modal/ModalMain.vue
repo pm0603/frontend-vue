@@ -80,6 +80,7 @@
                             _this.$store.commit('setUserToken', data.token);
 
                             window.localStorage.setItem( 'token', data.token );
+                            window.localStorage.setItem( 'name',  data.username);
 
                             _this.$store.commit('setUserInfo', { 'name': data.username, 'email': data.email });
                             _this.$store.commit('setModalStatus',     false );
@@ -114,13 +115,15 @@
                                     let profile  = response.picture_small.data.url;
                                     let userName = response.name;
                                     let email    = response.email;
-                                    console.log('email:',email);
+
 
                                     _this.$store.commit('setUserProfile',  profile);
                                     _this.$store.commit('setUserInfo',  { name   : userName,
                                                                           email  : email,
                                                                           profile: profile});
 
+                                    localStorage.setItem('name', userName);
+                                    localStorage.setItem('profile', profile);
 
                                     var userToken = new FormData();
                                     userToken.append('access_token', data.accessToken);
@@ -132,6 +135,7 @@
                                             let db_token = responseData.data;
 
                                             localStorage.setItem('token',db_token.token);
+
                                             _this.$store.commit('setModalStatus', false);
                                             _this.$store.commit('setUserLoginStatus', true);
                                             _this.$store.commit('setMainTitle', username );

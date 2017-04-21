@@ -23,7 +23,23 @@
             <li class="card-list-item"><i class="fa fa-university" aria-hidden="true"></i> {{post.place}}</li>
           </ul>
         </div>
-        <div class="info-button">
+        <div class="info-button" id="animate">
+          <div class="card-content hidden">
+            <!-- <p class="card-title">
+              <a>{{post.title}}</a>
+            </p> -->
+            <ul class="card-list">
+              <li class="card-list-item">
+                <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                {{post.start_date}} ~ {{post.end_date}}</li>
+              <li class="card-list-item">
+                <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
+                {{post.area}}</li>
+              <li class="card-list-item">
+                <span class="card-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                {{post.place}}</li>
+            </ul>
+          </div>
           <a :href="url" target="_blank" @click="goToHomepage">예매 페이지 바로가기</a>
         </div>
       </div>
@@ -39,6 +55,7 @@
 </template>
 
 <script>
+import scrollEvent from './scrollEvent.js';
 export default{
   data(){
     return{

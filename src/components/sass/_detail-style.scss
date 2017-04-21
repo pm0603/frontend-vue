@@ -81,6 +81,9 @@ $scroll-event-path: 400px;
   flex-grow: 5;
 }
 
+.hidden {
+  display: none;
+}
 
 .info-button {
   padding: 2rem;
@@ -88,6 +91,7 @@ $scroll-event-path: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   > a {
     background-color: $blue;
     width: 300px;
@@ -100,7 +104,28 @@ $scroll-event-path: 400px;
     justify-content: center;
     align-items: center;
   }
+  &.fade-in {
+  .hidden {
+    animation: fadeInDownbtn 2s;
+    display: flex;
+  }
+  a {
+    animation: fadeInDownbtn 2s;
+  }
 }
+}
+
+@keyframes fadeInDownbtn {
+  0% {
+  transform: translateY(-120px);
+  }
+  100% {
+  transform: translateY(0);
+  }
+}
+
+
+
 .info-button a:hover {
   color: #fff;
   background: darken($blue, 15%);
@@ -298,6 +323,7 @@ $scroll-event-path: 400px;
     bottom: 0;
     text-decoration: none;
   }
+
   .description-contents {
     padding-right: 2rem;
     width: 100%;

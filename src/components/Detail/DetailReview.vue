@@ -68,7 +68,7 @@
             	</li>
 
               <div class="review-input">
-                <textarea name="contents">리뷰를 작성해주세요.</textarea>
+                <textarea name="contents" placeholder="리뷰를 작성해주세요."></textarea>
                 <button @click.prevent="inputReview" type="button" name="button">제출</button>
               </div>
           </div>

@@ -5,11 +5,11 @@
       <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12"
              v-for="post in posts">
-          <div class="card">
-            <div :style="{ 'background-image': 'url(' + post.thumbnail + ')' }" class="card-image">
-            </div>
-            <button class="bookmark" @click.stop="addBookmark(post.id)"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
-            <router-link :to="'/detail/' + post.seq" tag="a" active-class="current-page">
+          <router-link :to="'/detail/' + post.seq" tag="a" active-class="current-page">
+            <div class="card">
+              <div :style="{ 'background-image': 'url(' + post.thumbnail + ')' }" class="card-image">
+              </div>
+              <button class="bookmark" @click.prevent="addBookmark(post.id)"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
               <div class="card-content">
                 <p class="card-title">
                   <a>{{post.title}}</a>
@@ -27,16 +27,16 @@
                 </ul>
                 <!-- <div class="card-footer"> -->
                   <!-- <div class="card-price">{{post.price}}</div> -->
-                <button class="card-button">Detail</button>
+                <button class="card-button">자세히</button>
                 <!-- </div> -->
               </div>
-            </router-link>
-          </div>
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
     <div class="row">
-      <button v-show="!loading" @click.prevent="nextPage" class="loading-button">SHOW ME MORE</button>
+      <button v-show="!loading" @click.prevent="nextPage" class="loading-button">더보기</button>
     </div>
     <div v-show="loading" class="row load">
       <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
@@ -105,7 +105,7 @@ export default{
                       _this.loading = false;
                       _this.list = response.data.results;
 
-                      
+
                   });
         } else {
           window.alert('로그인을 해주세요.');

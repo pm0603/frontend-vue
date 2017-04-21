@@ -18,10 +18,10 @@
           </ul>
         </div> -->
         <ul class="category">
-          <router-link to="/genre?realm_name=연극" tag="li" active-class="current-page" ><a href>연극</a></router-link>
+          <router-link to="/genre?realm_name=연극" tag="li" active-class="current-page" ><a href>연극·뮤지컬</a></router-link>
           <router-link to="/genre?realm_name=미술" tag="li" active-class="current-page" ><a href>미술</a></router-link>
           <router-link to="/genre?realm_name=음악" tag="li" active-class="current-page" ><a href>음악</a></router-link>
-          <router-link to="/genre?realm_name=콘서트" tag="li" active-class="current-page" ><a href>콘서트</a></router-link>
+          <router-link to="/genre?realm_name=무용" tag="li" active-class="current-page" ><a href>무용</a></router-link>
         </ul>
       </div>
       <div class="nav-right">
@@ -45,12 +45,12 @@
             <div v-if="showService" class="mymenu">
               <ul class="mymenu-list">
                 <li>
-                  <button type="button" @click="openUserDetail">나의 정보
-                    <user-detail v-show="isUserDetail"></user-detail>
+                  <button type="button" @click.stop="openUserDetail">나의 정보
+                    <user-detail v-if="isUserDetail"></user-detail>
                   </button>
                 </li>
                 <li>
-                  <router-link to="/bookmark" tag="button" active-class="current-page" >나의 북마크</router-link>
+                  <router-link to="/bookmark" tag="button" active-class="current-page">나의 북마크</router-link>
                 </li>
                 <li>
                   <button type="button" @click="logout">로그아웃</button>
@@ -70,7 +70,7 @@
     export default {
         data(){
             return{
-              on_user : '', // need this?
+              on_user : ''
             }
         },
         components:{
@@ -79,9 +79,12 @@
         },
         computed: {
             user_profile(){
-              let profile = localStorage.profile;
-              if( !profile ){
-                profile = this.$store.getters.getUserProfile;
+
+              let profile;
+              if( localStorage.profile ){
+                profile = localStorage.profile;
+              } else {
+                profile = 'https://cdn3.iconfinder.com/data/icons/glypho-generic-icons/64/user-man-circle-invert-512.png';
               }
               return profile;
             },
@@ -93,6 +96,7 @@
             showService(){
               return this.$store.getters.getUserShowMenu;
             },
+            // 나의 정보
             isUserDetail(){
               return this.$store.getters.getUserDetailStatus;
             },
@@ -102,9 +106,6 @@
             }
         },
         beforeRouteEnter(to, from, next){
-          console.log('to:',to);
-          console.log('from:',from);
-          console.log('next:',next);
           // 회원이면
           if(window.localStorage.token){
             this.$store.commit('setUserLoginStatus', true);
@@ -190,6 +191,7 @@
                         // 로그아웃 성공
                         localStorage.clear();
                         _this.$store.commit('setUserLoginStatus', false);
+                        _this.$store.commit('setModalStatus', false);
                         _this.$router.push('/');
                     })
                     .catch(function(error){
@@ -197,7 +199,9 @@
 
                     });
               }
+              console.log('모달창:', this.$store.getters.getModalStatus);
               this.$store.commit('setMainTitle','default');
+              this.$store.commit('setModalStatus', false);
           }
         }
     }

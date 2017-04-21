@@ -38,6 +38,7 @@
                 </div>
                 </form>
             </div>
+             
     </div>
 </template>
 <script>
@@ -51,7 +52,7 @@
                 email           : '',
                 password        : '',
                 passwordtwo     : '',
-                passwordCheck   : ''
+                passwordCheck   : '',
                 
             }
         },

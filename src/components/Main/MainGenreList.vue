@@ -28,7 +28,7 @@
     data(){
       return{
           genreLists: [
-            {genre: "연극",
+            {genre: "연극·뮤지컬",
             desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, earum!",
             image: "http://www.newstage.co.kr/PEG/13153827297080.jpg"},
             {genre: "미술",
@@ -36,10 +36,10 @@
             image: "http://www.artmuseums.kr/2015/205/ga205-1.jpg"},
             {genre: "음악",
             desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, ex.",
-            image: "http://www.arko.or.kr/cwboard/fileupload/board/36/20111116202714697.jpg"},
-            {genre: "콘서트",
+            image: "http://kbssymphony.org/2013_new/cheditor/attach/FcUC88O7YecfouUs.jpg"},
+            {genre: "무용",
             desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, rerum.",
-            image: "http://www.iamsterdam.com/media/agenda/festivals/ade/loveland-deepdish-amsterdam-dance-event-coen-van-tartwijk.jpg"},
+            image: "http://ph.joongboo.com/news/photo/201704/1158048_1050772_4035.jpg"},
           ]
       }
     }

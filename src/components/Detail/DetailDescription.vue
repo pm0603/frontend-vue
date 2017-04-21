@@ -1,14 +1,11 @@
 <template>
-       <section class="description-section">
-          <div class="row">
-            <div class="description-contents">
-              <span class="description-contents-text">
-                <h1>{{post.title}}</h1>
-                <p>{{post.content}}</p>
-              </span>
-            </div>
-          </div>
-        </section>
+  <section class="description-section">
+    <div class="row">
+      <div class="description-contents">
+        <div class="detail-content">{{post.content}}</div>
+      </div>
+    </div>
+  </section>
 </template>
 <script>
 export default{
@@ -28,18 +25,18 @@ export default{
         .catch(e=> {
           this.errors.push(e)
         })
-    },
-  // Vue Directive, Filter, Mixin
-  // Vue.directive('only-text', {
-  //   bind(el, binding, vnode){
-  //     let content = binding.value;
-  //     let d = document.createDocumentFragment();
-  //     d.createElement( document.createElement('div') );
-  //     let dd = d.firstChild;
-  //     dd.innerHTML = content;
-  //     el.innerHTML = dd.textContent;
-  //     d.firstChild.innerHTML = '';
-  //   }
-  // });
+
+  },
+  methods: {
+    postContent: function(text) {
+      text = text.replace(/\&lt;/g, "<").replace(/\&gt;/g, ">");
+      return text
+    }
+  },
+  updated: function() {
+    // Replace HTML <, /, > to &lt, &quot, &gt
+    var content = document.querySelector('.detail-content');
+    content.innerHTML = this.postContent(content.innerHTML);
+  }
 }
 </script>

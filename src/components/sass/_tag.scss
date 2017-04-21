@@ -20,13 +20,8 @@
   @each $name, $pair in $colors {
     $color: nth($pair, 1);
     &.is-#{$name} {
-      background-color: $color;
-      color: $text;
-      opacity: 0.8;
-      &:hover {
-        @extend .tag;
-        opacity: 0.5;
-      }
+      background-color: darken($color, 15%);
+      color: #fff;
   &.is-la {
     font-size: $size-2;
     border-radius: $radius-large;

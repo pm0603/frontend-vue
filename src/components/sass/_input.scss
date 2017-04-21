@@ -156,3 +156,15 @@ $search-max-width: 60rem;
     margin: 0;
   }
 }
+
+
+@include breakpoint(tablet) {
+  .searchbar input {
+    font-size: 2rem;
+  }
+}
+@include breakpoint(mobile) {
+  .searchbar input {
+    font-size: 2rem;
+  }
+}

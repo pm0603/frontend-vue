@@ -7,19 +7,9 @@
     </h2>
     <nav class="nav">
       <div ref="navLeft" class="nav-left">
-        <!-- <div class="nav-location">
-          <a href="#" class="nav-location-all"
-          @click.prevent="noneToggleClass">전국</a>
-          <ul ref="none" class="none">
-            <li><a href="#">서울</a></li>
-            <li><a href="#">경기</a></li>
-            <li><a href="#">대전</a></li>
-            <li><a href="#">부산</a></li>
-          </ul>
-        </div> -->
         <ul class="category">
           <router-link to="/genre?realm_name=연극" tag="li" active-class="current-page" ><a href>연극·뮤지컬</a></router-link>
-          <router-link to="/genre?realm_name=미술" tag="li" active-class="current-page" ><a href>미술</a></router-link>
+          <router-link to="/genre?realm_name=미술" tag="li" active-class="current-page" ><a href>전시</a></router-link>
           <router-link to="/genre?realm_name=음악" tag="li" active-class="current-page" ><a href>음악</a></router-link>
           <router-link to="/genre?realm_name=무용" tag="li" active-class="current-page" ><a href>무용</a></router-link>
         </ul>

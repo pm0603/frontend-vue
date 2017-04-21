@@ -50,7 +50,7 @@ export default{
           this.url = "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/UserUpload/Editor/15/04/09/150409_211631_PlayReview_ful7.jpg"
           break;
         case "미술":
-          this.url = "http://www.artmuseums.kr/2015/205/ga205-1.jpg"
+          this.url = "http://www.daelimmuseum.org/att/[357099_362478]20170210180118.jpg"
           break;
         case "음악":
           this.url = "http://kbssymphony.org/2013_new/cheditor/attach/FcUC88O7YecfouUs.jpg"

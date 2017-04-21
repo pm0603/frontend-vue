@@ -20,7 +20,7 @@
         filters: [
           {
             name: "지역",
-            category: ["서울", "경기", "부산", "대전"],
+            category: ["서울", "경기", "부산", "인천", "대구", "대전", "광주"],
             isActive: false,
             selected: false,
             selectedValue: null,

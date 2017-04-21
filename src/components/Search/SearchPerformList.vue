@@ -6,23 +6,28 @@
           <div :style="{ 'background-image': 'url(' + post.thumbnail + ')' }" class="card-image">
           </div>
           <button class="bookmark"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></button>
-          <div class="card-content">
-            <p class="card-title">
-              <a>{{post.title}}</a>
-            </p>
-            <ul class="card-list">
-              <li class="card-list-item">
-                <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
-                {{post.end_date}}</li>
-              <li class="card-list-item">
-                <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
-                {{post.area}}</li>
-            </ul>
-            <!-- <div class="card-footer"> -->
-              <!-- <div class="card-price">{{post.price}}</div> -->
-            <button class="card-button">Detail</button>
-            <!-- </div> -->
-          </div>
+          <router-link :to="'/detail/' + post.seq" tag="a" active-class="current-page">
+            <div class="card-content">
+              <p class="card-title">
+                <a>{{post.title}}</a>
+              </p>
+              <ul class="card-list">
+                <li class="card-list-item">
+                  <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                  {{post.start_date}} ~ {{post.end_date}}</li>
+                <li class="card-list-item">
+                  <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
+                  {{post.area}}</li>
+                <li class="card-list-item">
+                  <span class="card-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                  {{post.place}}</li>
+              </ul>
+              <!-- <div class="card-footer"> -->
+                <!-- <div class="card-price">{{post.price}}</div> -->
+              <button class="card-button">Detail</button>
+              <!-- </div> -->
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -67,16 +72,24 @@ export default{
         const baseURI = 'http://api.pm0603.com';
         // {{$route.query.term}}
         // http://www.pm0603.com/api/detail/?search=뮤지컬
-        axios.get(`${baseURI}/content/api/?search=${this.$route.query.q}`)
+        console.log('this.$route.fullPath:', this.$route.fullPath);
+        console.log('this.$route.query:', this.$route.query);
+        console.log('this.$route.path:', this.$route.path);
+        // {q: this.$route.query.q, area: undefined, ordering: this.$route.query.ordering, realm_name: this.$route.query.realm_name}
+        // axios.get(`${baseURI}/api_content/?${this.$route.fullPath}`)
+        axios.get('/api_content/?', {
+                  params: this.$route.query
+                })
             .then(result => {
               console.log('this.$route.query.q:',this.$route.query.q);
-              console.log('result.data.results.length:',result.data.results.length);
-              if (result.data.results.length>0){
+              // console.log('result.data.results.length:',result.data.results.length);
+              if (result.data.results.length>0 || this.$route.query.q === undefined){
+                this.morebtn = true;
                 // posts에 data results 추가
                 this.posts = result.data.results;
                 // next page 링크를 기억
                 this.next = result.data.next;
-                console.log('this.next:',this.next);
+                // console.log('this.next:',this.next);
                 if(!this.next){
                   this.morebtn = false;
                 }
@@ -89,7 +102,7 @@ export default{
                 this.morebtn = false;
                 this.usermsg = true;
               }
-              console.log('this.posts:', this.posts);
+              // console.log('this.posts:', this.posts);
             })
             .catch(e=> {
               this.errors.push(e)

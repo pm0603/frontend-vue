@@ -3,8 +3,8 @@
     <div class="modal">
             <div class="modal-background" @click="closeModal"></div>
             <div class="modal-content-md" @click.stop>
-                <a role="button" href class="modal-prev-btn" aria-label="content" @click.prevent="closeModal">
-                    <span class="pe-7s-close-circle" aria-hidden="true"></span>
+                <a role="button" href class="modal-close-btn" aria-label="content" @click.prevent="closeModal">
+                    <span class="pe-7s-close" aria-hidden="true"></span>
                 </a>
                 <div class="modal-header">
                     <h2>로그인</h2>
@@ -23,7 +23,7 @@
                         </p>
                         <p>
                             <label for="password">password</label>
-                            <input type="password" name="password" placeholder="password" 
+                            <input type="password" name="password" placeholder="password"
                             required v-model:password = "password">
                         </p>
                     </div>
@@ -53,10 +53,9 @@
                 main_message    : '',
                 alert_message   : '',
                 result_fail     : false,
-                
+
                 user_name       : '',
                 user_profile    : ''
-
             }
         },
         methods: {
@@ -67,51 +66,41 @@
             showSignUpModal(){
                 this.$store.commit('setModalStage', 2);
             },
-            
+            // 로그인하기
             doLogin(){
-
                 var _this = this;
                 let loginData = new FormData(this.$refs.loginForm);
 
                 axios.post('/user/login/', loginData)
                      .then(function(response) {
                         let data = response.data;
-                        console.log(data);
-                        // if( data ){
+                        console.log(response);
+                        if( response.status === 200 ){
                             // set user id
-                            _this.$store.commit('setUserName', _this.user_name);
                             _this.$store.commit('setUserToken', data.token);
 
-                            // sessionStorage.setItem("id",    _this.user_name);
-                            localStorage.setItem('token', data.token);
-                            console.log('로컬에되나저장:', localStorage);
+                            window.localStorage.setItem( 'token', data.token );
+                            window.localStorage.setItem( 'name',  data.username);
 
-                            // sessionStorage.setItem("token", data.token);
-                            // console.log('sessionStorage:',sessionStorage);
-                            console.log('여기는?');
-                            _this.login.commit('setUserInfo', { 'name': user_this.username, 'email': data.token});
-                            console.log('store저장:', _this.$store);
+                            _this.$store.commit('setUserInfo', { 'name': data.username, 'email': data.email });
+                            _this.$store.commit('setModalStatus',     false );
+                            _this.$store.commit('setUserLoginStatus', true );
+                            _this.$store.commit('setMainTitle', data.username );
 
-                            _this.$store.commit('setModalStatus',false);
                             _this.$router.push('/');
 
-                        // } else {
-                            // console.log('회원정보가 없습니다.');
-                            // _this.result_fail = true;
-                        // }
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                        
-                        _this.result_fail   = true;
-                        _this.alert_message = 'NetWork Error';
-
+                        }else if( response.status === 400 ){
+                            _this.result_fail = true;
+                            _this.alert_message = '이메일 또는 비밀번호가 올바르지 않습니다.';
+                        } else {
+                            _this.result_fail = true;
+                            _this.alert_message  = '네트워크 에러';
+                        }
                     });
-
-// "3294b5d7b66d9b6ce3c6f2ff53cc9b74c39c864e"
             },
+
             facebookLogin(){
-                console.log('facebookLogin');
+
                 var _this = this;
                 FB.login(function(response){
 
@@ -119,70 +108,57 @@
 
                     FB.getLoginStatus(function(response) {
                         if (response.status === 'connected') {
-                            FB.api('/me?fields=id,name,picture.width(100).height(100).as(picture_small)', function(response) {
-                                console.log('FB.api(응답:',response);
-                                
+                            FB.api('/me?fields=id,name,email,picture.width(100).height(100).as(picture_small)', function(response) {
+
                                 if ( response !== null ){
 
                                     let profile  = response.picture_small.data.url;
                                     let userName = response.name;
-                                    
-                                    // 세션에 저장
-                                    // sessionStorage.setItem("id",    userName);
-                                    // sessionStorage.setItem("profile", profile);
+                                    let email    = response.email;
 
-                                    _this.$store.commit('setUserName',  userName);
+
                                     _this.$store.commit('setUserProfile',  profile);
-                                    
+                                    _this.$store.commit('setUserInfo',  { name   : userName,
+                                                                          email  : email,
+                                                                          profile: profile});
+
+                                    localStorage.setItem('name', userName);
+                                    localStorage.setItem('profile', profile);
+
                                     var userToken = new FormData();
-                                    // userToken.append('access_token',data.accessToken);
-                                   
-                                    // 임의의 토큰값을 보내기 - test
-                                    userToken.append('access_token','dfsfdsffsdfsdfsdfsd');
+                                    userToken.append('access_token', data.accessToken);
 
                                     // save token in DB
-                                    axios.post('/user/fblogin/',userToken)
+                                    axios.post('/user/fblogin/', userToken)
                                          .then(function(responseData) {
-                                            console.log('FBlogin-우리서버(응답:',responseData.statusText);
-                                            // if( responseData.statusText === "OK" ){
-                                                // 아이디와 비번이 맞으면 첫번째 페이지로 이동하기
-                                                console.log('환영합니다.');
-                                                console.log('router',_this.$router);
 
-                                                 _this.$router.go({ path: '/'});
-                                            
+                                            let db_token = responseData.data;
+
+                                            localStorage.setItem('token',db_token.token);
+
+                                            _this.$store.commit('setModalStatus', false);
+                                            _this.$store.commit('setUserLoginStatus', true);
+                                            _this.$store.commit('setMainTitle', username );
+                                            _this.$router.push({ path: '/'});
+
                                     }).catch(function(error) {
                                             _this.alert_message = "NetWork Error";
-                                            // _this.$router.push({ name: 'home'});
                                     });
 
                                 } else {
-                                    console.log('로그인이 되어 있고 앱등록도 되어있음 앞으로 페이지 이동');
-                                //    _this.isFacebookLogin();
+                                    _this.$store.commit('setUserLoginStatus', true);
+                                    _this.$store.commit('setModalStatus', false);
                                     this.$router.push('/');
                                 }
                             });
 
                         } else if( response.status === 'not_authorized' ){
                             console.log('not_authorized');
-                        
                         }
                     });
-
-
-
                 },{scope: 'public_profile,email'});
             }
-            
-
         }
     }
 </script>
 
-<style lang="sass">
-    button[type="submit"]
-        font-size: 1.6rem
-    .result-fail
-        height: 2rem
-
-</style>

@@ -6,10 +6,11 @@ header
   box-shadow: 0 1px 2px rgba(0,0,0,.1), 0 0 2px rgba(0,0,0,.1)
   color: #404d57
   position: relative
-
+a
+  font-size: 1.6rem
 .nav-heading
   font-size: 3rem
-  padding: 0.7rem 2rem
+  padding: 1rem 2rem
   height: $nav-height
 
 .nav-heading img
@@ -35,6 +36,16 @@ header
   &-right
     display: flex
     justify-content: flex-end
+  & li
+    display: inline-block
+    font-size: 1.4rem
+    height: $nav-height
+  .category li:hover
+    border-bottom: 3px solid $blue
+  & ul > li > a
+    display: inline-block
+    padding: 2rem
+    height: $nav-height
 
 // tablet, mobile
 @media screen and (max-width: 900px)
@@ -51,7 +62,7 @@ header
     display: block
     font-size: 3rem
     cursor: pointer
-    padding: 1rem 2rem
+    padding: 1.3rem 2rem
   .mobile-menu
     width: 100%
     display: flex
@@ -61,23 +72,14 @@ header
     white-space: nowrap
     align-items: center
     position: relative
-    & li
-      display: inline-block
-      font-size: 1.4rem
-      height: $nav-height
-      text-transform: uppercase
     & .category
-      width: 50%
+      width: 100%
       display: flex
       flex-flow: column
       position: absolute
       background: #fff
       right: 0
       top: 0
-    & > ul > li > a
-      display: inline-block
-      padding: 1.8rem
-      height: $nav-height
 
 
 // + desktop
@@ -94,12 +96,4 @@ header
       height: $nav-height
     &-left > ul
       display: inline-flex
-    &-left li
-      display: inline-block
-      font-size: 1.4rem
-      height: $nav-height
-      text-transform: uppercase
-    &-left > ul > li > a
-      display: inline-block
-      padding: 1.8rem
-      height: $nav-height
+      margin-left: 2rem

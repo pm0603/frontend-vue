@@ -5,6 +5,9 @@
                 <a role="button" href class="modal-prev-btn" aria-label="prev" @click.prevent="showMainModal">
                     <i class="pe-7s-angle-left" aria-hidden="true"></i>
                 </a>
+                <a role="button" href class="modal-close-btn" aria-label="close" @click.prevent="closeModal">
+                    <i class="pe-7s-close" aria-hidden="true"></i>
+                </a>
                 <div class="modal-header">
                     <h2>회원가입</h2>
                     <p v-if="!result_fail">{{main_message}}</p>
@@ -37,10 +40,6 @@
             </div>
     </div>
 </template>
-<style lang="sass">
-    .modal-header
-        padding-bottom: 4rem
-</style>
 <script>
     export default{
         data(){
@@ -61,46 +60,49 @@
                 this.alert_message = '체크중..';
                 this.alert_message = this.password !== new_password ? '비밀번호가 일치하지 않습니다.' : '';
             }
-            
         },
         methods: {
             closeModal(event){
                 event.stopPropagation();
-                this.$store.commit('setModalStatus',false);
+                this.$store.commit('setModalStatus', false);
+                this.name  = '';
+                this.email = '';
+                this.password    = '';
+                this.passwordtwo = '';
             },
             showMainModal(){
                 this.$store.commit('setModalStage', 1);
             },
-            
+            // 회원가입
             signUp(){
                 var _this = this;
                 let signData = new FormData(this.$refs.form);
 
                     axios.post('/user/signup/', signData)
                          .then(function(response){
-                                console.log('응답토큰:',response);
-                            // 회원정보 저장
+
                                 let userInfo = {
                                     "name"      :   _this.name, 
                                     "email"     :   _this.email,
                                     "profile"   :   null
                                 };
 
-                                _this.$store.commit('setUserInfo',      userInfo);
-                                _this.$store.commit('setModalStatus',   false );
+                                _this.$store.commit('setUserInfo',   userInfo);
+                                _this.$store.commit('setModalStage', 1 );
+                                _this.$store.commit('setModalStatus',false );
 
                                 window.alert(response.data.success + ' 인증을 하시면 서비스를 이용하실수 있습니다.');
                                 // 모달 닫히기
-                                _this.name = '';
+                                _this.name  = '';
                                 _this.email = '';
-                                _this.password = '';
+                                _this.password    = '';
                                 _this.passwordtwo = '';
-                                
+
+                                // _this.$store.commit('setUserLoginStatus', true );
                                 _this.$router.push({ path: '/'});
-                            
                         })
                         .catch(function(error){
-                            if(error.response.status === 400){
+                            if(response.status === 400){
                                  _this.alert_message = '이미 존재하는 email 입니다.';
                             }else{
                                 _this.alert_message  = 'Network Error';
@@ -110,11 +112,8 @@
                             _this.passwordtwo   = '';
                             
                         });
-                
-
             }
            
         }
     }
-
 </script>

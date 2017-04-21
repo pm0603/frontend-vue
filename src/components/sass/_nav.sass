@@ -40,6 +40,8 @@ a
     display: inline-block
     font-size: 1.4rem
     height: $nav-height
+  .category li:hover
+    border-bottom: 3px solid $blue
   & ul > li > a
     display: inline-block
     padding: 2rem
@@ -71,7 +73,7 @@ a
     align-items: center
     position: relative
     & .category
-      width: 50%
+      width: 100%
       display: flex
       flex-flow: column
       position: absolute
@@ -94,3 +96,4 @@ a
       height: $nav-height
     &-left > ul
       display: inline-flex
+      margin-left: 2rem

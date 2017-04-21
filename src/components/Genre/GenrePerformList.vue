@@ -49,12 +49,7 @@ export default{
       next: null,
       loading: false,
       morebtn: true,
-      genre: this.$route.query.k
-    }
-  },
-  computed: {
-    searchTerm: function() {
-      return this.search = this.$route.query.q;
+      genre: this.$route.query.realm_name
     }
   },
   created: function() {
@@ -66,9 +61,9 @@ export default{
         const baseURI = 'http://api.pm0603.com';
         // {{$route.query.term}}
         // http://www.pm0603.com/api/detail/?search=뮤지컬
-        axios.get(`${baseURI}/api_content/?realm_name=${this.$route.query.k}`)
+        axios.get(`${baseURI}/api_content/?realm_name=${this.$route.query.realm_name}`)
             .then(result => {
-              console.log('this.$route.query.q:',this.$route.query.k);
+              console.log('this.$route.query.q:',this.$route.query.realm_name);
               console.log('result.data.results.length:',result.data.results.length);
               if (result.data.results.length>0){
                 // posts에 data results 추가

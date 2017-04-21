@@ -4,7 +4,8 @@
         <detail-info></detail-info>
         <detail-description></detail-description>
         <detail-review></detail-review>
-        <detail-map></detail-map>
+        <!-- <detail-map></detail-map> -->
+        <!-- <detail-tap></detail-tap> -->
     </div>
 </template>
 
@@ -13,8 +14,8 @@ import DetailHeader      from './DetailHeader.vue';
 import DetailInfo        from './DetailInfo.vue';
 import DetailDescription from './DetailDescription.vue';
 import DetailReview      from './DetailReview.vue';
-import DetailMap         from './DetailMap.vue';
-import DetailTap         from './DetailTap.vue';
+// import DetailMap         from './DetailMap.vue';
+// import DetailTap         from './DetailTap.vue';
 
 export default{
         data(){
@@ -27,20 +28,9 @@ export default{
           detailInfo        : DetailInfo,
           detailDescription : DetailDescription,
           detailReview      : DetailReview,
-          DetailMap         : DetailMap,
-          DetailTap         : DetailTap
+          // DetailMap         : DetailMap,
+          // DetailTap         : DetailTap
         }
     }
 
-var tab_item = document.getElementsByClassName('tab-item');
-function Showtab(val) {
-  for(i=0; i<tab_item.length; i++) {
-    var tb = document.getElementById('tab_'+ i);
-    if(i != val) {
-      tb.style.display = 'none';
-    } else {
-      tb.style.display = 'block';
-    }
-  }
-};
 </script>

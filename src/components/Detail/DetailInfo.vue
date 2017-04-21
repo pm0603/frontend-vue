@@ -4,14 +4,12 @@
             <div class="info-contents">
               <ul class="card-list">
                 <li class="card-list-item"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{post.start_date}} ~ {{post.end_date}}</li>
-                <li class="card-list-item"><i class="fa fa-krw" aria-hidden="true"></i> {{post.price}}</li>
+                <li class="card-list-item"><i class="fa fa-ticket" aria-hidden="true"></i> {{post.price}}</li>
                 <li class="card-list-item"><i class="fa fa-university" aria-hidden="true"></i> {{post.place}}</li>
               </ul>
             </div>
             <div class="info-button">
-              <a :href="url" target="_blank" type="button" @click="goToHomepage">
-                <span>예매 페이지 바로가기</span>
-              </a>
+              <a :href="url" target="_blank" @click="goToHomepage">예매 페이지 바로가기</a>
             </div>
           </div>
         </section>

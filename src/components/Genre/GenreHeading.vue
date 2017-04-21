@@ -1,5 +1,5 @@
 <template>
-  <h2 class="genre-heading">
+  <h2 class="genre-heading" :style="{ 'background-image': 'url(' + url+ ')' }">
     {{genreTerm}} 공연 리스트
   </h2>
 </template>
@@ -17,12 +17,13 @@
         return this.genre = this.$route.query.realm_name;
       }
     },
-    mounted: function() {
+    beforeUpdate: function() {
       this.backgroundImage();
     },
     methods: {
       backgroundImage: function() {
-        switch(this.genreTerm) {
+        let genreurl = this.$route.query.realm_name;
+        switch(genreurl) {
           case "연극":
             this.url = "http://www.newstage.co.kr/PEG/13153827297080.jpg"
             console.log('this.url:', this.url);

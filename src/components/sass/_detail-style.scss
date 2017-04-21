@@ -103,6 +103,10 @@ $scroll-event-path: 400px;
     align-items: center;
   }
 }
+.info-button a:hover {
+  color: #fff;
+  background: darken($blue, 15%);
+}
 
 
 /* description-section */
@@ -290,18 +294,12 @@ $scroll-event-path: 400px;
     width: 100%;
     bottom: 0;
   }
-  .info-button > a {
+  .info-button a {
     width: 100%;
     margin-left: 0;
     bottom: 0;
     text-decoration: none;
   }
-
-  // a {
-  //   text-decoration: none;
-  // }
-    /* description-section */
-
   .description-contents {
     width: 100%;
     padding-right: 0;

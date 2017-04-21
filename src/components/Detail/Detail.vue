@@ -4,7 +4,6 @@
         <detail-info></detail-info>
         <detail-description></detail-description>
         <detail-review></detail-review>
-        <!-- <detail-map></detail-map> -->
         <!-- <detail-tap></detail-tap> -->
     </div>
 </template>
@@ -14,7 +13,6 @@ import DetailHeader      from './DetailHeader.vue';
 import DetailInfo        from './DetailInfo.vue';
 import DetailDescription from './DetailDescription.vue';
 import DetailReview      from './DetailReview.vue';
-// import DetailMap         from './DetailMap.vue';
 // import DetailTap         from './DetailTap.vue';
 
 export default{
@@ -28,7 +26,6 @@ export default{
           detailInfo        : DetailInfo,
           detailDescription : DetailDescription,
           detailReview      : DetailReview,
-          // DetailMap         : DetailMap,
           // DetailTap         : DetailTap
         }
     }

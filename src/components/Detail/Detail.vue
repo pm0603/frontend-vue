@@ -95,7 +95,7 @@ export default{
           this.url = "http://www.artmuseums.kr/2015/205/ga205-1.jpg"
           break;
         case "음악":
-          this.url = "http://kbssymphony.org/2013_new/cheditor/attach/FcUC88O7YecfouUs.jpg"
+          this.url = "http://news20.busan.com/content/image/2016/11/16/20161116000228_0.jpg"
           break;
         case "무용":
           this.url = "http://ph.joongboo.com/news/photo/201704/1158048_1050772_4035.jpg"

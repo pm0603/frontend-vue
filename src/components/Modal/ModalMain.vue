@@ -3,6 +3,10 @@
     <div class="modal">
             <div class="modal-background" @click="closeModal"></div>
             <div class="modal-content-md" @click.stop>
+                <!-- 로딩 -->
+                <div v-show="loading" class="login load">
+                    <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
+                </div>                                    
                 <a role="button" href class="modal-close-btn" aria-label="content" @click.prevent="closeModal">
                     <span class="pe-7s-close" aria-hidden="true"></span>
                 </a>
@@ -40,9 +44,6 @@
                 </div>
                 </form>
             </div>
-        <div v-show="loading" class="row load">
-            <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
-        </div>                                    
     </div>
 </template>
 <script>
@@ -72,7 +73,6 @@
             },
             // 로그인하기
             doLogin(){
-
                 this.loading = true;
 
                 var _this = this;
@@ -81,13 +81,14 @@
                 axios.post('/user/login/', loginData)
                      .then(function(response) {
                         let data = response.data;
-                        console.log(response);
+
                         if( response.status === 200 ){
                             // set user id
                             _this.$store.commit('setUserToken', data.token);
 
                             window.localStorage.setItem( 'token', data.token );
                             window.localStorage.setItem( 'name',  data.username);
+                            window.localStorage.setItem( 'email', data.email);
 
                             _this.$store.commit('setUserInfo', { 'name': data.username, 'email': data.email });
                             _this.$store.commit('setModalStatus',     false );
@@ -131,13 +132,13 @@
                                     let userName = response.name;
                                     let email    = response.email;
 
-
                                     _this.$store.commit('setUserProfile',  profile);
                                     _this.$store.commit('setUserInfo',  { name   : userName,
                                                                           email  : email,
-                                                                          profile: profile});
+                                                                          profile: profile });
 
                                     localStorage.setItem('name', userName);
+                                    localStorage.setItem('email', email);
                                     localStorage.setItem('profile', profile);
 
                                     var userToken = new FormData();
@@ -175,7 +176,6 @@
 
                         } else if( response.status === 'not_authorized' ){
                             _this.loading = false;
-                            console.log('not_authorized');
                         }
                     });
                 },{scope: 'public_profile,email'});

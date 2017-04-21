@@ -31,10 +31,12 @@
       mainTitle(){
         let title     = localStorage.name;
         let loginStat = this.$store.getters.getUserLoginStatus;
-
+        
         if( !loginStat && !title ){
           title = this.$store.getters.getMainTitle;
-        } else {
+        } else if( title == undefined ){
+          title = this.$store.getters.getMainTitle;
+        } else { 
           title += '님, 환영합니다.';
         }
         return title;

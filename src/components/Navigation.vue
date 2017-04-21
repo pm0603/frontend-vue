@@ -70,7 +70,7 @@
     export default {
         data(){
             return{
-              on_user : '', // need this?
+              on_user : ''
             }
         },
         components:{
@@ -79,13 +79,10 @@
         },
         computed: {
             user_profile(){
-              // let profile = localStorage.profile;
+
               let profile;
-              console.log('profile:', profile);
-              if( localStorage ){
-                // profile = this.$store.getters.getUserProfile;
-                // profile = '../assets/user.png';
-                profile = localStorage.profile
+              if( localStorage.profile ){
+                profile = localStorage.profile;
               } else {
                 profile = 'https://cdn3.iconfinder.com/data/icons/glypho-generic-icons/64/user-man-circle-invert-512.png';
               }
@@ -101,7 +98,6 @@
             },
             // 나의 정보
             isUserDetail(){
-              console.log('isUserDetail:',this.$store.getters.getUserDetailStatus);
               return this.$store.getters.getUserDetailStatus;
             },
             // 로그인 상태 체크 - 버튼 변화
@@ -110,9 +106,6 @@
             }
         },
         beforeRouteEnter(to, from, next){
-          console.log('to:',to);
-          console.log('from:',from);
-          console.log('next:',next);
           // 회원이면
           if(window.localStorage.token){
             this.$store.commit('setUserLoginStatus', true);
@@ -198,6 +191,7 @@
                         // 로그아웃 성공
                         localStorage.clear();
                         _this.$store.commit('setUserLoginStatus', false);
+                        _this.$store.commit('setModalStatus', false);
                         _this.$router.push('/');
                     })
                     .catch(function(error){
@@ -205,7 +199,9 @@
 
                     });
               }
+              console.log('모달창:', this.$store.getters.getModalStatus);
               this.$store.commit('setMainTitle','default');
+              this.$store.commit('setModalStatus', false);
           }
         }
     }

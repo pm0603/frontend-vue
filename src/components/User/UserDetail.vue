@@ -1,5 +1,5 @@
 <template>
-      <div class="modal" @click="closeModal">
+      <div class="modal detail" @click="closeModal">
         <div class="modal-background" @click="closeModal"></div>
         <div class="modal-content-md" @click.stop>
                 <a role="button" href class="modal-close-btn" aria-label="content" @click.prevent="closeModal">
@@ -11,6 +11,9 @@
                     <p v-else class="result-fail">{{alert_message}}</p>
                 </div>
                 <div class="modal-body">
+                    <figure>
+                        <img></img>
+                    </figure>
                     <p>
                         <label for="name">name</label>
                         <input type="text" name="username" placeholder="이름" v-model="username" readonly>
@@ -19,13 +22,18 @@
                         <label for="email">email</label>
                         <input  type="text" name="email" placeholder="이메일" v-model= "email" readonly>
                     </p>
-                    <p>
+                    <!--<p>
                         <button type="button" class="btn-findpwd" @click.stop.prevent="findPwd">비밀번호 수정하기</button>
-                    </p>
+                    </p>-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" @click.stop.prevent="findPwd"
+                                          @keyup.enter="findPwd">비밀번호 수정하기</button>
                 </div>
             </div>
     </div>
 </template>
+
 
 <script>
     export default{
@@ -40,7 +48,6 @@
             }
         },
         created () {
-            console.log();
             if( localStorage ){
                 this.username = localStorage.name;
             } else {

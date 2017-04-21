@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="search search-cat">
     <div class="search-category" v-for="(filter, index) in filters">
       <a href="#" class="category-all" @click.prevent="toggleClass(filter, index)">{{filter.name}}</a>
       <ul class="none" :class="{ dropdown: filter.isActive }">

@@ -10,3 +10,28 @@
     @keyframes spin
         100%
             transform: rotate(359deg)
+.modal .login
+    background: rgba(255, 255, 255, 0.9)
+    z-index: 8000
+    position: fixed
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    &::after
+        content: 'Loading...'
+        position: absolute
+        font-size: 2rem
+        font-weight: bolder
+        color: $grey
+        top: 36%
+        left: 30%
+    & .loading
+        z-index: 9999
+        position: absolute
+        top: 30%
+        right: 23%
+        
+        &::before
+            color: $grey
+        

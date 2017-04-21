@@ -200,7 +200,6 @@
 
                     });
               }
-              console.log('모달창:', this.$store.getters.getModalStatus);
               this.$store.commit('setMainTitle','default');
               this.$store.commit('setModalStatus', false);
           }

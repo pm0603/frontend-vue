@@ -5,7 +5,6 @@
 </div> 
 </template>
 
-
 <script>
     import UserInfo     from './UserInfo.vue';
     import UserPassword from './UserPassword.vue';

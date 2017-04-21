@@ -20,9 +20,8 @@
                         <input  type="text" name="email" placeholder="이메일" v-model= "email" readonly>
                     </p>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" @click.stop.prevent="findPwd"
-                                          @keyup.enter="findPwd">비밀번호 수정하러가기</button>
+                <div class="modal-footer" v-if="!is_fbUser">
+                    <button type="button" @click.stop.prevent="findPwd">비밀번호 수정하러가기</button>
                 </div>
             </div>
      </div>
@@ -30,7 +29,6 @@
 
 
 <script>
-    import UserPassword from './UserPassword.vue';
     export default{
         data(){
             return{
@@ -40,19 +38,25 @@
                 main_message    : '',
                 alert_message   : '',
                 result_fail     : true,
-                showUserDetail  : true
+                showUserDetail  : true,
+                is_fbUser       : false
             }
         },
-        components: {
-            userPassword : UserPassword
-        },
+     
         created () {
             if( localStorage ){
                 this.username = localStorage.name;
+                this.email    = localStorage.email;
             } else {
                 let userInfo  = this.$store.getters.getUserInfo;
                 this.username = userInfo.name;
                 this.email    = userInfo.email;
+            }
+            
+            if( localStorage.profile && !localStorage.profile.indexOf('http') ){
+                this.is_fbUser = true;
+            } else {
+                this.is_fbUser = false;
             }
         },
         methods: {

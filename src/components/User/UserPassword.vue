@@ -14,19 +14,19 @@
                     <div class="modal-body">
                         <p>
                             <label for="name">password</label>
-                            <input type="password" name="beforePassword" placeholder="비밀번호를 입력하세요." v-model="beforePwd" readonly>
+                            <input type="password" name="beforePassword" placeholder="비밀번호를 입력하세요." v-model:beforePwd="beforePwd" required ref="beforePwd">
                         </p>
                         <p>
                             <label for="email">new password</label>
-                            <input  type="password" name="password" placeholder="새로운 비밀번호를 입력하세요." v-model= "afterPwd" readonly>
+                            <input type="password" name="password" placeholder="새로운 비밀번호를 입력하세요." v-model:afterPwd= "afterPwd" required ref="pwd">
                         </p>
                         <p>
                             <label for="email">new password</label>
-                            <input  type="password" name="password" placeholder="새로운 비밀번호를 입력하세요." v-model= "afterPwd2" readonly>
+                            <input type="password" name="password" placeholder="새로운 비밀번호를 입력하세요." v-model:afterPwdSecond="afterPwdSecond" v-model= "passwordCheck" required ref="pwdSecond" >
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" @click.stop.prevent="findPwd"
+                        <button type="submit" @click.stop.prevent="findPwd"
                                               @keyup.enter="findPwd">비밀번호 수정하기</button>
                     </div>
                 </form>
@@ -40,12 +40,19 @@ export default{
                 email       : '',
                 beforePwd   : '',
                 afterPwd    : '',
-                afterPwd2   : '',
+                afterPwdSecond   : '',
 
-                result_fail     : false,
+                result_fail     : true,
                 main_message    : '',
                 alert_message   : '',
+                passwordCheck   : ''
 
+            }
+        },
+        watch: {
+            passwordCheck(new_password){
+                this.alert_message = '체크중..';
+                this.alert_message = this.afterPwd !== new_password ? '비밀번호가 일치하지 않습니다.' : '';
             }
         },
         methods: {
@@ -53,20 +60,22 @@ export default{
                 event.stopPropagation();
                 this.$store.commit('setUserDetailStatus',false);
                 this.$store.commit('setModalStatus',false);
+                this.$store.commit('setUserModalStatus', true);
             },
-            //ttp://api.pm0603.com/user/password/change
             findPwd(){
-                //attatch email infomation
-                // this.showUserDetail = false;
-                // 통신하기
                 var _this = this;
-                let passwordData = new FormData(this.$refs.loginForm);
+                let passwordData = new FormData(this.$refs.passwordForm);
 
-                axios.post('/user/password/change', passwordData)
-                     .then(function(response){
+                axios.post('/user/password/change', passwordData, {
+                    headers: { 'Authorization': 'Token '+localStorage.token },
+                    auth: {
+                        username: localStorage.email,
+                        password: _this.beforePwd
+                    }
+                })
+                .then(function(response){
+                    console.log('response:',response);
 
-
-                    
 
                 });
             }

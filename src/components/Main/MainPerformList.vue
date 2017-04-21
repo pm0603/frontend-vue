@@ -85,20 +85,31 @@ export default{
     },
     // method | add Bookmark
     addBookmark(contentId){
+
+      var _this = this;
       var id = new FormData();
       id.append('content',contentId);
 
-      axios.post('/api/bookmark/create',id,
-                {
-                    headers: {'Authorization': 'Token '+localStorage.token},
-                })
-                .then(function(response){
-                  console.log('로그인없이 할경우:',response);
-                    // if(response.status)
-                    window.alert('북마크가 추가되었습니다.');
-                    this.loading = false;
-                    this.list = response.data.results;
-                });
+      if( localStorage.token ){
+
+        axios.post('/api/bookmark/create',id,
+                  {
+                      headers: {'Authorization': 'Token '+localStorage.token},
+                  })
+                  .then(function(response){
+                    console.log('bookmark-response:',response.status);
+                      if(response.status === 500 ){
+                        window.alert('Network Error');
+                      }
+                      window.alert('북마크가 추가되었습니다.');
+                      _this.loading = false;
+                      _this.list = response.data.results;
+
+                      
+                  });
+        } else {
+          window.alert('로그인을 해주세요.');
+        }
     }
   }
 }

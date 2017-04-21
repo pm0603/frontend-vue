@@ -45,12 +45,12 @@
             <div v-if="showService" class="mymenu">
               <ul class="mymenu-list">
                 <li>
-                  <button type="button" @click="openUserDetail">나의 정보
-                    <user-detail v-show="isUserDetail"></user-detail>
+                  <button type="button" @click.stop="openUserDetail">나의 정보
+                    <user-detail v-if="isUserDetail"></user-detail>
                   </button>
                 </li>
                 <li>
-                  <router-link to="/bookmark" tag="button" active-class="current-page" >나의 북마크</router-link>
+                  <router-link to="/bookmark" tag="button" active-class="current-page">나의 북마크</router-link>
                 </li>
                 <li>
                   <button type="button" @click="logout">로그아웃</button>
@@ -79,9 +79,15 @@
         },
         computed: {
             user_profile(){
-              let profile = localStorage.profile;
-              if( !profile ){
-                profile = this.$store.getters.getUserProfile;
+              // let profile = localStorage.profile;
+              let profile;
+              console.log('profile:', profile);
+              if( localStorage ){
+                // profile = this.$store.getters.getUserProfile;
+                // profile = '../assets/user.png';
+                profile = localStorage.profile
+              } else {
+                profile = 'https://cdn3.iconfinder.com/data/icons/glypho-generic-icons/64/user-man-circle-invert-512.png';
               }
               return profile;
             },
@@ -93,7 +99,9 @@
             showService(){
               return this.$store.getters.getUserShowMenu;
             },
+            // 나의 정보
             isUserDetail(){
+              console.log('isUserDetail:',this.$store.getters.getUserDetailStatus);
               return this.$store.getters.getUserDetailStatus;
             },
             // 로그인 상태 체크 - 버튼 변화

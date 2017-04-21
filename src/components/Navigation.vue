@@ -18,10 +18,10 @@
           </ul>
         </div> -->
         <ul class="category">
-          <router-link to="/genre?realm_name=연극" tag="li" active-class="current-page" ><a href>연극</a></router-link>
+          <router-link to="/genre?realm_name=연극" tag="li" active-class="current-page" ><a href>연극·뮤지컬</a></router-link>
           <router-link to="/genre?realm_name=미술" tag="li" active-class="current-page" ><a href>미술</a></router-link>
           <router-link to="/genre?realm_name=음악" tag="li" active-class="current-page" ><a href>음악</a></router-link>
-          <router-link to="/genre?realm_name=콘서트" tag="li" active-class="current-page" ><a href>콘서트</a></router-link>
+          <router-link to="/genre?realm_name=무용" tag="li" active-class="current-page" ><a href>무용</a></router-link>
         </ul>
       </div>
       <div class="nav-right">

@@ -19,6 +19,9 @@ $scroll-event-path: 400px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
@@ -49,7 +52,7 @@ $scroll-event-path: 400px;
   font-size: 5rem;
   margin: 5px 16px;
   color: #fff;
-  line-height: 120%;
+  text-shadow: black 1px 2px 5px;
   z-index: -1;
 
   // &::before{

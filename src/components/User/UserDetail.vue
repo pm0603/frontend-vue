@@ -20,7 +20,7 @@
                         <input  type="text" name="email" placeholder="이메일" v-model= "email" readonly>
                     </p>
                     <p>
-                        <button type="button" @click.stop.prevent="findPwd">비밀번호 수정하기</button>
+                        <button type="button" class="btn-findpwd" @click.stop.prevent="findPwd">비밀번호 수정하기</button>
                     </p>
                 </div>
             </div>
@@ -40,14 +40,20 @@
             }
         },
         created () {
-            let userInfo = this.$store.getters.getUserInfo;
-            this.username = userInfo.name;
-            this.email    = userInfo.email;
+            console.log();
+            if( localStorage ){
+                this.username = localStorage.name;
+            } else {
+                let userInfo  = this.$store.getters.getUserInfo;
+                this.username = userInfo.name;
+                this.email    = userInfo.email;
+            }
         },
         methods: {
             closeModal(event){
                 event.stopPropagation();
                 this.$store.commit('setUserDetailStatus',false);
+                this.$store.commit('setModalStatus',false);
             },
             findPwd(){
                 //attatch email infomation

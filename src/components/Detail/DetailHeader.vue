@@ -24,7 +24,6 @@ export default{
       errors: []
     }
   },
-<<<<<<< HEAD
   created: function() {
     const baseURI = 'http://api.pm0603.com';
     axios.get(`${baseURI}/api_content/?seq=${this.$route.params.id}`)
@@ -40,7 +39,5 @@ export default{
           this.errors.push(e)
         });
   }
-=======
->>>>>>> 49c0f1dac0a4fd60d4f2c90ac798b0419a851353
 }
 </script>

@@ -40,6 +40,9 @@
                 </div>
                 </form>
             </div>
+        <div v-show="loading" class="row load">
+            <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
+        </div>                                    
     </div>
 </template>
 <script>
@@ -55,7 +58,8 @@
                 result_fail     : false,
 
                 user_name       : '',
-                user_profile    : ''
+                user_profile    : '',
+                loading         : false
             }
         },
         methods: {
@@ -68,6 +72,9 @@
             },
             // 로그인하기
             doLogin(){
+
+                this.loading = true;
+
                 var _this = this;
                 let loginData = new FormData(this.$refs.loginForm);
 
@@ -87,14 +94,20 @@
                             _this.$store.commit('setUserLoginStatus', true );
                             _this.$store.commit('setMainTitle', data.username );
 
+                            _this.loading = false;
+                            
                             _this.$router.push('/');
 
                         }else if( response.status === 400 ){
-                            _this.result_fail = true;
+
+                            _this.loading       = false;
+                            _this.result_fail   = true;
                             _this.alert_message = '이메일 또는 비밀번호가 올바르지 않습니다.';
+
                         } else {
-                            _this.result_fail = true;
-                            _this.alert_message  = '네트워크 에러';
+                            _this.result_fail   = true;
+                            _this.loading       = false;
+                            _this.alert_message = '네트워크 에러';
                         }
                     });
             },
@@ -102,6 +115,8 @@
             facebookLogin(){
 
                 var _this = this;
+                this.loading = true;
+
                 FB.login(function(response){
 
                     let data = response.authResponse;
@@ -139,20 +154,27 @@
                                             _this.$store.commit('setModalStatus', false);
                                             _this.$store.commit('setUserLoginStatus', true);
                                             _this.$store.commit('setMainTitle', username );
+
+                                            _this.loading = false;
+
                                             _this.$router.push({ path: '/'});
 
                                     }).catch(function(error) {
-                                            _this.alert_message = "NetWork Error";
+                                        _this.loading = false;
+                                        _this.alert_message = "NetWork Error";
+                                            
                                     });
 
                                 } else {
                                     _this.$store.commit('setUserLoginStatus', true);
                                     _this.$store.commit('setModalStatus', false);
+                                    _this.loading = false;
                                     this.$router.push('/');
                                 }
                             });
 
                         } else if( response.status === 'not_authorized' ){
+                            _this.loading = false;
                             console.log('not_authorized');
                         }
                     });

@@ -3,31 +3,32 @@
     <section class="image-section">
       <div class="main-image">
         <div :style="{ 'background-image': 'url(' + imageLink + ')' }" class="image">
-          <div class="main-image-content-up">
-            <h1 class="main-image-title">{{post.title}}</h1>
+          <div class="main-image-content-up wrapper">
             <div class="tag is-info">{{post.realm_name}}</div>
+            <h1 class="main-image-title">{{post.title}}</h1>
           </div>
         </div>
       </div>
-      <div class="main-image-content-down"  style='text-shadow: gray 2px 2px;'>
-        <h1 class="main-image-title">{{post.title}}</h1>
+      <div class="main-image-content-down">
         <div class="tag is-info">{{post.realm_name}}</div>
+        <h1 class="main-image-title">{{post.title}}</h1>
       </div>
     </section>
     <section class="info-section">
-      <div class="info-section-wrapper">
-        <div class="info-contents">
+      <div class="info-section-wrapper wrapper">
+        <div class="info-contents col-sm-12 col-md-12 col-lg-8 col-xl-8">
           <ul class="card-list">
             <li class="card-list-item"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{post.start_date}} ~ {{post.end_date}}</li>
             <li class="card-list-item"><i class="fa fa-ticket" aria-hidden="true"></i> {{post.price}}</li>
             <li class="card-list-item"><i class="fa fa-university" aria-hidden="true"></i> {{post.place}}</li>
           </ul>
         </div>
-        <div class="info-button" id="animate">
-          <div class="card-content hidden">
-            <!-- <p class="card-title">
-              <a>{{post.title}}</a>
-            </p> -->
+        <!-- <div class="info-button col-lg-4 col-xl-4">
+          <a :href="url" target="_blank" @click="goToHomepage">예매 페이지 바로가기</a>
+        </div> -->
+        <div class="info-button col-lg-4 col-xl-4" id="animate">
+          <div class="detail-card-content hidden">
+            <p class="detail-card-heading">{{post.title}}</p>
             <ul class="card-list">
               <li class="card-list-item">
                 <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
@@ -45,9 +46,32 @@
       </div>
     </section>
     <section class="description-section">
-      <div class="row">
-        <div class="description-contents">
-          <div class="detail-content">{{post.content}}</div>
+      <div class="wrapper">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+            <!-- <div class="description-contents"> -->
+            <div class="detail-content">{{post.content}}</div>
+            <!-- </div> -->
+          </div>
+          <!-- <div class="col-lg-4 col-xl-4">
+            scroll magic
+            <div class="info-button" id="animate">
+              <div class="card-content hidden">
+                <ul class="card-list">
+                  <li class="card-list-item">
+                    <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                    {{post.start_date}} ~ {{post.end_date}}</li>
+                  <li class="card-list-item">
+                    <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
+                    {{post.area}}</li>
+                  <li class="card-list-item">
+                    <span class="card-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                    {{post.place}}</li>
+                </ul>
+              </div>
+              <a :href="url" target="_blank" @click="goToHomepage">예매 페이지 바로가기</a>
+            </div>
+          </div> -->
         </div>
       </div>
     </section>

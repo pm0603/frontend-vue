@@ -1,18 +1,17 @@
-
-
 var controller = new ScrollMagic.Controller();
 
-
 $(function () { // wait for document ready
-		// build scene
-		var scene = new ScrollMagic.Scene({triggerElement: "#animate"})
-						.setPin("#animate")
-					 	.setClassToggle("#animate", 'fade-in')
-						.addIndicators() // add indicators (requires plugin)
-						.addTo(controller);
+	// build scene
+	var scene = new ScrollMagic.Scene({
+		triggerElement: "#animate",
+		triggerHook: 0,
+		// reverse: false
+	})
+		.setPin("#animate")
+	 	.setClassToggle("#animate", 'fade-in')
+		.addIndicators() // add indicators (requires plugin)
+		.addTo(controller);
 	});
-
-
 
 
 

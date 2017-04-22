@@ -90,11 +90,8 @@
             },
 
             viewMoreList(){
-                console.log('this.next:', this.next);
                 if(this.next){
                     var _this = this;
-                    console.log('after-this.next:', this.next);
-                    // axios.get('/api/bookmark/list/?page='+this.cnt,
                     axios.get( this.next,
                         {
                             headers: {'Authorization': 'Token '+localStorage.token},

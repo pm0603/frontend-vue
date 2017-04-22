@@ -7,13 +7,13 @@
 </template>
 
 <script>
-    import ModalMain from './ModalMain.vue';
+    import ModalMain   from './ModalMain.vue';
     import ModalSignUp from './ModalSignUp.vue';
 
     export default{
         components: {
-            modalMain:   ModalMain,
-            modalSignUp: ModalSignUp,
+            modalMain    : ModalMain,
+            modalSignUp  : ModalSignUp,
         },
         computed: {
           is_whichModal(){

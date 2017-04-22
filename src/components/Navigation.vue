@@ -121,6 +121,7 @@
             this.$store.commit('setUserLoginStatus', true);
             this.user_profile = this.$store.getters.getUserProfile;
             this.on_user      = this.$store.getters.getUserName;
+
           }else{
             this.$store.commit('setUserLoginStatus', false);
           }
@@ -189,7 +190,6 @@
 
                     });
               }
-              console.log('모달창:', this.$store.getters.getModalStatus);
               this.$store.commit('setMainTitle','default');
               this.$store.commit('setModalStatus', false);
           }

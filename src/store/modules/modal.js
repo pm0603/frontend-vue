@@ -18,7 +18,6 @@ const getters = {
 
 const mutations = {
     setModalStatus(state, new_is_open){
-        console.log('set모달:',new_is_open);
         state.modalOpenStatus = new_is_open;
     },
     // 모달창의 위치를 반환하는 setter

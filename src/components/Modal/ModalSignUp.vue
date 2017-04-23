@@ -65,12 +65,11 @@
         methods: {
             closeModal(event){
                 event.stopPropagation();
+                this.$store.commit('setModalStatus', false);
                 this.name  = '';
                 this.email = '';
                 this.password    = '';
                 this.passwordtwo = '';
-                this.$store.commit('setModalStatus', false);
-                this.$store.commit('setModalStage', 1);
             },
             showMainModal(){
                 this.$store.commit('setModalStage', 1);
@@ -100,6 +99,7 @@
                                 _this.password    = '';
                                 _this.passwordtwo = '';
 
+                                // _this.$store.commit('setUserLoginStatus', true );
                                 _this.$router.push({ path: '/'});
                         })
                         .catch(function(error){

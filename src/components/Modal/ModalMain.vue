@@ -81,11 +81,7 @@
                 axios.post('/user/login/', loginData)
                      .then(function(response) {
                         let data = response.data;
-                        
-                        if( !data.username ){
-                            data.username = "회원";
-                            data.email    = _this.email;
-                        }
+
                         if( response.status === 200 ){
                             // set user id
                             _this.$store.commit('setUserToken', data.token);
@@ -109,17 +105,11 @@
                             _this.result_fail   = true;
                             _this.alert_message = '이메일 또는 비밀번호가 올바르지 않습니다.';
 
-
                         } else {
                             _this.result_fail   = true;
                             _this.loading       = false;
                             _this.alert_message = '네트워크 에러';
                         }
-                    }).catch(function (error) {
-                        // console.log('error:',error);
-                        _this.loading = false;
-                        _this.result_fail   = true;
-                        _this.alert_message = '다시 로그인을 시도해주세요.';
                     });
             },
 

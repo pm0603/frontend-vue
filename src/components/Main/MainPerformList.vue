@@ -97,6 +97,7 @@ export default{
                       headers: {'Authorization': 'Token '+localStorage.token},
                   })
                   .then(function(response){
+                    console.log('bookmark-response:',response.status);
                       if(response.status === 500 ){
                         window.alert('Network Error');
                       }

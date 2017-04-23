@@ -36,7 +36,7 @@
           },
           {
             name: "장르",
-            category: ["연극", "미술", "음악", "콘서트"],
+            category: ["연극", "미술", "음악", "무용"],
             isActive: false,
             selected: false,
             selectedValue: null,

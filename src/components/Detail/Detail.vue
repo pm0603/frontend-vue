@@ -25,7 +25,7 @@
             <li class="card-list-item"><i class="fa fa-university" aria-hidden="true"></i> {{post.place}}</li>
           </ul>
         </div>
-        <div class="info-button col-lg-4 col-xl-4" id="animate">
+        <div class="info-button col-sm-12 col-md-12 col-lg-4 col-xl-4" id="animate">
           <div class="detail-card-content hidden">
             <p class="detail-card-heading">{{post.title}}</p>
             <ul class="card-list">
@@ -44,6 +44,7 @@
             </ul>
           </div>
           <a :href="url" target="_blank" @click="goToHomepage">예매 페이지 바로가기</a>
+          <button type="button" class="detail-bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i></button>
         </div>
       </div>
     </section>
@@ -104,7 +105,7 @@ export default{
           this.imageLink = "http://www.artmuseums.kr/2015/205/ga205-1.jpg"
           break;
         case "음악":
-          this.imageLink = "http://www.eurochicago.com/wp-content/uploads/2013/04/Foto-11.jpg"
+          this.imageLink = "https://i.ytimg.com/vi/LTVReClcI6g/maxresdefault.jpg"
           break;
         case "무용":
           this.imageLink = "http://ph.joongboo.com/news/photo/201704/1158048_1050772_4035.jpg"

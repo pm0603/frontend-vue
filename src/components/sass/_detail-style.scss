@@ -89,7 +89,7 @@ $scroll-event-path: 400px;
     width: 100%;
     padding: 2rem 0;
     color: white;
-    font-size: 2rem;
+    font-size: 1.8rem;
     border-radius: 2px;
     cursor: pointer;
     display: flex;
@@ -130,23 +130,24 @@ $scroll-event-path: 400px;
   color: #fff;
   background: darken($blue, 15%);
 }
-.detail-card-content.detail-bookmark{
-    height: 100%;
+.detail-bookmark{
+    // height: 100%;
+    width: 100%;
     padding: 0;
     margin-top: -10px;
     margin-bottom: 10px;
     background: none;
 
   & button{
-    font-weight: bolder;
-    padding: 16px 0;
-    background: $grey-lo;
+    padding: 19px 0;
+    background: #a7a7a7;
     color: $white;
-    font-size: 1.6rem;
-    align-self: flex-start;
+    font-size: 1.8rem;
     border-radius: 2px;
     width: 100%;
-
+  &:hover {
+    background: darken(#a7a7a7, 15%);
+  }
     & .fa-bookmark{
       color: $white;
       margin-right: 14px;
@@ -169,10 +170,10 @@ $scroll-event-path: 400px;
 @media screen and (min-width: 781px) {
   .info-button {
     position: relative;
-    top: -18rem;
+    top: -20rem;
     transform: translateY(0px);
     transition: transform .3s linear;
-    
+
     & a {
       width: 100%;
     }

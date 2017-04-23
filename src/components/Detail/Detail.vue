@@ -43,13 +43,13 @@
                 {{post.place}}</li>
             </ul>
           </div>
-          <div class="detail-card-content hidden book detail-bookmark">
+          <div class="book detail-bookmark">
             <button type="button" @click.prevent="addBookmark(post.id)">
                   <i class="fa fa-bookmark" aria-hidden="true"></i>북마크 하기
             </button>
           </div>
           <a :href="url" target="_blank" @click="goToHomepage">예매 페이지 바로가기</a>
-          
+
         </div>
       </div>
     </section>

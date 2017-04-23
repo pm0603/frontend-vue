@@ -96,25 +96,24 @@
             }
         },
         beforeRouteEnter(to, from, next){
-          // 회원이면
-          if(window.localStorage.token){
+
+          if( window.localStorage.token ){
             this.$store.commit('setUserLoginStatus', true);
             this.$store.commit('setModalStatus', true);
             next();
 
           } else {
-          // 회원이 아니면
+            this.$store.commit('setModalStatus', false);
             this.$route.push('/');
           }
         },
         beforeCreate(){
           if(window.localStorage.token){
             this.$store.commit('setUserLoginStatus', true);
-            // this.$store.commit('setModalStatus', true);
             this.user_profile = this.$store.getters.getUserProfile;
             this.on_user      = this.$store.getters.getUserName;
             this.$store.commit('setMainTitle', this.on_user );
-          }
+          } 
         },
         mounted () {
           if( localStorage.length ){
@@ -124,10 +123,11 @@
 
           }else{
             this.$store.commit('setUserLoginStatus', false);
+            this.$store.commit('setModalStatus', false);
+            
           }
         },
         updated () {
-          // this.$store.commit('setUserDetailStatus', true );
           let update_detail = this.isUserDetail;
           if( update_detail ){this.$store.commit('setUserDetailStatus', true );}
         },
@@ -163,29 +163,25 @@
             let is_profile = this.$store.getters.getUserProfile;
 
             if(is_profile){
-            // 페이스북 로그인이면
+
                 FB.getLoginStatus(function(response){
                   if(response.status=='connected'){
                     FB.logout();
-
-                    localStorage.clear();
-                    _this.$store.commit('setUserLoginStatus', false);
-                    _this.$store.commit('setModalStatus', false);
-                    _this.$router.push('/');
                   }
                 });
+                    _this.$store.commit('setUserLoginStatus', false);
+                    localStorage.clear();
+                    _this.$router.push('/');
+
               } else {
-                // 일반 로그인이면
                 axios.post('/user/logout/')
                     .then(function(response) {
-                        // 로그아웃 성공
                         localStorage.clear();
                         _this.$store.commit('setUserLoginStatus', false);
                         _this.$store.commit('setModalStatus', false);
                         _this.$router.push('/');
                     })
                     .catch(function(error){
-                          // 네트워크 오류
                           localStorage.clear();
                           _this.$store.commit('setUserLoginStatus', false);
                           _this.$store.commit('setModalStatus', false);
@@ -193,6 +189,7 @@
 
                     });
               }
+              this.$store.commit('setModalStatus', false);
               this.$store.commit('setMainTitle','default');
           }
         }

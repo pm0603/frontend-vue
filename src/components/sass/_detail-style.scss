@@ -62,7 +62,7 @@ $scroll-event-path: 400px;
 /* info-section */
 .info-section {
   padding: 2rem 0;
-  height: 16rem;
+  height: 21rem;
 }
 .info-section-wrapper {
   display: flex;
@@ -73,13 +73,6 @@ $scroll-event-path: 400px;
   flex-grow: 5;
 }
 
-.hidden {
-  display: none;
-}
-
-#animate {
-}
-
 .info-button {
   position: relative;
   padding: 2rem;
@@ -88,7 +81,9 @@ $scroll-event-path: 400px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  // transform: translateY(-120px);
+  top: -18rem;
+  transform: translateY(0px);
+  transition: transform .3s linear;
   & a {
     background-color: $blue;
     width: 100%;
@@ -102,14 +97,11 @@ $scroll-event-path: 400px;
     align-items: center;
   }
   &.fade-in {
-    animation: fadeInDownbtn 2s;
+    transform: translateY(200px);
+    transition: transform .3s linear;
     .hidden {
-      animation: fadeInDownbtn 2s;
-      display: flex;
-      flex-direction: column;
-      transition: opacity .48s,box-shadow .48s;
+      transition: opacity .01s linear;
       opacity: 1;
-      // position: absolute;
     }
   }
 }
@@ -124,21 +116,14 @@ $scroll-event-path: 400px;
   width: 100%;
   padding: 2rem;
   margin-bottom: 2rem;
-  opacity: 0
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
 }
 .detail-card-heading {
   font-size: 1.8rem;
   color: #696969;
   padding: 1rem 0;
-}
-
-@keyframes fadeInDownbtn {
-  0% {
-  transform: translateY(-150px);
-  }
-  100% {
-  transform: translateY(0);
-  }
 }
 
 .info-button a:hover {

@@ -20,12 +20,11 @@
           <ul class="card-list">
             <li class="card-list-item"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{post.start_date}} ~ {{post.end_date}}</li>
             <li class="card-list-item"><i class="fa fa-ticket" aria-hidden="true"></i> {{post.price}}</li>
+            <li class="card-list-item"><i class="fa fa-phone" aria-hidden="true"></i> {{post.phone}}</li>
+            <li class="card-list-item"><i class="fa fa-map-o" aria-hidden="true"></i> {{post.area}}</li>
             <li class="card-list-item"><i class="fa fa-university" aria-hidden="true"></i> {{post.place}}</li>
           </ul>
         </div>
-        <!-- <div class="info-button col-lg-4 col-xl-4">
-          <a :href="url" target="_blank" @click="goToHomepage">예매 페이지 바로가기</a>
-        </div> -->
         <div class="info-button col-lg-4 col-xl-4" id="animate">
           <div class="detail-card-content hidden">
             <p class="detail-card-heading">{{post.title}}</p>
@@ -34,8 +33,11 @@
                 <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
                 {{post.start_date}} ~ {{post.end_date}}</li>
               <li class="card-list-item">
-                <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
-                {{post.area}}</li>
+                <span class="card-icon"><i class="fa fa-ticket" aria-hidden="true"></i></span>
+                {{post.price}}</li>
+              <li class="card-list-item">
+                <span class="card-icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                  {{post.phone}}</li>
               <li class="card-list-item">
                 <span class="card-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
                 {{post.place}}</li>
@@ -49,29 +51,8 @@
       <div class="wrapper">
         <div class="row">
           <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-            <!-- <div class="description-contents"> -->
             <div class="detail-content">{{post.content}}</div>
-            <!-- </div> -->
           </div>
-          <!-- <div class="col-lg-4 col-xl-4">
-            scroll magic
-            <div class="info-button" id="animate">
-              <div class="card-content hidden">
-                <ul class="card-list">
-                  <li class="card-list-item">
-                    <span class="card-icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
-                    {{post.start_date}} ~ {{post.end_date}}</li>
-                  <li class="card-list-item">
-                    <span class="card-icon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
-                    {{post.area}}</li>
-                  <li class="card-list-item">
-                    <span class="card-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
-                    {{post.place}}</li>
-                </ul>
-              </div>
-              <a :href="url" target="_blank" @click="goToHomepage">예매 페이지 바로가기</a>
-            </div>
-          </div> -->
         </div>
       </div>
     </section>
@@ -79,14 +60,13 @@
 </template>
 
 <script>
-import scrollEvent from './scrollEvent.js';
 export default{
   data(){
     return{
       post: [],
       errors: [],
       imageLink: null,
-      url: null
+      url: null,
     }
   },
   created: function() {
@@ -102,6 +82,19 @@ export default{
         .catch(e=> {
           this.errors.push(e)
         });
+  },
+  mounted: function() {
+    // scroll magic
+    var controller = new ScrollMagic.Controller();
+    var scene = new ScrollMagic.Scene({
+  		triggerElement: "#animate",
+  		triggerHook: 0,
+  		// reverse: false
+  	})
+      		.setPin("#animate")
+      	 	.setClassToggle("#animate", 'fade-in')
+      		// .addIndicators()
+      		.addTo(controller);
   },
   updated: function() {
     this.backgroundImage();

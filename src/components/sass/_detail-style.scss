@@ -130,7 +130,13 @@ $scroll-event-path: 400px;
   color: #fff;
   background: darken($blue, 15%);
 }
-
+.detail-bookmark {
+  margin-top: 1rem;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.1);
+  font-size: 2.6rem;
+  align-self: flex-start;
+}
 
 /* description-section */
 
@@ -237,6 +243,11 @@ $scroll-event-path: 400px;
   .detail-card-content {
     display: none;
   }
+
+  .detail-bookmark {
+    margin-top: 0;
+  }
+
     /* review-section */
 
   .review-section {

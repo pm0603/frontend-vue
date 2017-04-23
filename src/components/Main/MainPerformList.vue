@@ -1,7 +1,7 @@
 <template>
   <section class="performance-list">
     <div class="wrapper">
-      <h2>Now Trending in Korea</h2>
+      <h2>주목해야 할 공연</h2>
       <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12"
              v-for="post in posts">

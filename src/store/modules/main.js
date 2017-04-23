@@ -1,7 +1,7 @@
 // Main View
 
 const state = {
-    title : 'Live your city',
+    title : '공연을 좋아하나요?',
 };
 
 const getters = {
@@ -14,10 +14,10 @@ const getters = {
 const mutations = {
     setMainTitle(state, new_title){
         var base = '님, 환영합니다!';
-        if(!new_title){ 
-            new_title = "회원" + base; 
+        if(!new_title){
+            new_title = "회원" + base;
         }else if(new_title === 'default'){
-            new_title = 'Live your city';
+            new_title = '공연을 좋아하나요?';
         }else{
             new_title += base;
         }

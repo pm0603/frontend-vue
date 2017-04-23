@@ -20,10 +20,10 @@
                     </div>
                 </router-link>
             </div>
-            <!--로딩-->
-            <div v-if="loading" class="row load">
-                <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
-            </div>
+        </div>
+        <!--로딩-->
+        <div v-if="loading" class="row load">
+            <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
         </div>
         <div class="bookmark-footer" ><button type="button" class="bookmark-button" @click="viewMoreList" v-if="btnMore">더보기</button></div>
     </div>

@@ -43,8 +43,13 @@
                 {{post.place}}</li>
             </ul>
           </div>
+          <div class="detail-card-content hidden book detail-bookmark">
+            <button type="button" @click.prevent="addBookmark(post.id)">
+                  <i class="fa fa-bookmark" aria-hidden="true"></i>북마크 하기
+            </button>
+          </div>
           <a :href="url" target="_blank" @click="goToHomepage">예매 페이지 바로가기</a>
-          <button type="button" class="detail-bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i></button>
+          
         </div>
       </div>
     </section>
@@ -134,7 +139,24 @@ export default{
     	 	.setClassToggle("#animate", 'fade-in')
     		// .addIndicators()
     		.addTo(controller);
-    }
+    },
+    addBookmark(contentId){
+        var id = new FormData();
+        id.append('content',contentId);
+
+        if(localStorage.token){
+           axios.post('/api/bookmark/create',id,
+                  {
+                      headers: {'Authorization': 'Token '+localStorage.token},
+                  })
+                  .then(function(response){
+                      window.alert('북마크가 추가되었습니다.');
+                  });
+
+        } else {
+          window.alert('로그인을 해주세요');
+        }
+      }
   },
 
 }

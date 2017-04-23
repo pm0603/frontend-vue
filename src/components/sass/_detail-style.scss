@@ -130,12 +130,28 @@ $scroll-event-path: 400px;
   color: #fff;
   background: darken($blue, 15%);
 }
-.detail-bookmark {
-  margin-top: 1rem;
-  background: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.1);
-  font-size: 2.6rem;
-  align-self: flex-start;
+.detail-card-content.detail-bookmark{
+    height: 100%;
+    padding: 0;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    background: none;
+
+  & button{
+    font-weight: bolder;
+    padding: 16px 0;
+    background: $grey-lo;
+    color: $white;
+    font-size: 1.6rem;
+    align-self: flex-start;
+    border-radius: 2px;
+    width: 100%;
+
+    & .fa-bookmark{
+      color: $white;
+      margin-right: 14px;
+    }
+  }
 }
 
 /* description-section */
@@ -156,6 +172,7 @@ $scroll-event-path: 400px;
     top: -18rem;
     transform: translateY(0px);
     transition: transform .3s linear;
+    
     & a {
       width: 100%;
     }
@@ -233,6 +250,7 @@ $scroll-event-path: 400px;
     text-decoration: none;
   }
 
+
   .description-contents {
     padding-right: 2rem;
     // width: 100%;
@@ -243,9 +261,17 @@ $scroll-event-path: 400px;
   .detail-card-content {
     display: none;
   }
-
-  .detail-bookmark {
-    margin-top: 0;
+  .detail-card-content.detail-bookmark{
+    display: block;
+    width: 100%;
+    opacity: 1;
+    margin: 0;
+  }
+  .detail-card-content.detail-bookmark button {
+    width: 100%;
+    height: 60px;
+    font-size: 2rem;
+    border-radius: 0;
   }
 
     /* review-section */

@@ -74,9 +74,9 @@ export default{
     axios.get(`${baseURI}/api_content/?seq=${this.$route.params.id}`)
         .then(result => {
           // Add data to posts
-          console.log('q:', this.$route.params.id);
-          console.log('result:',result);
-          console.log('this:', this);
+          // console.log('q:', this.$route.params.id);
+          // console.log('result:',result);
+          // console.log('this:', this);
           this.post = result.data.results[0];
         })
         .catch(e=> {
@@ -84,17 +84,8 @@ export default{
         });
   },
   mounted: function() {
-    // scroll magic
-    var controller = new ScrollMagic.Controller();
-    var scene = new ScrollMagic.Scene({
-  		triggerElement: "#animate",
-  		triggerHook: 0,
-  		// reverse: false
-  	})
-      		.setPin("#animate")
-      	 	.setClassToggle("#animate", 'fade-in')
-      		// .addIndicators()
-      		.addTo(controller);
+    this.scrollItem();
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   },
   updated: function() {
     this.backgroundImage();
@@ -113,7 +104,7 @@ export default{
           this.imageLink = "http://www.artmuseums.kr/2015/205/ga205-1.jpg"
           break;
         case "음악":
-          this.imageLink = "http://news20.busan.com/content/image/2016/11/16/20161116000228_0.jpg"
+          this.imageLink = "http://www.eurochicago.com/wp-content/uploads/2013/04/Foto-11.jpg"
           break;
         case "무용":
           this.imageLink = "http://ph.joongboo.com/news/photo/201704/1158048_1050772_4035.jpg"
@@ -129,6 +120,19 @@ export default{
     postContent: function(text) {
       text = text.replace(/\&lt;/g, "<").replace(/\&gt;/g, ">");
       return text
+    },
+    scrollItem: function() {
+      // scroll magic
+      var controller = new ScrollMagic.Controller();
+      var scene = new ScrollMagic.Scene({
+    		triggerElement: "#animate",
+    		triggerHook: 0,
+    		// reverse: false
+    	})
+    		.setPin("#animate")
+    	 	.setClassToggle("#animate", 'fade-in')
+    		// .addIndicators()
+    		.addTo(controller);
     }
   },
 

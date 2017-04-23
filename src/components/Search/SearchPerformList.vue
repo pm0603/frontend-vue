@@ -72,9 +72,9 @@ export default{
         const baseURI = 'http://api.pm0603.com';
         // {{$route.query.term}}
         // http://www.pm0603.com/api/detail/?search=뮤지컬
-        console.log('this.$route.fullPath:', this.$route.fullPath);
-        console.log('this.$route.query:', this.$route.query);
-        console.log('this.$route.path:', this.$route.path);
+        // console.log('this.$route.fullPath:', this.$route.fullPath);
+        // console.log('this.$route.query:', this.$route.query);
+        // console.log('this.$route.path:', this.$route.path);
         // {q: this.$route.query.q, area: undefined, ordering: this.$route.query.ordering, realm_name: this.$route.query.realm_name}
         // axios.get(`${baseURI}/api_content/?${this.$route.fullPath}`)
         axios.get('/api_content/?', {

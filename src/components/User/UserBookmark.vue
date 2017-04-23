@@ -8,15 +8,17 @@
         <div class="bookmark-total">북마크 <span>{{count}}</span></div>
         <div class="row bookmark-info" >
             <div class="card-menu col-xl-3 col-lg-3 col-md-12 col-sm-12" v-for="item in list" >
-                <div class="card-content">
-                    <div class="card-title bookmark-info__title">{{ item.title }}</div>
-                    <ul class="card-list">
-                        <li class="card-list-item"><span class="card-icon bookmark-info__area pe-7s-map-marker"></span>{{ item.area }}</li>
-                        <li class="card-list-item"><span class="card-icon bookmark-info__date pe-7s-date"></span>{{ item.start_date }} ~ {{ item.end_date }}</li>
-                        <li class="card-list-item"><span class="card-icon bookmark-info__area pe-7s-ticket"></span>{{ item.price }}</li>
-                    </ul>
-                    <button type="button" class="bookmark-info__delete" @click="deleteBookmark(item.content)"><span class="pe-7s-close"></span></button>
-                </div>
+                <router-link :to="'/detail/' + item.seq" tag="a" active-class="current-page">
+                    <div class="card-content">
+                        <div class="card-title bookmark-info__title">{{ item.title }}</div>
+                        <ul class="card-list">
+                            <li class="card-list-item"><span class="card-icon bookmark-info__area pe-7s-map-marker"></span>{{ item.area }}</li>
+                            <li class="card-list-item"><span class="card-icon bookmark-info__date pe-7s-date"></span>{{ item.start_date }} ~ {{ item.end_date }}</li>
+                            <li class="card-list-item"><span class="card-icon bookmark-info__area pe-7s-ticket"></span>{{ item.price }}</li>
+                        </ul>
+                        <button type="button" class="bookmark-info__delete" @click.prevent="deleteBookmark(item.content)"><span class="pe-7s-close"></span></button>
+                    </div>
+                </router-link>
             </div>
             <!--로딩-->
             <div v-if="loading" class="row load">
@@ -33,10 +35,7 @@
             <p>{{item.price}}</p>
         </div>
     </div>
-    
-    <!--<div class="alert-delete" v-if="alert">
-        <span class="pe-7s-close">삭제되었습니다.</span>
-    </div>-->
+ 
 </section>
 </template>
 
@@ -45,17 +44,16 @@
         data(){
             return{
                 list:[],
-                loading: true, // 로딩을 위함
+                loading: true, 
                 cnt : 1,
                 count : 0,
                 isView : true,
-                alert: false, // for Alert
+                alert: false, 
                 next: '',
                 btnMore : true
             }
         },
         beforeCreate () {
-            // 북마크리스트의 경우 헤더에 토큰값을 보내야된다는데...
             var _this = this;
             this.loading   = true;
             axios.get('http://api.pm0603.com/api/bookmark/list/', {

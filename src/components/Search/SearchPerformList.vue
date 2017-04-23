@@ -137,15 +137,12 @@ export default{
                       headers: {'Authorization': 'Token '+localStorage.token},
                   })
                   .then(function(response){
-                    // console.log('로그인없이 할경우:',response);
-                      // if(response.status)
                       window.alert('북마크가 추가되었습니다.');
                       this.loading = false;
                       this.list = response.data.results;
                   });
 
         } else {
-          // 로그인 안됐을때
           window.alert('로그인을 해주세요');
         }
       }

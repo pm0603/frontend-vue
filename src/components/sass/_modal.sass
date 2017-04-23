@@ -10,9 +10,7 @@
 
 .result-fail
     color: #f01160
-// .ss-delete
-//     font-size: 22px
-//     color: #2e2f33
+
 
 .ss-delete
     font-size: 30px
@@ -44,9 +42,11 @@ label
 
 .modal-content
     +set-modal-content(40rem, 70rem)
+    
 
 .modal-content-md
     +set-modal-content(44rem, 48rem)
+    
 
 
 .modal-prev-btn
@@ -148,31 +148,40 @@ label
     color: #fff
     text-transform: uppercase
     letter-spacing: 2px
+    font-size: 1.6rem
 
 .detail-md
-    height: 40rem
-
     & .modal-header
         padding-bottom: 1rem
 
 .user-detail 
     font-size: 1.4rem
-    margin: 0 40px
-    padding: 40px 50px
-    background: rgba(228, 231, 238, 1)
+    margin: 0 30px
+    padding: 50px 45px
     border-radius: 3px
+    // position: relative
 
     & label
         position: relative
         left: 0
-        text-align: right
+        width: 100%
+        text-align: left
+        display: inline-block
+        font-weight: lighter
+        color: $black
+        margin-bottom: 10px
 
     & input
         border: 0
-        // border-bottom: 1px solid $grey-lo
+        border: 2px solid $white
         font-size: 1.4rem
-        color: $grey
-        background: none
+        color: #4450d1
+        width: 100%
+        font-weight: bolder
+        background: rgba(228, 231, 238, 0.7)
+        text-align: left
+        margin-bottom: 15px
+        
 
 
 @media screen and (max-width: 480px)

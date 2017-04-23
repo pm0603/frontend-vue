@@ -24,9 +24,7 @@ $scroll-event-path: 400px;
 
 
 .main-image-content-up {
-  width: $main-content-width;
-  margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 0;
   &::after {
     display: flex;
     justify-content: center;
@@ -39,8 +37,7 @@ $scroll-event-path: 400px;
 }
 
 .tag {
-  display: inline-block;
-  margin: 5px 10px;
+  margin: 1rem;
 }
 
 .main-image-title {
@@ -62,40 +59,35 @@ $scroll-event-path: 400px;
   // }
 }
 
-
 /* info-section */
 .info-section {
   padding: 2rem 0;
+  height: 21rem;
 }
 .info-section-wrapper {
-  padding-top: 2rem;
-  padding-left: 2rem;
-  max-width: $main-content-width;
-  margin: 0 auto;
   display: flex;
   flex-direction: row;
-
 }
 .info-contents {
-  padding: 2rem;
+  padding: 2rem 0;
   flex-grow: 5;
 }
 
-.hidden {
-  display: none;
-}
-
 .info-button {
+  position: relative;
   padding: 2rem;
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  > a {
+  top: -18rem;
+  transform: translateY(0px);
+  transition: transform .3s linear;
+  & a {
     background-color: $blue;
-    width: 300px;
-    height: 60px;
+    width: 100%;
+    padding: 2rem 0;
     color: white;
     font-size: 2rem;
     border-radius: 2px;
@@ -105,26 +97,34 @@ $scroll-event-path: 400px;
     align-items: center;
   }
   &.fade-in {
-  .hidden {
-    animation: fadeInDownbtn 2s;
-    display: flex;
-  }
-  a {
-    animation: fadeInDownbtn 2s;
-  }
-}
-}
-
-@keyframes fadeInDownbtn {
-  0% {
-  transform: translateY(-120px);
-  }
-  100% {
-  transform: translateY(0);
+    transform: translateY(200px);
+    transition: transform .3s linear;
+    .hidden {
+      transition: opacity .01s linear;
+      opacity: 1;
+    }
   }
 }
 
+.detail-card {
+  position: absolute;
+}
 
+.detail-card-content {
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1), 0 0 2px rgba(0,0,0,.1);
+  width: 100%;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+}
+.detail-card-heading {
+  font-size: 1.8rem;
+  color: #696969;
+  padding: 1rem 0;
+}
 
 .info-button a:hover {
   color: #fff;
@@ -138,19 +138,20 @@ $scroll-event-path: 400px;
 .description-section {
   padding: 2rem 0;
   background-color: rgb(247, 247, 247);
+  display: flex;
+  justify-content: space-between;
 }
 .description-contents {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  padding-left: 2rem;
-  padding-right: $scroll-event-path;
-  width: $main-content-width;
-  margin: 0 auto;
+  // padding-top: 2rem;
+  // padding-bottom: 2rem;
+  // padding-left: 2rem;
+  // padding-right: $scroll-event-path;
+  // width: $main-content-width;
+  // margin: 0 auto;
 }
 .description-contents-text {
   line-height: 3.5rem;
 }
-
 
 /* review-section */
 
@@ -326,7 +327,7 @@ $scroll-event-path: 400px;
 
   .description-contents {
     padding-right: 2rem;
-    width: 100%;
+    // width: 100%;
   }
   .info-section-wrapper {
     width: 100%;

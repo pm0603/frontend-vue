@@ -25,7 +25,7 @@
             <li class="card-list-item"><i class="fa fa-university" aria-hidden="true"></i> {{post.place}}</li>
           </ul>
         </div>
-        <div class="info-button col-lg-4 col-xl-4" id="animate">
+        <div class="info-button col-sm-12 col-md-12 col-lg-4 col-xl-4" id="animate">
           <div class="detail-card-content hidden">
             <p class="detail-card-heading">{{post.title}}</p>
             <ul class="card-list">

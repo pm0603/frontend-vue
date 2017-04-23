@@ -12,11 +12,11 @@
                 </div>
                 <div class="modal-body user-detail">
                     <p>
-                        <label for="name">이름 </label>
+                        <label for="name">사용자 이름</label>
                         <input type="text" name="username" placeholder="이름" v-model="username" readonly>
                     </p>
                     <p>
-                        <label for="email">이메일</label>
+                        <label for="email">사용자 이메일</label>
                         <input  type="text" name="email" placeholder="이메일" v-model= "email" readonly>
                     </p>
                 </div>

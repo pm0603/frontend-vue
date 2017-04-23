@@ -21,20 +21,14 @@ const mutations = {
         state.modalOpenStatus = new_is_open;
     },
     // 모달창의 위치를 반환하는 setter
-    setModalStage(stage, new_modal_stage){
-        stage.modalStage = new_modal_stage;
+    setModalStage(state, new_modal_stage){
+        state.modalStage = new_modal_stage;
     }
 };
 
-const actions = {
-    setModalStatus (context) {
-      context.commit('setModalStatus');
-    }
-};
 
 export default{
     state,
     getters,
     mutations,
-    actions
 }

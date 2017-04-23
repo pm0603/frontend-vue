@@ -1,6 +1,6 @@
 # pm0603 - frontend
 
-## Inroduction
+### Inroduction
 pm0603은 공공데이터포털의 공연전시정보조회 api를 사용해서 개발한 공연 전시 조회 서비스입니다. 사용자는 검색을 통해 연극, 뮤지컬, 전시 등의 다양한 공연 정보를 찾아볼 수 있고, 북마크 기능을 이용해서 관심있는 공연을 저장, 관리할 수 있습니다.
 
 - [DEMO](http://www.pm0603.com/)
@@ -22,7 +22,7 @@ pm0603은 공공데이터포털의 공연전시정보조회 api를 사용해서 
     - Module Loader/Bundler
       - webpack
 
-## Development Setup
+### Development Setup
 
 ``` bash
 # install deps

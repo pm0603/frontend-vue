@@ -2,6 +2,10 @@
       <div class="modal detail" @click="closeModal">
         <div class="modal-background" @click="closeModal"></div>
         <div class="modal-content-md" @click.stop>
+            <!-- 로딩 -->
+            <div v-show="loading" class="login load">
+                <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
+            </div>    
                 <a role="button" href class="modal-close-btn" aria-label="content" @click.prevent="closeModal">
                     <span class="pe-7s-close" aria-hidden="true"></span>
                 </a>
@@ -45,7 +49,8 @@ export default{
                 result_fail     : true,
                 main_message    : '',
                 alert_message   : '',
-                passwordCheck   : ''
+                passwordCheck   : '',
+                loading         : false
 
             }
         },
@@ -61,12 +66,15 @@ export default{
                 this.$store.commit('setUserDetailStatus',false);
                 this.$store.commit('setModalStatus',false);
                 this.$store.commit('setUserModalStatus', true);
+                
             },
             findPwd(){
+                this.loading = true;
+
                 var _this = this;
                 let passwordData = new FormData(this.$refs.passwordForm);
 
-                axios.post('/user/password/change', passwordData, {
+                axios.post('/user/password/change/', passwordData,{
                     headers: { 'Authorization': 'Token '+localStorage.token },
                     auth: {
                         username: localStorage.email,
@@ -74,10 +82,27 @@ export default{
                     }
                 })
                 .then(function(response){
-                    console.log('response:',response);
+                    if( response.data.success ){
+                        _this.loading = false;
 
+                        _this.beforePwd        = '';
+                        _this.afterPwd         = '';
+                        _this.afterPwdSecond   = '';
+
+                        _this.$store.commit('setUserDetailStatus',false);
+                        window.alert('비밀번호가 수정되었습니다.');
+
+                    } else if( response.data.detail ){
+                        _this.loading = false;
+                        _this.alert_message = '비밀번호가 맞지않습니다. 다시 입력해주세요.';
+
+                        _this.beforePwd        = '';
+                        _this.afterPwd         = '';
+                        _this.afterPwdSecond   = '';
+                    }
 
                 });
+                
             }
             
         }

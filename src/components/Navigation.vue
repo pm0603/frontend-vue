@@ -169,7 +169,6 @@
                     FB.logout();
 
                     localStorage.clear();
-
                     _this.$store.commit('setUserLoginStatus', false);
                     _this.$store.commit('setModalStatus', false);
                     _this.$router.push('/');
@@ -187,11 +186,14 @@
                     })
                     .catch(function(error){
                           // 네트워크 오류
+                          localStorage.clear();
+                          _this.$store.commit('setUserLoginStatus', false);
+                          _this.$store.commit('setModalStatus', false);
+                          _this.$router.push('/');
 
                     });
               }
               this.$store.commit('setMainTitle','default');
-              this.$store.commit('setModalStatus', false);
           }
         }
     }

@@ -89,7 +89,7 @@ export default{
     axios.get(`${baseURI}/api_comment/?content_d=${this.$route.params.id}`)
         .then(result => {
           // Add data to posts
-          console.log('reviewresult:', result);
+          // console.log('reviewresult:', result);
           this.user_input = result.data.results;
         })
         .catch(e=> {

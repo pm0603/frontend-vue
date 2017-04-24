@@ -81,7 +81,7 @@ export default{
                   params: this.$route.query
                 })
             .then(result => {
-              console.log('this.$route.query.q:',this.$route.query.q);
+              // console.log('this.$route.query.q:',this.$route.query.q);
               // console.log('result.data.results.length:',result.data.results.length);
               if (result.data.results.length>0 || this.$route.query.q === undefined){
                 this.morebtn = true;

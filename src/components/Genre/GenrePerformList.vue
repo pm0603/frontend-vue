@@ -63,14 +63,14 @@ export default{
         // http://www.pm0603.com/api/detail/?search=뮤지컬
         axios.get(`${baseURI}/api_content/?realm_name=${this.$route.query.realm_name}`)
             .then(result => {
-              console.log('this.$route.query.q:',this.$route.query.realm_name);
-              console.log('result.data.results.length:',result.data.results.length);
+              // console.log('this.$route.query.q:',this.$route.query.realm_name);
+              // console.log('result.data.results.length:',result.data.results.length);
               if (result.data.results.length>0){
                 // posts에 data results 추가
                 this.posts = result.data.results;
                 // next page 링크를 기억
                 this.next = result.data.next;
-                console.log('this.next:',this.next);
+                // console.log('this.next:',this.next);
                 if(!this.next){
                   this.morebtn = false;
                 }
@@ -82,7 +82,7 @@ export default{
                 this.loading = false;
                 this.morebtn = false;
               }
-              console.log('this.posts:', this.posts);
+              // console.log('this.posts:', this.posts);
             })
             .catch(e=> {
               this.errors.push(e)

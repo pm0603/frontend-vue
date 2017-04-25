@@ -38,7 +38,6 @@ export default{
   methods: {
     goToHomepage() {
       this.url = this.post.place_url
-      // console.log("place_url", this.post.place_url);
     }
   }
 

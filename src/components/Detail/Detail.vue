@@ -88,7 +88,7 @@ export default{
   },
   mounted: function() {
     this.scrollItem();
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    // document.body.scrollTop = document.documentElement.scrollTop = 0;
   },
   updated: function() {
     this.backgroundImage();

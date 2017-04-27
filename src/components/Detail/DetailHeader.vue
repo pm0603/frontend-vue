@@ -29,9 +29,9 @@ export default{
     axios.get(`${baseURI}/api_content/?seq=${this.$route.params.id}`)
         .then(result => {
           // Add data to posts
-          console.log('q:', this.$route.params.id);
-          console.log('result:',result);
-          console.log('this:', this);
+          // console.log('q:', this.$route.params.id);
+          // console.log('result:',result);
+          // console.log('this:', this);
           this.post = result.data.results[0];
         })
         .catch(e=> {
@@ -43,7 +43,7 @@ export default{
   },
   methods: {
     backgroundImage: function() {
-      console.log('this.post.realm_name:', this.post.realm_name);
+      // console.log('this.post.realm_name:', this.post.realm_name);
       let genreName = this.post.realm_name;
       switch(genreName) {
         case "연극":

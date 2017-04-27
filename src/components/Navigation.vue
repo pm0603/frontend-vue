@@ -106,11 +106,14 @@
             this.$store.commit('setModalStatus', false);
             this.$route.push('/');
           }
+
         },
         beforeCreate(){
           if(window.localStorage.token){
             this.$store.commit('setUserLoginStatus', true);
-            this.user_profile = this.$store.getters.getUserProfile;
+            // this.user_profile = this.$store.getters.getUserProfile;
+            console.log(this.user_profile);
+            this.user_profile = localStorage.profile ? localStorage.profile : 'https://cdn3.iconfinder.com/data/icons/glypho-generic-icons/64/user-man-circle-invert-512.png';
             this.on_user      = this.$store.getters.getUserName;
             this.$store.commit('setMainTitle', this.on_user );
           } 
@@ -118,7 +121,9 @@
         mounted () {
           if( localStorage.length ){
             this.$store.commit('setUserLoginStatus', true);
-            this.user_profile = this.$store.getters.getUserProfile;
+            // this.user_profile = this.$store.getters.getUserProfile;
+            console.log(this.user_profile);
+            this.user_profile = localStorage.profile ? localStorage.profile : 'https://cdn3.iconfinder.com/data/icons/glypho-generic-icons/64/user-man-circle-invert-512.png';
             this.on_user      = this.$store.getters.getUserName;
 
           }else{
@@ -126,6 +131,7 @@
             this.$store.commit('setModalStatus', false);
             
           }
+
         },
         updated () {
           let update_detail = this.isUserDetail;

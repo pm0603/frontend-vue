@@ -7,9 +7,6 @@
                 <div v-show="loading" class="login load">
                     <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
                 </div>                                    
-                <a role="button" href class="modal-close-btn" aria-label="content" @click.prevent="closeModal">
-                    <span class="pe-7s-close" aria-hidden="true"></span>
-                </a>
                 <div class="modal-header">
                     <h2>로그인</h2>
                     <p v-if="!result_fail">{{main_message}}</p>
@@ -43,6 +40,9 @@
                                           @keyup.enter="doLogin">login</button>
                 </div>
                 </form>
+                <a role="button" href class="modal-close-btn" aria-label="content" @click.prevent="closeModal">
+                    <span class="pe-7s-close" aria-hidden="true"></span>
+                </a>
             </div>
     </div>
 </template>

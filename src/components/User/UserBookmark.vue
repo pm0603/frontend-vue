@@ -7,8 +7,8 @@
     <div v-if="isView" class="bookmark-card-view">
         <div class="bookmark-total">북마크 <span>{{count}}</span></div>
         <div class="row bookmark-info" >
-            <div class="card-menu col-xl-3 col-lg-3 col-md-12 col-sm-12" v-for="item in list" >
-                <router-link :to="'/detail/' + item.seq" tag="a" active-class="current-page">
+            <!--<div class="card-menu col-xl-3 col-lg-3 col-md-12 col-sm-12" v-for="item in list" >-->
+                <router-link :to="'/detail/' + item.seq" tag="a" class="card-menu col-xl-3 col-lg-3 col-md-12 col-sm-12" active-class="current-page" v-for="item in list" >
                     <div class="card-content">
                         <div class="card-title bookmark-info__title">{{ item.title }}</div>
                         <ul class="card-list">
@@ -19,7 +19,7 @@
                         <button type="button" class="bookmark-info__delete" @click.prevent="deleteBookmark(item.content)"><span class="pe-7s-close"></span></button>
                     </div>
                 </router-link>
-            </div>
+            <!--</div>-->
         </div>
         <!--로딩-->
         <div v-if="loading" class="row load">

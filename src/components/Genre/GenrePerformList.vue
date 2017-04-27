@@ -59,18 +59,13 @@ export default{
     getData: function() {
         this.loading = true;
         const baseURI = 'http://api.pm0603.com';
-        // {{$route.query.term}}
-        // http://www.pm0603.com/api/detail/?search=뮤지컬
         axios.get(`${baseURI}/api_content/?realm_name=${this.$route.query.realm_name}`)
             .then(result => {
-              console.log('this.$route.query.q:',this.$route.query.realm_name);
-              console.log('result.data.results.length:',result.data.results.length);
               if (result.data.results.length>0){
                 // posts에 data results 추가
                 this.posts = result.data.results;
                 // next page 링크를 기억
                 this.next = result.data.next;
-                console.log('this.next:',this.next);
                 if(!this.next){
                   this.morebtn = false;
                 }
@@ -82,7 +77,6 @@ export default{
                 this.loading = false;
                 this.morebtn = false;
               }
-              console.log('this.posts:', this.posts);
             })
             .catch(e=> {
               this.errors.push(e)
@@ -119,7 +113,6 @@ export default{
                 headers: {'Authorization': 'Token '+localStorage.token},
             })
             .then(function(response){
-              // console.log('로그인없이 할경우:',response);
                 // if(response.status)
                 window.alert('북마크가 추가되었습니다.');
                 this.loading = false;

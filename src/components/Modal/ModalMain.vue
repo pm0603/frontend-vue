@@ -6,7 +6,10 @@
                 <!-- 로딩 -->
                 <div v-show="loading" class="login load">
                     <i class="fa fa-ticket fa-4x loading" aria-hidden="true"></i>
-                </div>                                    
+                </div>
+                <a role="button" href class="modal-close-btn" aria-label="content" @click.prevent="closeModal">
+                    <span class="pe-7s-close" aria-hidden="true"></span>
+                </a>
                 <div class="modal-header">
                     <h2>로그인</h2>
                     <p v-if="!result_fail">{{main_message}}</p>
@@ -81,7 +84,7 @@
                 axios.post('/user/login/', loginData)
                      .then(function(response) {
                         let data = response.data;
-                        
+
                         if( !data.username ){
                             data.username = "회원";
                             data.email    = _this.email;
@@ -100,7 +103,7 @@
                             _this.$store.commit('setMainTitle', data.username );
 
                             _this.loading = false;
-                            
+
                             _this.$router.push('/');
 
                         }else if( response.status === 400 ){
@@ -116,7 +119,6 @@
                             _this.alert_message = '네트워크 에러';
                         }
                     }).catch(function (error) {
-                        // console.log('error:',error);
                         _this.loading = false;
                         _this.result_fail   = true;
                         _this.alert_message = '다시 로그인을 시도해주세요.';
@@ -173,7 +175,7 @@
                                     }).catch(function(error) {
                                         _this.loading = false;
                                         _this.alert_message = "NetWork Error";
-                                            
+
                                     });
 
                                 } else {
@@ -193,4 +195,3 @@
         }
     }
 </script>
-

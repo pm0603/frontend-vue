@@ -1,5 +1,5 @@
 <template>
-  <form class="searchbar">
+  <form class="searchbar" id="gotocontent">
     <input type="text" name="research" v-model="searchTerm" autofocus>
     <button @click.prevent="inputValue">
       <!-- <router-link tag="button"
@@ -28,8 +28,6 @@
   methods: {
     inputValue: function() {
       let inputValue = document.querySelector('input[name="research"]').value;
-      console.log(inputValue);
-      console.log(this.searchTerm);
       this.$router.push({path: '/search', query: {q: inputValue}});
       // window.location.reload();
     }
@@ -37,7 +35,6 @@
   // activated: {
   //   function() {
   //     let inputValue = document.querySelector('input[name="research"]').value;
-  //     console.log(inputValue);
   //     this.$router.push({path: '/search', query: {q: inputValue}});
   //   }
   // }

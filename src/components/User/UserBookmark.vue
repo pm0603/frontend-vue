@@ -1,5 +1,5 @@
 <template>
-<section class="bookmark-section">
+<section class="bookmark-section" id="gotocontent">
     <header class="bookmark-header">
         <h1>나의 북마크</h1>
         <h3>내가 보고 싶은 공연전시</h3>
@@ -35,7 +35,7 @@
             <p>{{item.price}}</p>
         </div>
     </div>
- 
+
 </section>
 </template>
 
@@ -44,11 +44,11 @@
         data(){
             return{
                 list:[],
-                loading: true, 
+                loading: true,
                 cnt : 1,
                 count : 0,
                 isView : true,
-                alert: false, 
+                alert: false,
                 next: '',
                 btnMore : true
             }
@@ -71,11 +71,11 @@
                 }
             });
         },
-        
+
         methods: {
-            // Method | list bookmark 
+            // Method | list bookmark
             viewListBookmark(){
-                
+
                 this.loading = true;
 
                 var _this = this;
@@ -85,7 +85,7 @@
                     headers: {'Authorization': 'Token '+localStorage.token},
                 })
                 .then(function(response){
-                    
+
                     _this.count     = response.data.count;
                     _this.loading   = false;
                     _this.list      = response.data.results;
@@ -95,8 +95,8 @@
 
                         _this.btnMore  = false;
 
-                    }else{ 
-                        _this.next = response.data.next; 
+                    }else{
+                        _this.next = response.data.next;
                     }
 
                 });
@@ -106,7 +106,7 @@
             viewMoreList(){
 
                 if( this.next ){
-                    
+
                     var _this = this;
                     axios.get( this.next,
                         {
@@ -149,10 +149,9 @@
                     _this.viewListBookmark();
 
                 });
-                
+
             }
 
         }
     }
 </script>
-

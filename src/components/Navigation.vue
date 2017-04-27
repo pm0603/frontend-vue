@@ -1,5 +1,6 @@
 <template>
   <header>
+    <a href="#gotocontent" class="skip-nav">본문 바로가기</a>
     <h2 class="nav-heading">
       <router-link to="/" tag="a">
         <img src="../assets/PM0603-3.png" alt="logo">
@@ -113,7 +114,7 @@
             this.user_profile = this.$store.getters.getUserProfile;
             this.on_user      = this.$store.getters.getUserName;
             this.$store.commit('setMainTitle', this.on_user );
-          } 
+          }
         },
         mounted () {
           if( localStorage.length ){
@@ -124,7 +125,7 @@
           }else{
             this.$store.commit('setUserLoginStatus', false);
             this.$store.commit('setModalStatus', false);
-            
+
           }
         },
         updated () {

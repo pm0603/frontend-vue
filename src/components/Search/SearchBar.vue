@@ -1,5 +1,5 @@
 <template>
-  <form class="searchbar">
+  <form class="searchbar" id="gotocontent">
     <input type="text" name="research" v-model="searchTerm" autofocus>
     <button @click.prevent="inputValue">
       <!-- <router-link tag="button"

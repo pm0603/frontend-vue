@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" id="gotocontent">
     <section class="image-section">
       <div class="main-image">
         <div :style="{ 'background-image': 'url(' + imageLink + ')' }" class="image">

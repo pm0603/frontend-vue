@@ -1,5 +1,5 @@
 <template>
-    <main class="main">
+    <main class="main" id="gotocontent">
     <div class="main-search">
       <h2>{{mainTitle}}</h2>
       <p>당신을 위한 공연, 전시 정보를 한곳에!</p>

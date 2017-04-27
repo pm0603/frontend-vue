@@ -1,5 +1,5 @@
 <template>
-  <h2 class="genre-heading" :style="{ 'background-image': 'url(' + url+ ')' }">
+  <h2 class="genre-heading" :style="{ 'background-image': 'url(' + url+ ')' }" id="gotocontent">
     {{genreTerm}} 리스트
   </h2>
 </template>

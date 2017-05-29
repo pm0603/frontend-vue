@@ -43,6 +43,9 @@
                                           @keyup.enter="doLogin">login</button>
                 </div>
                 </form>
+                <a role="button" href class="modal-close-btn" aria-label="content" @click.prevent="closeModal">
+                    <span class="pe-7s-close" aria-hidden="true"></span>
+                </a>
             </div>
     </div>
 </template>

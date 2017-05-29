@@ -29,12 +29,6 @@ export default{
     axios.get(`${baseURI}/api_content/?seq=${this.$route.params.id}`)
         .then(result => {
           // Add data to posts
-<<<<<<< HEAD
-          // console.log('q:', this.$route.params.id);
-          // console.log('result:',result);
-          // console.log('this:', this);
-=======
->>>>>>> 389fe238ce48cf7ef457a755fb1fdb632f567f3e
           this.post = result.data.results[0];
         })
         .catch(e=> {
